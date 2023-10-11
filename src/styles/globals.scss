@@ -1,0 +1,27 @@
+@import "./variables.scss";
+
+body,
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body {
+  font-family: $text_style;
+
+  @media (max-width: 250px) {
+    word-break: break-word;
+
+    span,
+    li,
+    label {
+      overflow-wrap: anywhere;
+    }
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: $title_style;
+}
