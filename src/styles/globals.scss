@@ -25,3 +25,23 @@ h2,
 h3 {
   font-family: $title_style;
 }
+
+@keyframes growHeight {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: calc(100vh - 100px);
+  }
+}
+
+@keyframes lowerHeight {
+  from {
+    max-height: calc(100vh - 100px);
+  }
+
+  to {
+    max-height: 0;
+  }
+}

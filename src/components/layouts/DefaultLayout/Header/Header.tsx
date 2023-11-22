@@ -3,8 +3,7 @@ import React from "react";
 import { FaBars, FaBell } from "react-icons/fa";
 import { BiSolidMessage } from "react-icons/bi";
 import { BsGearFill } from "react-icons/bs";
-import { INavLink } from "@/types/interfaces";
-import NavItem from "./NavItem";
+import NavItem, { INavLink } from "./NavItem";
 
 const navLinks: INavLink[] = [
   { href: "/", label: "Home" },
@@ -23,10 +22,10 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
   const nbNotifications = 2;
 
   return (
-    <nav className="w-screen h-20 px-3 duration-200 flex items-center justify-between gap-5 fixed top-0 z-10">
+    <nav className="w-full h-20 px-3 duration-200 flex items-center justify-between gap-5 fixed top-0 z-10 bg-white">
       <div className="flex items-center gap-2 min-[910px]:gap-20 h-full">
         <a href="/">
-          <p className="text-2xl font-bold text-primary h-fit">YARTISAN</p>
+          <p className="text-2xl font-bold text-black h-fit">YARTISAN</p>
         </a>
 
         <ul
@@ -43,7 +42,7 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
                 : "max-[910px]:opacity-0"
             }`}
           >
-            <Login className="min-[910px]:hidden mx-auto" />
+            <AuthButtons className="min-[910px]:hidden mx-auto" />
             <div className="flex max-[910px]:flex-col max-[910px]:gap-2 min-[910px]:h-full">
               {navLinks.map((navItem, index) => {
                 return (
@@ -84,19 +83,21 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
           </div>
           <BsGearFill size={25} />
         </div>
+
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="min-[910px]:hidden"
         >
           <FaBars size={22} />
         </button>
-        <Login className="max-[910px]:hidden" />
+
+        <AuthButtons className="max-[910px]:hidden" />
       </div>
     </nav>
   );
 };
 
-const Login = ({
+const AuthButtons = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
@@ -105,10 +106,10 @@ const Login = ({
       className={["flex gap-1 flex-wrap justify-center", className].join(" ")}
       {...props}
     >
-      <Button template="dark" invertColors>
+      <Button template="secondary" invertColors>
         S'inscrire
       </Button>
-      <Button template="dark">Se connecter</Button>
+      <Button template="secondary">Se connecter</Button>
     </div>
   );
 };

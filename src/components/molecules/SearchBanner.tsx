@@ -38,23 +38,23 @@ const Filters = ({ filters, setFilters }: IFiltersProps) => {
 
   const handleChange = (slug: keyof IFilters, value: any) => {
     console.log("slug", value);
-    
+
     setFilters({ ...filters, [slug]: value });
   };
 
   return (
     <div className="flex gap-2 flex-wrap">
-      <div className="flex items-center justify-center bg-dark rounded-md text-white font-bold px-4 py-2 gap-1">
+      <div className="flex flex-1 items-center justify-center bg-secondary rounded-md text-white font-bold px-4 py-2 gap-1">
         <span>Industry</span>
         <FaChevronDown />
       </div>
 
-      <div className="flex items-center justify-center bg-dark rounded-md text-white font-bold px-4 py-2 gap-1">
+      <div className="flex flex-1 items-center justify-center bg-secondary rounded-md text-white font-bold px-4 py-2 gap-1">
         <span>Note</span>
         <FaChevronDown />
       </div>
 
-      <div className="flex flex-wrap items-center justify-center bg-dark rounded-md font-bold px-4 py-2 gap-2">
+      <div className="flex flex-wrap items-center justify-center bg-secondary rounded-md font-bold px-4 py-2 gap-2 max-[616px]:w-full">
         <span className="text-white">Price</span>
         <div className="flex flex-wrap gap-2 text-black">
           <input
@@ -66,7 +66,8 @@ const Filters = ({ filters, setFilters }: IFiltersProps) => {
               })
             }
             type="number"
-            className="rounded-lg max-w-[100px]"
+            className="pl-2 rounded-lg max-w-[100px]"
+            min={0}
           />
           <span className="text-white">-</span>
           <input
@@ -78,7 +79,8 @@ const Filters = ({ filters, setFilters }: IFiltersProps) => {
               })
             }
             type="number"
-            className="rounded-lg max-w-[100px]"
+            className="pl-2 rounded-lg max-w-[100px]"
+            min={0}
           />
         </div>
       </div>

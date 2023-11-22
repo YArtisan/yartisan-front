@@ -34,7 +34,7 @@ function SearchBar({
         type="text"
       />
       <button onClick={handleSearch} className="px-3">
-        <FaSearch size={20} className="text-primary mx-auto" />
+        <FaSearch size={20} className="text-secondary mx-auto" />
       </button>
     </div>
   );

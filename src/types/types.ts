@@ -1,1 +1,1 @@
-export type Template = "primary" | "secondary" | "dark" | "white";
+export type Template = "primary" | "secondary" | "accent" | "white";
