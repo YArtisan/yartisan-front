@@ -78,11 +78,11 @@ function ArtisantDetails({ artisant, className, ...props }: IProps) {
         className,
       ].join(" ")}
     >
-      {/* <img
+      <img
         src={profile_picture}
         alt={`Bannière de ${compagny_name}`}
         className="h-[150px] object-cover rounded-md"
-      /> */}
+      />
       <div className="p-5 overflow-y-auto">
         <p className="text-xl font-bold mb-2">{compagny_name}</p>
         <div className="flex gap-2 flex-wrap mb-6 text-sm">

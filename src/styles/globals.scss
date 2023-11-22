@@ -9,6 +9,10 @@ html {
 body {
   font-family: $text_style;
 
+  &.modal-open {
+    overflow: hidden;
+  }
+
   @media (max-width: 250px) {
     word-break: break-word;
 

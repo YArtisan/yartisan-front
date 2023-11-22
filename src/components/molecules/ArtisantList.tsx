@@ -5,8 +5,7 @@ import ArtisantDetails from "@molecules/ArtisantDetails";
 import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
-function ArtisantList() {
-  const [artisants, setArtisants] = useState<IArtisant[]>([]);
+function ArtisantList({ artisants }: { artisants: IArtisant[] }) {
   const [selectedArtisant, setSelectedArtisant] = useState<IArtisant | null>(
     null
   );
@@ -20,10 +19,14 @@ function ArtisantList() {
   };
 
   useEffect(() => {
-    getAllArtisants().then((artisants) => {
-      setArtisants(artisants);
-    });
-  }, []);
+    if (window.innerWidth < 600) {
+      if (selectedArtisant) {
+        document.body.classList.add("modal-open");
+      } else {
+        document.body.classList.remove("modal-open");
+      }
+    }
+  }, [selectedArtisant]);
 
   return (
     <div className="flex justify-center gap-8 px-5">

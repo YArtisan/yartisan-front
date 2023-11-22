@@ -1,28 +1,27 @@
-import Button from "@atoms/Button";
 import SearchBar from "@atoms/SearchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
-interface IProps {}
+interface IProps {
+  value: IFilters;
+  handleChange: (val: IFilters) => void;
+}
 
-function SearchBanner() {
-  const [query, setQuery] = useState("");
-  const [filters, setFilters] = useState<IFilters>({});
-
+function SearchBanner({ value, handleChange }: IProps) {
   return (
     <div className="bg-primary flex flex-col gap-8 justify-center items-center p-10">
       <SearchBar
         className="w-full max-w-[750px]"
-        query={query}
-        setQuery={setQuery}
-        handleSearch={() => alert(query)}
+        query={value.query ?? ""}
+        setQuery={(query) => handleChange({ ...value, query })}
       />
-      <Filters filters={filters} setFilters={setFilters} />
+      <Filters filters={value} setFilters={handleChange} />
     </div>
   );
 }
 
-interface IFilters {
+export interface IFilters {
+  query?: string;
   industry?: string;
   note?: string;
   price?: { min?: number; max?: number };

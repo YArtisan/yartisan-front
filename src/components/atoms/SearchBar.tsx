@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   query: string;
   setQuery: (val: string) => void;
-  handleSearch: () => void;
+  handleSearch?: () => void;
 }
 
 function SearchBar({
@@ -14,7 +14,7 @@ function SearchBar({
   ...props
 }: IProps) {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") handleSearch();
+    if (handleSearch && e.key === "Enter") handleSearch();
   };
 
   return (
@@ -33,6 +33,7 @@ function SearchBar({
         placeholder="Rechercher un artisan..."
         type="text"
       />
+
       <button onClick={handleSearch} className="px-3">
         <FaSearch size={20} className="text-secondary mx-auto" />
       </button>
