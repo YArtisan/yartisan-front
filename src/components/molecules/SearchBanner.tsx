@@ -35,11 +35,8 @@ interface IFiltersProps {
 const Filters = ({ filters, setFilters }: IFiltersProps) => {
   const { price, note, industry } = filters;
 
-  const handleChange = (slug: keyof IFilters, value: any) => {
-    console.log("slug", value);
-
+  const handleChange = (slug: keyof IFilters, value: any) =>
     setFilters({ ...filters, [slug]: value });
-  };
 
   return (
     <div className="flex gap-2 flex-wrap">
@@ -49,8 +46,30 @@ const Filters = ({ filters, setFilters }: IFiltersProps) => {
       </div>
 
       <div className="flex flex-1 items-center justify-center bg-secondary rounded-md text-white font-bold px-4 py-2 gap-1">
-        <span>Note</span>
-        <FaChevronDown />
+        <select
+          value={note ?? ""}
+          onChange={(e) => handleChange("note", e.target.value)}
+          className="bg-transparent"
+        >
+          <option className="bg-secondary" value="">
+            Note
+          </option>
+          <option className="bg-secondary" value="1">
+            ★ ou +
+          </option>
+          <option className="bg-secondary" value="2">
+            ★★ ou +
+          </option>
+          <option className="bg-secondary" value="3">
+            ★★★ ou +
+          </option>
+          <option className="bg-secondary" value="4">
+            ★★★★ ou +
+          </option>
+          <option className="bg-secondary" value="5">
+            ★★★★★
+          </option>
+        </select>
       </div>
 
       <div className="flex flex-wrap items-center justify-center bg-secondary rounded-md font-bold px-4 py-2 gap-2 max-[616px]:w-full">

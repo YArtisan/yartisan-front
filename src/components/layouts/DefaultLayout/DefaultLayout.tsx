@@ -11,7 +11,7 @@ function DefaultLayout({ children }: IProps) {
   return (
     <div>
       <Header isExpanded={navbarExpanded} setIsExpanded={setNavbarExpanded} />
-      <main className={`pt-20 ${navbarExpanded ? "" : ""}`}>
+      <main className={`pt-20 pb-5 ${navbarExpanded ? "" : ""}`}>
         {children}
       </main>
     </div>

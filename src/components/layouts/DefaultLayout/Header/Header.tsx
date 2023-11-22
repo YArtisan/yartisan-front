@@ -29,7 +29,7 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
         </a>
 
         <ul
-          className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[910px]:left-0 max-[910px]:bg-primary-0.9 max-[910px]:w-full max-[910px]:absolute max-[910px]:top-full max-[910px]:h-[calc(100vh-80px)] ${
+          className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[910px]:left-0 max-[910px]:bg-primary max-[910px]:bg-opacity-90 max-[910px]:w-full max-[910px]:absolute max-[910px]:top-full max-[910px]:h-[calc(100vh-80px)] ${
             isExpanded
               ? "max-[910px]:max-w-[450px] max-[910px]:px-5"
               : "max-[910px]:max-w-[0px]"

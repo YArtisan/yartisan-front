@@ -13,7 +13,7 @@ function ArtisantList({ artisants }: { artisants: IArtisant[] }) {
   const closeDetails = () => {
     const details = document.getElementById("artisant-details");
     if (!details) return;
-    details.classList.remove("max-[600px]:animate-card-grow");
+    details.classList.remove("max-[900px]:animate-card-grow");
     details.classList.add("animate-card-shrink");
     setTimeout(() => setSelectedArtisant(null), 400);
   };
@@ -43,13 +43,13 @@ function ArtisantList({ artisants }: { artisants: IArtisant[] }) {
       <div
         className={[
           "relative flex-[2_2_0%]",
-          "max-[600px]:fixed max-[600px]:bottom-0 max-[600px]:bg-card max-[600px]:rounded-t-lg",
+          "max-[900px]:fixed max-[900px]:bottom-0 max-[900px]:bg-card max-[900px]:rounded-t-lg max-[900px]:w-full",
         ].join(" ")}
       >
         {selectedArtisant && (
           <>
             <div
-              className="min-[600px]:hidden absolute bg-card rounded-full p-2 top-2 right-2 z-[1]"
+              className="min-[900px]:hidden absolute bg-card rounded-full p-2 top-2 right-2 z-[1]"
               // onClick={() => setSelectedArtisant(null)}
               onClick={closeDetails}
             >
@@ -58,7 +58,7 @@ function ArtisantList({ artisants }: { artisants: IArtisant[] }) {
             <ArtisantDetails
               id="artisant-details"
               artisant={selectedArtisant}
-              className="max-[600px]:h-[calc(100vh-100px)] max-[600px]:animate-card-grow"
+              className="max-[900px]:h-[calc(100vh-100px)] max-[900px]:animate-card-grow"
             />
           </>
         )}

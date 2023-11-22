@@ -2,6 +2,7 @@ import { getAllArtisants } from "@/fetch/artisantActions";
 import { IArtisant } from "@/types/interfaces";
 import ArtisantList from "@molecules/ArtisantList";
 import SearchBanner, { IFilters } from "@molecules/SearchBanner";
+import { getAverageRating } from "@utils/functions";
 import { useEffect, useState } from "react";
 
 function Home() {
@@ -16,12 +17,12 @@ function Home() {
 
   const getFilteredArtisants = () => {
     return artisants.filter(
-      ({ compagny_name, job_description, avg_price, ...artisants }) => {
-        const { query, price } = filters;
+      ({ compagny_name, job_description, avg_price, ratings }) => {
+        const { query, price, note } = filters;
         if (query) {
           if (
-            !compagny_name.toLowerCase().includes(query) &&
-            !job_description.toLowerCase().includes(query)
+            !compagny_name.toLowerCase().includes(query.toLowerCase()) &&
+            !job_description.toLowerCase().includes(query.toLowerCase())
           )
             return false;
         }
@@ -36,6 +37,11 @@ function Home() {
             return false;
           if (typeof min === "number" && avg_price < min) return false;
           if (typeof max === "number" && avg_price > max) return false;
+        }
+
+        if (note && parseInt(note)) {
+          const avgRating = getAverageRating(ratings);
+          if (avgRating < parseInt(note)) return false;
         }
 
         return true;

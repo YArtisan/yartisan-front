@@ -1,5 +1,5 @@
 import { axiosWithCache } from "@utils/axiosConfig";
-import { IAddress } from "@/types/interfaces";
+import { IAddress, IRating } from "@/types/interfaces";
 
 export const getLatLonFromAddress = (address: string | IAddress) => {
   const q = typeof address !== "string" ? getCompleteAddress(address) : address;
@@ -9,14 +9,14 @@ export const getLatLonFromAddress = (address: string | IAddress) => {
         params: { q, format: "json", polygon: 1, addressdetails: 1 },
       })
       .then((res) => {
-        console.log(res.cached);
-
         const { lat, lon } = res.data[0];
         resolve({ lat, lon });
       })
       .catch((err) => reject(err.data));
   });
 };
+
+export const getAverageRating = (ratings: IRating[]) => ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
 
 export const getCompleteAddress = (address: IAddress) => {
   return [
