@@ -1,11 +1,5 @@
 import { axiosWithCache } from "@utils/axiosConfig";
-import {
-  IAddress,
-  IArtisan,
-  IHoraire,
-  IMultiHoraire,
-  IRating,
-} from "@/types/interfaces";
+import { IAddress, IHoraire, IMultiHoraire, IRating } from "@/types/interfaces";
 
 export const getLatLonFromAddress = (address: string | IAddress) => {
   const q = typeof address !== "string" ? getCompleteAddress(address) : address;
@@ -15,14 +9,15 @@ export const getLatLonFromAddress = (address: string | IAddress) => {
         params: { q, format: "json", polygon: 1, addressdetails: 1 },
       })
       .then((res) => {
-        console.log(res.cached);
-
         const { lat, lon } = res.data[0];
         resolve({ lat, lon });
       })
       .catch((err) => reject(err.data));
   });
 };
+
+export const getAverageRating = (ratings: IRating[]) =>
+  ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
 
 export const getCompleteAddress = (address: IAddress) => {
   return [
@@ -61,9 +56,6 @@ export const getHoraires = (horaires: IHoraire[]): IMultiHoraire[] =>
       },
     ];
   }, []);
-
-export const getAverageRating = (ratings: IRating[]) =>
-  ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
 
 export const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);

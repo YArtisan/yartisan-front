@@ -10,7 +10,7 @@ function ArtisanList({ artisans }: { artisans: IArtisan[] }) {
   const closeDetails = () => {
     const details = document.getElementById("artisan-details");
     if (!details) return;
-    details.classList.remove("max-[600px]:animate-card-grow");
+    details.classList.remove("max-[900px]:animate-card-grow");
     details.classList.add("animate-card-shrink");
     setTimeout(() => setSelectedArtisan(null), 400);
   };
@@ -40,7 +40,7 @@ function ArtisanList({ artisans }: { artisans: IArtisan[] }) {
       <div
         className={[
           "relative flex-[2_2_0%]",
-          "max-[600px]:fixed max-[600px]:bottom-0 max-[600px]:bg-card max-[600px]:rounded-t-lg",
+          "max-[900px]:fixed max-[900px]:bottom-0 max-[900px]:bg-card max-[900px]:rounded-t-lg max-[900px]:w-full",
         ].join(" ")}
       >
         {selectedArtisan && (

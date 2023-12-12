@@ -10,6 +10,7 @@ import Button from "@atoms/Button";
 import { getCompleteAddress } from "@utils/functions";
 import Map from "@atoms/Map";
 import Ratings from "@molecules/Ratings/Ratings";
+import { FaBookmark } from "react-icons/fa";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   artisan: IArtisan;
@@ -31,7 +32,9 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
   const horaires = getHoraires(artisan.horaires);
 
   useEffect(() => {
-    getLatLonFromAddress(address).then((res) => setCoords(res));
+    getLatLonFromAddress(address)
+      .then((res) => setCoords(res))
+      .catch(() => setCoords(null));
   }, [artisan]);
 
   return (
@@ -48,7 +51,10 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
         className="h-[150px] object-cover rounded-md"
       />
       <div className="p-5 overflow-y-auto">
-        <p className="text-xl font-bold mb-2">{compagny_name}</p>
+        <div className="flex justify-between">
+          <p className="text-xl font-bold mb-2">{compagny_name}</p>
+          <FaBookmark size={24} />
+        </div>
         <div className="flex gap-2 flex-wrap mb-6 text-sm">
           <Button template="secondary" invertColors>
             Contacter
