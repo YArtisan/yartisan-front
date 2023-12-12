@@ -18,9 +18,9 @@ function ChangeView({
   return null;
 }
 
-function Map({ coords, ...props }: IProps) {
+function Map({ coords, className, ...props }: IProps) {
   return (
-    <div id="map">
+    <div id="map" className={className}>
       <MapContainer
         {...props}
         center={[coords.lat, coords.lon]}

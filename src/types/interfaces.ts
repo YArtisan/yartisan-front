@@ -7,7 +7,7 @@ export interface IHoraire {
 export interface IRating {
   id: number;
   user_id: number;
-  artisant_id: number;
+  artisan_id: number;
   score: number;
   avis: string;
   created_at: Date;
@@ -23,7 +23,7 @@ export interface IAddress {
   country: string;
 }
 
-export interface IArtisant {
+export interface IArtisan {
   id: number;
   address: IAddress;
   compagny_name: string;
@@ -37,4 +37,10 @@ export interface IArtisant {
   created_at: Date;
   last_update: Date;
   isVisible: boolean;
+}
+
+export interface IMultiHoraire {
+  days: number[];
+  opening_time: string;
+  closing_time: string;
 }

@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { IArtisant, IHoraire } from "@/types/interfaces";
-import { capitalize, getLatLonFromAddress } from "@utils/functions";
+import { IArtisan } from "@/types/interfaces";
+import {
+  capitalize,
+  getHoraires,
+  getLatLonFromAddress,
+} from "@utils/functions";
 import { days } from "@utils/variables";
-import Button from "../atoms/Button";
-import { getCompleteAddress } from "../../utils/functions";
-import Map from "../atoms/Map";
+import Button from "@atoms/Button";
+import { getCompleteAddress } from "@utils/functions";
+import Map from "@atoms/Map";
+import Ratings from "@molecules/Ratings/Ratings";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
-  artisant: IArtisant;
+  artisan: IArtisan;
 }
 
-function ArtisantDetails({ artisant, className, ...props }: IProps) {
+function ArtisanDetails({ artisan, className, ...props }: IProps) {
   const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(
     null
   );
@@ -20,55 +25,14 @@ function ArtisantDetails({ artisant, className, ...props }: IProps) {
     profile_picture,
     avg_price,
     job_description,
-  } = artisant;
-  const address = getCompleteAddress(artisant.address);
+  } = artisan;
+  const address = getCompleteAddress(artisan.address);
 
-  const getHoraires = () => {
-    interface IMultiHoraire {
-      days: number[];
-      opening_time: string;
-      closing_time: string;
-    }
-
-    return artisant.horaires.reduce(
-      (prev: IMultiHoraire[], curr: IHoraire): IMultiHoraire[] => {
-        const lastIndex = prev.length - 1;
-        const previous = prev[lastIndex];
-
-        if (
-          previous &&
-          previous.opening_time === curr.opening_time &&
-          previous.closing_time === curr.closing_time
-        ) {
-          return prev.map((e, i) => {
-            if (i === lastIndex)
-              return {
-                ...e,
-                days: [...e.days, curr.day_of_week],
-              };
-
-            return e;
-          });
-        }
-
-        return [
-          ...prev,
-          {
-            days: [curr.day_of_week],
-            opening_time: curr.opening_time,
-            closing_time: curr.closing_time,
-          },
-        ];
-      },
-      []
-    );
-  };
-
-  const horaires = getHoraires();
+  const horaires = getHoraires(artisan.horaires);
 
   useEffect(() => {
     getLatLonFromAddress(address).then((res) => setCoords(res));
-  }, [artisant]);
+  }, [artisan]);
 
   return (
     <div
@@ -107,7 +71,7 @@ function ArtisantDetails({ artisant, className, ...props }: IProps) {
             }
 
             return (
-              <li key={`artisant-${compagny_name}-horaire-${i}`}>{text}</li>
+              <li key={`artisan-${compagny_name}-horaire-${i}`}>{text}</li>
             );
           })}
         </ul>
@@ -117,10 +81,12 @@ function ArtisantDetails({ artisant, className, ...props }: IProps) {
         <p className="mb-6">{avg_price} €</p>
         <p className="text-lg font-bold">Adresse</p>
         <p className="mb-4">{address}</p>
-        {coords && <Map coords={coords} />}
+        {coords && <Map className="mb-4" coords={coords} />}
+        <p className="text-lg font-bold">Notes</p>
+        <Ratings ratings={ratings} />
       </div>
     </div>
   );
 }
 
-export default ArtisantDetails;
+export default ArtisanDetails;
