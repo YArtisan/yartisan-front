@@ -44,3 +44,9 @@ export interface IMultiHoraire {
   opening_time: string;
   closing_time: string;
 }
+
+export interface INavLink {
+  href: string;
+  label: string;
+  dropdown?: INavLink[];
+}

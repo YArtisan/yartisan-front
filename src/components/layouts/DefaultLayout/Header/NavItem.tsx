@@ -1,11 +1,6 @@
+import { INavLink } from "@/types/interfaces";
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-
-export interface INavLink {
-  href: string;
-  label: string;
-  dropdown?: INavLink[];
-}
 
 interface INavItemProps extends INavLink, React.HTMLAttributes<HTMLLIElement> {
   pagePath: string;
