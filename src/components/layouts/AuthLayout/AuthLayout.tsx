@@ -11,9 +11,11 @@ function AuthLayout({ children }: IProps) {
       ].join(" ")}
     >
       <a href="/">
-        <p className="text-2xl font-bold text-secondary h-fit">YARTISAN</p>
+        <p className="absolute top-2 left-2 text-2xl font-bold text-secondary h-fit">YARTISAN</p>
       </a>
-      <main className="absolute right-1/2 bottom-1/2 translate-x-1/2 translate-y-1/2 w-full">{children}</main>
+      <main className="relative pt-20 z-[1]">
+        {children}
+      </main>
     </div>
   );
 }
