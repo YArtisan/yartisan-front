@@ -23,15 +23,7 @@ export interface IAddress {
   country: string;
 }
 
-export interface IFormAddress {
-  address_number?: string;
-  city?: string;
-  street_name?: string;
-  postal_code?: string;
-  country?: string;
-}
-
-export interface IApiAddress extends IFormAddress {
+export interface IApiAddress extends Partial<IAddress> {
   lat: number;
   lon: number;
 }

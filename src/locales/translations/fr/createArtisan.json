@@ -2,5 +2,6 @@
   "title": "Information de l'entreprise",
   "compagny_name": "Nom de l'entreprise",
   "job_description": "Description",
-  "address": "Adresse"
+  "address": "Adresse",
+  "average_price": "Tarif moyen"
 }

@@ -2,21 +2,16 @@ import { getCompleteAddress } from "@utils/functions";
 import InputWrapper from "./InputWrapper";
 import TextInput from "./TextInput";
 import { useState } from "react";
-import {
-  IAddress,
-  IApiAddress,
-  ICoords,
-  IFormAddress,
-} from "@/types/interfaces";
+import { IAddress, IApiAddress } from "@/types/interfaces";
 import Button from "@atoms/Button";
 import Map from "@atoms/Map";
 import { IBaseInputProps } from "./InputWrapper";
 import { useTranslation } from "react-i18next";
 import { getAddresses } from "@/fetch/addressActions";
 
-export interface IAdressInputProps extends IBaseInputProps {
-  value?: IFormAddress;
-  handleChange?: (value: IFormAddress) => void;
+export interface IAddressInputProps extends IBaseInputProps {
+  value?: Partial<IAddress>;
+  handleChange?: (value: Partial<IAddress>) => void;
 }
 
 const AddressInput = ({
@@ -25,7 +20,7 @@ const AddressInput = ({
   className,
   handleChange,
   ...props
-}: IAdressInputProps) => {
+}: IAddressInputProps) => {
   const { t } = useTranslation("addressInput");
   const [selectedAddress, setSelectedAddress] = useState<number | null>(null);
   const [addresses, setAddresses] = useState<IApiAddress[]>([]);
@@ -47,7 +42,7 @@ const AddressInput = ({
       });
   };
 
-  const onChange = (slug: keyof IFormAddress, value: string) => {
+  const onChange = (slug: keyof Partial<IAddress>, value: string) => {
     if (handleChange) handleChange({ ...(props.value ?? {}), [slug]: value });
   };
 

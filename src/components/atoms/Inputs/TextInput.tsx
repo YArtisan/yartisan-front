@@ -2,9 +2,7 @@ import InputWrapper, { IBaseInputProps } from "./InputWrapper";
 
 interface ITextInputProps
   extends IBaseInputProps,
-    React.InputHTMLAttributes<HTMLInputElement> {
-  value?: string;
-}
+    React.InputHTMLAttributes<HTMLInputElement> {}
 
 const TextInput = ({ label, error, className, ...props }: ITextInputProps) => {
   return (

@@ -1,5 +1,6 @@
-import { IFormAddress } from "@/types/interfaces";
+import { IAddress, IHoraire } from "@/types/interfaces";
 import { AddressInput, TextAreaInput, TextInput } from "@atoms/Inputs";
+import HorairesInput from "@atoms/Inputs/HorairesInput";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -9,7 +10,8 @@ interface IFormData {
   // profile_picture? : string;
   job_description?: string;
   average_price?: number;
-  address?: IFormAddress;
+  address?: Partial<IAddress>;
+  horaires?: Partial<IHoraire>[];
   // number_of_employees ?: number;
 }
 
@@ -48,6 +50,22 @@ function CreateArtisan() {
           id="address"
           handleChange={(address) => setForm({ ...form, address })}
           value={form.address}
+        />
+        <TextInput
+          type="number"
+          min={0}
+          label={t("average_price")}
+          placeholder={t("average_price")}
+          id="average_price"
+          onChange={handleChange}
+          value={form.average_price}
+        />
+        <HorairesInput
+          label={t("horaires")}
+          placeholder={t("horaires")}
+          id="horaires"
+          handleChange={(horaires) => setForm({ ...form, horaires })}
+          value={form.horaires}
         />
       </div>
     </div>
