@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       animation: {
-        "card-grow": "growHeight 0.5s ease-in-out",
-        "card-shrink": "lowerHeight 0.5s ease-in-out",
+        "card-grow": "artisanDetailsGrow 0.5s ease-in-out",
+        "card-shrink": "artisanDetailsShrink 0.5s ease-in-out",
       },
       colors: {
         primary: "#CAF1F6",

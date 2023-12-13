@@ -30,7 +30,7 @@ h3 {
   font-family: $title_style;
 }
 
-@keyframes growHeight {
+@keyframes artisanDetailsGrow {
   from {
     max-height: 0;
   }
@@ -40,7 +40,7 @@ h3 {
   }
 }
 
-@keyframes lowerHeight {
+@keyframes artisanDetailsShrink {
   from {
     max-height: calc(100vh - 100px);
   }

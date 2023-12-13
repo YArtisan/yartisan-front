@@ -1,9 +1,10 @@
 import Button from "@atoms/Button";
-import React from "react";
+import React, { useState } from "react";
 import { FaBars, FaBell } from "react-icons/fa";
 import { BiSolidMessage } from "react-icons/bi";
 import { BsGearFill } from "react-icons/bs";
 import NavItem, { INavLink } from "./NavItem";
+import Window from "@components/layouts/DefaultLayout/Header/Window/Window";
 
 const navLinks: INavLink[] = [
   { href: "/", label: "Home" },
@@ -17,12 +18,19 @@ interface IProps {
 }
 
 const Header = ({ isExpanded, setIsExpanded }: IProps) => {
+  type Menu = "settings" | "notifications" | "";
+  const [openedMenu, setOpenedMenu] = useState<Menu>("");
   const pathname = window.location.pathname;
   const nbMessages = 2;
   const nbNotifications = 2;
 
+  const toggleOpenMenu = (value: Menu) => {
+    setOpenedMenu(openedMenu === value ? "" : value);
+  };
+
   return (
     <nav className="w-full h-20 px-3 duration-200 flex items-center justify-between gap-5 fixed top-0 z-10 bg-white">
+      {/* Logo and nav links */}
       <div className="flex items-center gap-2 min-[930px]:gap-20 h-full">
         <a href="/">
           <p className="text-2xl font-bold text-black h-fit">YARTISAN</p>
@@ -61,8 +69,9 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
         </ul>
       </div>
 
-      <div className="flex items-center justify-center gap-5">
-        <div className="flex gap-1">
+      {/* Boutons */}
+      <div className="flex items-center justify-center gap-5 h-full">
+        <div className="min-[400px]:relative flex items-center gap-1 h-full">
           <div
             className={`${
               nbMessages > 0
@@ -70,7 +79,10 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
                 : ""
             }`}
           >
-            <BiSolidMessage size={25} />
+            <BiSolidMessage
+              size={25}
+              className="duration-150 cursor-pointer hover:scale-125"
+            />
           </div>
           <div
             className={`${
@@ -79,9 +91,18 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
                 : ""
             }`}
           >
-            <FaBell size={25} />
+            <FaBell
+              size={25}
+              className="duration-150 cursor-pointer hover:scale-125"
+              onClick={() => toggleOpenMenu("notifications")}
+            />
           </div>
-          <BsGearFill size={25} />
+          <BsGearFill
+            size={25}
+            className="duration-150 cursor-pointer hover:scale-125"
+            onClick={() => toggleOpenMenu("settings")}
+          />
+          <Window menu={openedMenu} />
         </div>
 
         <button

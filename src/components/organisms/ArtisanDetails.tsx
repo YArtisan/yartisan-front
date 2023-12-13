@@ -17,7 +17,7 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 function ArtisanDetails({ artisan, className, ...props }: IProps) {
-  const [height, setHeight] = useState(() => window.innerHeight - 100);
+  const [height, _setHeight] = useState(() => window.innerHeight - 100);
   const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(
     null
   );
@@ -37,10 +37,6 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
       .then((res) => setCoords(res))
       .catch(() => setCoords(null));
   }, [artisan]);
-
-  // useEffect(() => {
-  //   setHeight(window.innerHeight - 100);
-  // }, []);
 
   return (
     <div
