@@ -94,7 +94,7 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
         <p className="text-lg font-bold">Adresse</p>
         <p className="mb-4">{address}</p>
         {coords && <Map className="mb-4" coords={coords} />}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-8">
           <p className="text-lg font-bold">Avis</p>
           <Button
             template="secondary"

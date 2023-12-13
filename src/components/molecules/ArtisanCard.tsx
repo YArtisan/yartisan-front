@@ -2,7 +2,7 @@ import { IArtisan } from "@/types/interfaces";
 import { getAverageRating, getCompleteAddress } from "@utils/functions";
 import React from "react";
 import { FaBookmark, FaStar, FaStarHalf } from "react-icons/fa";
-import RatingStars from "./RatingStars";
+import RatingStars from "../atoms/RatingStars";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   artisan: IArtisan;

@@ -1,5 +1,5 @@
 import { IArtisan } from "@/types/interfaces";
-import ArtisanCard from "@atoms/ArtisanCard";
+import ArtisanCard from "@molecules/ArtisanCard";
 import ArtisanDetails from "@organisms/ArtisanDetails";
 import { getAverageRating } from "@utils/functions";
 import React, { useEffect, useState } from "react";
