@@ -1,0 +1,11 @@
+{
+  "country": "Country",
+  "postal_code": "Postal code",
+  "city": "City",
+  "address_number": "Street number",
+  "street_name": "Street name",
+  "testAddress": "Test address",
+  "foundAddresses": "Found addresses",
+  "addressValid": "This address is valid",
+  "addressInvalid": "This address is invalid"
+}
