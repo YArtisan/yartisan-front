@@ -1,6 +1,11 @@
-import { INavLink } from "@/types/interfaces";
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+
+export interface INavLink {
+  href: string;
+  label: string;
+  dropdown?: INavLink[];
+}
 
 interface INavItemProps extends INavLink, React.HTMLAttributes<HTMLLIElement> {
   pagePath: string;
@@ -29,14 +34,14 @@ const NavItem = ({
       {...props}
       onMouseOver={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
-      className="relative min-[910px]:h-full flex items-center"
+      className="relative min-[930px]:h-full flex items-center"
     >
       <a
         className={`${
           active
-            ? "text-white bg-primary max-[910px]:bg-white max-[910px]:text-primary"
-            : "hover:bg-gray-200 max-[910px]:hover:text-primary max-[910px]:text-white "
-        } relative px-2 w-full h-full font-bold  text-xl min-[910px]:text-lg duration-200 flex items-center gap-1 after:absolute after:bottom-0 after:h-1`}
+            ? "text-white bg-secondary max-[930px]:bg-secondary max-[930px]:text-white max-[930px]:rounded-md"
+            : "hover:bg-gray-200 max-[930px]:hover:text-secondary max-[930px]:text-black"
+        } relative px-2 w-full h-full font-bold  text-xl min-[930px]:text-lg duration-200 flex items-center gap-1 after:absolute after:bottom-0 after:h-1`}
         href={href}
       >
         {label}

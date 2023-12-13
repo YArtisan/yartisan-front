@@ -9,6 +9,10 @@ html {
 body {
   font-family: $text_style;
 
+  &.modal-open {
+    overflow: hidden;
+  }
+
   @media (max-width: 250px) {
     word-break: break-word;
 
@@ -24,4 +28,24 @@ h1,
 h2,
 h3 {
   font-family: $title_style;
+}
+
+@keyframes artisanDetailsGrow {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: calc(100vh - 100px);
+  }
+}
+
+@keyframes artisanDetailsShrink {
+  from {
+    max-height: calc(100vh - 100px);
+  }
+
+  to {
+    max-height: 0;
+  }
 }
