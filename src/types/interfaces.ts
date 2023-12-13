@@ -50,3 +50,4 @@ export interface INavLink {
   label: string;
   dropdown?: INavLink[];
 }
+export interface ICoords { lat: number; lon: number }
