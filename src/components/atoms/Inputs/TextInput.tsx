@@ -6,9 +6,15 @@ interface ITextInputProps
   value?: string;
 }
 
-const TextInput = ({ label, error, className, ...props }: ITextInputProps) => {
+const TextInput = ({
+  label,
+  error,
+  className,
+  divClassName,
+  ...props
+}: ITextInputProps) => {
   return (
-    <InputWrapper label={label} id={props.id}>
+    <InputWrapper label={label} id={props.id} className={divClassName}>
       <input
         {...props}
         className={[

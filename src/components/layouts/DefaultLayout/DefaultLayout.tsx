@@ -1,13 +1,11 @@
 import { useState } from "react";
 import Header from "./Header/Header";
-import { useDarkModeState } from "@/context/DarkModeContext";
 
 interface IProps {
   children: React.ReactNode;
 }
 
 function DefaultLayout({ children }: IProps) {
-  const { darkMode } = useDarkModeState();
   const [navbarExpanded, setNavbarExpanded] = useState(false);
 
   return (

@@ -1,7 +1,7 @@
 import { IAddress, IHoraire } from "@/types/interfaces";
 import { AddressInput, TextAreaInput, TextInput } from "@atoms/Inputs";
 import HorairesInput from "@atoms/Inputs/HorairesInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 interface IFormData {
@@ -26,8 +26,12 @@ function CreateArtisan() {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
 
+  useEffect(() => {
+    console.log("form", form);
+  }, [form]);
+
   return (
-    <div className="bg-white w-full max-w-[1000px] mx-auto rounded-xl shadow-2xl">
+    <div className="bg-white w-full max-w-[1000px] mx-auto rounded-xl shadow-2xl p-2">
       <h1 className="text-center">{t("title")}</h1>
       <div className="flex flex-col gap-2 mx-auto w-full max-w-[700px] pb-6">
         <TextInput
