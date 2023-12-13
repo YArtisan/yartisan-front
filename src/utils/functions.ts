@@ -1,10 +1,10 @@
 
-import { IAddress, IFormAddress, IHoraire, IMultiHoraire, IRating } from "@/types/interfaces";
+import { IAddress, IHoraire, IMultiHoraire, IRating } from "@/types/interfaces";
 
 export const getAverageRating = (ratings: IRating[]) =>
   ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
 
-export const getCompleteAddress = (address: IAddress | IFormAddress) => {
+export const getCompleteAddress = (address: Partial<IAddress>) => {
   const street = [address.address_number, address.street_name].filter(Boolean).join(" ");
   const city = [address.postal_code, address.city].filter(Boolean).join(" ")
 
