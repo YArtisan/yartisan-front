@@ -59,3 +59,5 @@ export const getHoraires = (horaires: IHoraire[]): IMultiHoraire[] =>
 
 export const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
+
+export const getRandomNumber = (min = 0, max = 999999) => Math.floor(Math.random() * 99999) + 1;

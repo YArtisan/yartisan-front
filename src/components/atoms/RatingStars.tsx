@@ -1,3 +1,5 @@
+import { getRandomNumber } from "@utils/functions";
+import React from "react";
 import { FaRegStar, FaStar, FaStarHalf, FaStarHalfAlt } from "react-icons/fa";
 
 interface IProps {
@@ -9,9 +11,11 @@ interface IProps {
 
 const displayStars = (number: number, filled: boolean) => (
   <>
-    {Array.from(new Array(Math.floor(number)).keys()).map(() =>
-      filled ? <FaStar /> : <FaRegStar />
-    )}
+    {Array.from(new Array(Math.floor(number)).keys()).map(() => (
+      <React.Fragment key={`rating-star-${getRandomNumber()}`}>
+        {filled ? <FaStar /> : <FaRegStar />}
+      </React.Fragment>
+    ))}
   </>
 );
 

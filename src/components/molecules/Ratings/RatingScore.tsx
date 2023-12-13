@@ -17,7 +17,7 @@ function RatingScore({ ratings }: { ratings: IRating[] }) {
         <RatingStars number={avg} className="text-3xl text-yellow-400" filled />
         <p className="italic underline">{ratings.length} avis</p>
       </div>
-      <div className="flex flex-col gap-1 pb-6 border-b-2 border-dashed border-black">
+      <div className="flex flex-col gap-1 mb-6">
         {Array.from(new Array(5).keys())
           .reverse()
           .map((i) => {
@@ -25,7 +25,7 @@ function RatingScore({ ratings }: { ratings: IRating[] }) {
               ({ score }) => score === i + 1
             ).length;
             return (
-              <div className="flex items-center gap-2 font-bold">
+              <div key={`score-${i+1}-stars`} className="flex items-center gap-2 font-bold">
                 <div className="w-8 flex items-center gap-0.5 justify-between">
                   <p>{i + 1}</p>
                   <FaStar />

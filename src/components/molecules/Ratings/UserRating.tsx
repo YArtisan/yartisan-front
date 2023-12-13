@@ -19,10 +19,8 @@ function UserRating({ rating }: { rating: IRating }) {
         <p className="text-xl font-semibold">John Doe</p>
       </div>
       <RatingStars withScore number={score} className="text-yellow-400" />
-      <div>
-        <p className="italic text-sm text-secondary">Publié le {date}</p>
-        <p>{avis}</p>
-      </div>
+      <p className="italic text-sm text-secondary mb-4">Publié le {date}</p>
+      <p className="mb-4">{avis}</p>
       <div className="flex items-center gap-2 font-bold">
         <div className="flex items-center gap-1 text-secondary">
           <FaThumbsUp className="text-xl duration-150 hover:scale-110 cursor-pointer" />

@@ -10,13 +10,14 @@ import Button from "@atoms/Button";
 import { getCompleteAddress } from "@utils/functions";
 import Map from "@atoms/Map";
 import Ratings from "@molecules/Ratings/Ratings";
-import { FaBookmark } from "react-icons/fa";
+import { FaBookmark, FaPlus } from "react-icons/fa";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   artisan: IArtisan;
 }
 
 function ArtisanDetails({ artisan, className, ...props }: IProps) {
+  const [height, setHeight] = useState(() => window.innerHeight - 100);
   const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(
     null
   );
@@ -37,9 +38,14 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
       .catch(() => setCoords(null));
   }, [artisan]);
 
+  // useEffect(() => {
+  //   setHeight(window.innerHeight - 100);
+  // }, []);
+
   return (
     <div
       {...props}
+      style={{ height: `${height}px` }}
       className={[
         "flex flex-col bg-card rounded-md overflow-hidden h-[620px] sticky top-[90px]",
         className,
@@ -50,7 +56,7 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
         alt={`Bannière de ${compagny_name}`}
         className="h-[150px] object-cover rounded-md"
       />
-      <div className="p-5 overflow-y-auto">
+      <div className="p-8 overflow-y-auto">
         <div className="flex justify-between">
           <p className="text-xl font-bold mb-2">{compagny_name}</p>
           <FaBookmark size={24} />
@@ -88,7 +94,16 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
         <p className="text-lg font-bold">Adresse</p>
         <p className="mb-4">{address}</p>
         {coords && <Map className="mb-4" coords={coords} />}
-        <p className="text-lg font-bold">Notes</p>
+        <div className="flex items-center justify-between">
+          <p className="text-lg font-bold">Avis</p>
+          <Button
+            template="secondary"
+            className="flex items-center gap-2 text-sm"
+          >
+            <FaPlus />
+            <p className="font-semibold">Ajouter un avis</p>
+          </Button>
+        </div>
         <Ratings ratings={ratings} />
       </div>
     </div>
