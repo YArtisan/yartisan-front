@@ -1,29 +1,14 @@
-import { axiosWithCache } from "@utils/axiosConfig";
-import { IAddress, IHoraire, IMultiHoraire, IRating } from "@/types/interfaces";
 
-export const getLatLonFromAddress = (address: string | IAddress) => {
-  const q = typeof address !== "string" ? getCompleteAddress(address) : address;
-  return new Promise<{ lat: number; lon: number }>((resolve, reject) => {
-    axiosWithCache
-      .get("https://nominatim.openstreetmap.org/search", {
-        params: { q, format: "json", polygon: 1, addressdetails: 1 },
-      })
-      .then((res) => {
-        const { lat, lon } = res.data[0];
-        resolve({ lat, lon });
-      })
-      .catch((err) => reject(err.data));
-  });
-};
+import { IAddress, IFormAddress, IHoraire, IMultiHoraire, IRating } from "@/types/interfaces";
 
 export const getAverageRating = (ratings: IRating[]) =>
   ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
 
-export const getCompleteAddress = (address: IAddress) => {
-  return [
-    `${address.address_number} ${address.street_name}`,
-    `${address.postal_code} ${address.city}`,
-  ].join(", ");
+export const getCompleteAddress = (address: IAddress | IFormAddress) => {
+  const street = [address.address_number, address.street_name].filter(Boolean).join(" ");
+  const city = [address.postal_code, address.city].filter(Boolean).join(" ")
+
+  return [street, city, address.country].filter(Boolean).join(", ")
 };
 
 export const getHoraires = (horaires: IHoraire[]): IMultiHoraire[] =>

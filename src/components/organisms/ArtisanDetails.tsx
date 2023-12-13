@@ -12,6 +12,7 @@ import { getCompleteAddress } from "@utils/functions";
 import Map from "@atoms/Map";
 import Ratings from "@molecules/Ratings/Ratings";
 import { FaBookmark, FaPlus } from "react-icons/fa";
+import { getLatLonFromAddress } from "@/fetch/addressActions";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   artisan: IArtisan;
@@ -82,9 +83,7 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
               )} - ${opening_time} à ${closing_time}`;
             }
 
-            return (
-              <li key={`artisan-${compagny_name}-horaire-${i}`}>{text}</li>
-            );
+            return <li key={`artisan-${compagny_name}-horaire-${i}`}>{text}</li>;
           })}
         </ul>
         <p className="text-lg font-bold">Informations</p>

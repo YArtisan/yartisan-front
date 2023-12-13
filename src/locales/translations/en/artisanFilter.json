@@ -1,1 +1,7 @@
-{}
+{
+  "searchArtisan": "Search an artisan...",
+  "industry": "Industry",
+  "grade": "Rating",
+  "price": "Price",
+  "or": "or"
+}
