@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { FaSearch } from "react-icons/fa";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -6,13 +7,14 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   handleSearch?: () => void;
 }
 
-function SearchBar({
+function SearchBar ({
   query,
   setQuery,
   handleSearch,
   className,
   ...props
 }: IProps) {
+  const { t } = useTranslation()
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (handleSearch && e.key === "Enter") handleSearch();
   };
@@ -30,7 +32,7 @@ function SearchBar({
         onKeyDown={handleKeyPress}
         value={query}
         className="p-2 flex-1 rounded-l-full"
-        placeholder="Rechercher un artisan..."
+        placeholder={t('artisanFilter:searchArtisan')}
         type="text"
       />
 

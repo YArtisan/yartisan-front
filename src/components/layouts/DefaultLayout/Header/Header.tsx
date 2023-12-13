@@ -3,14 +3,10 @@ import React, { useState } from "react";
 import { FaBars, FaBell } from "react-icons/fa";
 import { BiSolidMessage } from "react-icons/bi";
 import { BsGearFill } from "react-icons/bs";
-import NavItem, { INavLink } from "./NavItem";
+import NavItem from "./NavItem";
 import Window from "@components/layouts/DefaultLayout/Header/Window/Window";
-
-const navLinks: INavLink[] = [
-  { href: "/", label: "Home" },
-  { href: "/about-us", label: "About us" },
-  { href: "/contact-us", label: "Contact us" },
-];
+import { useNavLinks } from "@/navigation/hooks/useNavLinks";
+import { useTranslation } from "react-i18next";
 
 interface IProps {
   isExpanded: boolean;
@@ -18,6 +14,7 @@ interface IProps {
 }
 
 const Header = ({ isExpanded, setIsExpanded }: IProps) => {
+  const { navLinks } = useNavLinks()
   type Menu = "settings" | "notifications" | "";
   const [openedMenu, setOpenedMenu] = useState<Menu>("");
   const pathname = window.location.pathname;
@@ -37,18 +34,16 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
         </a>
 
         <ul
-          className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[930px]:left-0 max-[930px]:bg-primary max-[930px]:bg-opacity-90 max-[930px]:w-full max-[930px]:absolute max-[930px]:top-full max-[930px]:h-[calc(100vh-80px)] ${
-            isExpanded
+          className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[930px]:left-0 max-[930px]:bg-primary max-[930px]:bg-opacity-90 max-[930px]:w-full max-[930px]:absolute max-[930px]:top-full max-[930px]:h-[calc(100vh-80px)] ${isExpanded
               ? "max-[930px]:max-w-[450px] max-[930px]:px-5"
               : "max-[930px]:max-w-[0px]"
-          }`}
+            }`}
         >
           <div
-            className={`flex min-[930px]:items-center min-[930px]:justify-center h-full ${
-              isExpanded
+            className={`flex min-[930px]:items-center min-[930px]:justify-center h-full ${isExpanded
                 ? "max-[930px]:flex-col max-[930px]:gap-10 max-[930px]:py-5"
                 : "max-[930px]:opacity-0"
-            }`}
+              }`}
           >
             <AuthButtons className="min-[930px]:hidden mx-auto" />
             <div className="flex max-[930px]:flex-col max-[930px]:gap-2 min-[930px]:h-full">
@@ -73,11 +68,10 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
       <div className="flex items-center justify-center gap-5 h-full">
         <div className="min-[400px]:relative flex items-center gap-1 h-full">
           <div
-            className={`${
-              nbMessages > 0
-                ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
-                : ""
-            }`}
+            className={`${nbMessages > 0
+              ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
+              : ""
+              }`}
           >
             <BiSolidMessage
               size={25}
@@ -85,11 +79,10 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
             />
           </div>
           <div
-            className={`${
-              nbNotifications > 0
-                ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
-                : ""
-            }`}
+            className={`${nbNotifications > 0
+              ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
+              : ""
+              }`}
           >
             <FaBell
               size={25}
@@ -122,16 +115,18 @@ const AuthButtons = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
+  const { t } = useTranslation()
+
   return (
     <div
       className={["flex gap-1 flex-wrap justify-center", className].join(" ")}
       {...props}
     >
       <Button template="secondary" invertColors>
-        S'inscrire
+        {t('authentication:redirectToRegister')}
       </Button>
-      <Button template="secondary">Se connecter</Button>
-    </div>
+      <Button template="secondary">{t('authentication:redirectToConnect')}</Button>
+    </div >
   );
 };
 
