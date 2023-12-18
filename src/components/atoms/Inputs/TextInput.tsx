@@ -14,7 +14,7 @@ const TextInput = ({
   ...props
 }: ITextInputProps) => {
   return (
-    <InputWrapper label={label} id={props.id} className={divClassName}>
+    <InputWrapper label={label} id={props.id} error={error} className={divClassName} required={props.required} >
       <input
         {...props}
         className={[

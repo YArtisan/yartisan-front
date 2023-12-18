@@ -39,7 +39,7 @@ const HorairesInput = ({
   };
 
   return (
-    <InputWrapper label={label} id={props.id}>
+    <InputWrapper label={label} error={error} id={props.id} required={props.required}>
       {days.map((day, i) => {
         const existing = props.value?.find((e) => e.day_of_week === i);
         const value: Partial<IHoraire> = existing ?? { day_of_week: i };

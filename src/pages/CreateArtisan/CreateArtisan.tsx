@@ -1,4 +1,4 @@
-import { IAddress, IHoraire } from "@/types/interfaces";
+import { IAddress, IApiAddress, IHoraire } from "@/types/interfaces";
 import Button from "@atoms/Button";
 import { AddressInput, TextAreaInput, TextInput } from "@atoms/Inputs";
 import HorairesInput from "@atoms/Inputs/HorairesInput";
@@ -12,20 +12,57 @@ interface IFormData {
   // profile_picture? : string;
   job_description?: string;
   average_price?: number;
-  address?: Partial<IAddress>;
+  address?: Partial<IApiAddress>;
   horaires?: Partial<IHoraire>[];
   // number_of_employees ?: number;
 }
 
 function CreateArtisan() {
   const { t } = useTranslation("createArtisan");
-
+  const [errors, setErrors] = useState<string[]>([]);
   const [form, setForm] = useState<IFormData>({});
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setForm({ ...form, [e.target.id]: e.target.value });
+  };
+
+  const checkErrors = () => {
+    const errors: string[] = [];
+    const keys: Record<string, ((data: any) => boolean) | null> = {
+      company_name: null,
+      phone: null,
+      job_description: null,
+      average_price: null,
+      address: (data: IApiAddress) => !data.lat || !data.lon,
+      horaires: (data: IHoraire[]) =>
+        data.length === 0 ||
+        data.some(
+          ({ closing_time, opening_time }) => !closing_time || !opening_time
+        ),
+    };
+
+    Object.entries(keys).map(([key, errorFunction]) => {
+      const data = form[key as keyof IFormData];
+      if (!data) {
+        errors.push(key);
+      } else if (errorFunction && errorFunction(data)) {
+        errors.push(key);
+      }
+    });
+
+    setErrors(errors);
+    return errors;
+  };
+
+  const handleSubmit = () => {
+    const errors = checkErrors();
+    console.log(errors);
+
+    if (errors.length > 0) return;
+    alert("Submitted !");
+    console.log("form", form);
   };
 
   useEffect(() => {
@@ -53,15 +90,28 @@ function CreateArtisan() {
           label={t("job_description")}
           placeholder={t("job_description")}
           id="job_description"
+          error={errors.includes("job_description")}
           onChange={handleChange}
-          value={form.job_description}
+          value={form.job_description ?? ""}
+          required
+        />
+        <TextInput
+          label={t("phone")}
+          placeholder="ex : 0612345678"
+          id="phone"
+          error={errors.includes("phone")}
+          onChange={handleChange}
+          value={form.phone ?? ""}
+          required
         />
         <AddressInput
           label={t("address")}
           placeholder={t("address")}
           id="address"
+          error={errors.includes("address")}
           handleChange={(address) => setForm({ ...form, address })}
           value={form.address}
+          required
         />
         <TextInput
           type="number"
@@ -69,17 +119,25 @@ function CreateArtisan() {
           label={t("average_price")}
           placeholder={t("average_price")}
           id="average_price"
+          error={errors.includes("average_price")}
           onChange={handleChange}
-          value={form.average_price}
+          value={form.average_price ?? ""}
+          required
         />
         <HorairesInput
           label={t("horaires")}
           placeholder={t("horaires")}
           id="horaires"
+          error={errors.includes("horaires")}
           handleChange={(horaires) => setForm({ ...form, horaires })}
           value={form.horaires}
+          required
         />
-        <Button template="secondary" className="mt-6 w-52 mx-auto rounded-xl">
+        <Button
+          onClick={handleSubmit}
+          template="secondary"
+          className="mt-6 w-52 mx-auto rounded-xl"
+        >
           {t("create")}
         </Button>
       </div>

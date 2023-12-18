@@ -21,7 +21,7 @@ const TextAreaInput = ({
   }, []);
 
   return (
-    <InputWrapper label={label} id={props.id}>
+    <InputWrapper label={label} error={error} id={props.id} required={props.required}>
       <textarea
         {...props}
         ref={ref}

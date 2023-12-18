@@ -34,12 +34,17 @@ const AddressInput = ({
 
     getAddresses(address)
       .then((res) => {
-        if (res.length === 1) setSelectedAddress(0);
         setAddresses(res);
+        if (res.length === 1) handleChangeAddress(0, res[0]);
       })
       .catch(() => {
         setAddressValid(false);
       });
+  };
+
+  const handleChangeAddress = (index: number, address: IApiAddress) => {
+    setSelectedAddress(index);
+    if (handleChange) handleChange(address);
   };
 
   const onChange = (slug: keyof Partial<IAddress>, value: string) => {
@@ -47,7 +52,12 @@ const AddressInput = ({
   };
 
   return (
-    <InputWrapper label={label} id={props.id}>
+    <InputWrapper
+      label={label}
+      id={props.id}
+      error={error}
+      required={props.required}
+    >
       <TextInput
         className={className}
         placeholder={t("country")}
@@ -96,13 +106,13 @@ const AddressInput = ({
         </Button>
       )}
       {!addressValid && <p className="text-red-500">{t("addressInvalid")}</p>}
-      {addresses.length > 0 && (
+      {addresses.length > 1 && (
         <>
           <p className="font-semibold">{t("foundAddresses")} :</p>
           <ul className="pl-5 list-disc">
-            {addresses.map(({ lat, lon, ...address }, i) => (
+            {addresses.map((address, i) => (
               <li
-                onClick={() => setSelectedAddress(i)}
+                onClick={() => handleChangeAddress(i, address)}
                 className={`cursor-pointer duration-150 rounded px-2 mb-1 ${
                   selectedAddress === i
                     ? "bg-secondary font-semibold"
@@ -116,7 +126,7 @@ const AddressInput = ({
           </ul>
         </>
       )}
-      {selectedAddress && (
+      {typeof selectedAddress === "number" && (
         <Map
           coords={{
             lat: addresses[selectedAddress]?.lat,

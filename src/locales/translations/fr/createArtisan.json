@@ -2,6 +2,7 @@
   "title": "Information de l'entreprise",
   "compagny_name": "Nom de l'entreprise",
   "job_description": "Description",
+  "phone": "Numéro de téléphone",
   "address": "Adresse",
   "average_price": "Tarif moyen (en €)",
   "horaires": "Horaires d'ouverture",
