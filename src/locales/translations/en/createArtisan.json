@@ -3,5 +3,7 @@
   "compagny_name": "Company name",
   "job_description": "Description",
   "address": "Address",
-  "average_price": "Average price"
+  "average_price": "Average price (in €)",
+  "horaires": "Opening hours",
+  "create": "Create"
 }

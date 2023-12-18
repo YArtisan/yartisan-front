@@ -3,7 +3,7 @@ import TextInput from "./TextInput";
 import { IHoraire } from "@/types/interfaces";
 import { IBaseInputProps } from "./InputWrapper";
 import { useTranslation } from "react-i18next";
-import { days } from "@utils/variables";
+// import { days } from "@utils/variables";
 import { capitalize } from "@utils/functions";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -20,6 +20,7 @@ const HorairesInput = ({
   ...props
 }: IHorairesInputProps) => {
   const { t } = useTranslation("horaireInput");
+  const days = t("days:days", { returnObjects: true }) as string[];
 
   const onChange = (day_of_week: number, value: Partial<IHoraire>) => {
     if (handleChange) {

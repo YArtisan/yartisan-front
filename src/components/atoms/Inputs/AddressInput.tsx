@@ -54,30 +54,38 @@ const AddressInput = ({
         value={props.value?.country ?? ""}
         onChange={(e) => onChange("country", e.target.value)}
       />
-      <TextInput
-        className={className}
-        placeholder={t("postal_code")}
-        value={props.value?.postal_code ?? ""}
-        onChange={(e) => onChange("postal_code", e.target.value)}
-      />
-      <TextInput
-        className={className}
-        placeholder={t("city")}
-        value={props.value?.city ?? ""}
-        onChange={(e) => onChange("city", e.target.value)}
-      />
-      <TextInput
-        className={className}
-        placeholder={t("address_number")}
-        value={props.value?.address_number ?? ""}
-        onChange={(e) => onChange("address_number", e.target.value)}
-      />
-      <TextInput
-        className={className}
-        placeholder={t("street_name")}
-        value={props.value?.street_name ?? ""}
-        onChange={(e) => onChange("street_name", e.target.value)}
-      />
+      <div className="flex flex-wrap gap-1">
+        <TextInput
+          divClassName="flex-1"
+          className={className}
+          placeholder={t("postal_code")}
+          value={props.value?.postal_code ?? ""}
+          onChange={(e) => onChange("postal_code", e.target.value)}
+        />
+        <TextInput
+          divClassName="flex-2"
+          className={className}
+          placeholder={t("city")}
+          value={props.value?.city ?? ""}
+          onChange={(e) => onChange("city", e.target.value)}
+        />
+      </div>
+      <div className="flex flex-wrap gap-1">
+        <TextInput
+          divClassName="flex-1"
+          className={className}
+          placeholder={t("address_number")}
+          value={props.value?.address_number ?? ""}
+          onChange={(e) => onChange("address_number", e.target.value)}
+        />
+        <TextInput
+          divClassName="flex-2"
+          className={className}
+          placeholder={t("street_name")}
+          value={props.value?.street_name ?? ""}
+          onChange={(e) => onChange("street_name", e.target.value)}
+        />
+      </div>
       {props.value && (
         <Button
           template="secondary"

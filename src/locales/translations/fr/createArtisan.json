@@ -3,5 +3,7 @@
   "compagny_name": "Nom de l'entreprise",
   "job_description": "Description",
   "address": "Adresse",
-  "average_price": "Tarif moyen"
+  "average_price": "Tarif moyen (en €)",
+  "horaires": "Horaires d'ouverture",
+  "create": "Créer"
 }
