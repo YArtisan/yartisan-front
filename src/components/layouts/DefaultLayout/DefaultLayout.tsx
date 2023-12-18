@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "./Header/Header";
+import DefaultHeader from "./DefaultHeader/DefaultHeader";
 
 interface IProps {
   children: React.ReactNode;
@@ -10,7 +10,7 @@ function DefaultLayout({ children }: IProps) {
 
   return (
     <div>
-      <Header isExpanded={navbarExpanded} setIsExpanded={setNavbarExpanded} />
+      <DefaultHeader isExpanded={navbarExpanded} setIsExpanded={setNavbarExpanded} />
       <main className="pt-20 pb-5 dark:bg-black">{children}</main>
     </div>
   );

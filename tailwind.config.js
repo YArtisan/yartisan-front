@@ -16,6 +16,10 @@ export default {
         "primary-0.9": "rgba(0,53,84,0.9)",
         tertiary: "#CAF1F6"
       },
+      flex: {
+        2: "2 2 0%",
+        3: "3 3 0%",
+      },
     },
   },
   plugins: [],

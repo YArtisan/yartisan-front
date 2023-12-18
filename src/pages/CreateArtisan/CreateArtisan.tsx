@@ -1,8 +1,10 @@
 import { IAddress, IHoraire } from "@/types/interfaces";
+import Button from "@atoms/Button";
 import { AddressInput, TextAreaInput, TextInput } from "@atoms/Inputs";
 import HorairesInput from "@atoms/Inputs/HorairesInput";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { FaArrowLeft } from "react-icons/fa";
 
 interface IFormData {
   compagny_name?: string;
@@ -31,9 +33,15 @@ function CreateArtisan() {
   }, [form]);
 
   return (
-    <div className="bg-white w-full max-w-[1000px] mx-auto rounded-xl shadow-2xl p-2">
-      <h1 className="text-center">{t("title")}</h1>
-      <div className="flex flex-col gap-2 mx-auto w-full max-w-[700px] pb-6">
+    <div className="relative bg-white w-full max-w-[1000px] mx-auto rounded-xl shadow-2xl p-2">
+      <h1 className="text-center mb-6">{t("title")}</h1>
+      <a href="/profile">
+        <FaArrowLeft
+          className="absolute top-2 left-2 duration-150 cursor-pointer hover:scale-110"
+          size={25}
+        />
+      </a>
+      <div className="flex flex-col gap-4 mx-auto w-full max-w-[700px] pb-6">
         <TextInput
           label={t("compagny_name")}
           placeholder={t("compagny_name")}
@@ -71,6 +79,9 @@ function CreateArtisan() {
           handleChange={(horaires) => setForm({ ...form, horaires })}
           value={form.horaires}
         />
+        <Button template="secondary" className="mt-6 w-52 mx-auto rounded-xl">
+          {t("create")}
+        </Button>
       </div>
     </div>
   );
