@@ -22,16 +22,17 @@ export const getAddresses = (address: string | IAddress) => {
     return new Promise<IApiAddress[]>((resolve, reject) => {
         axiosWithCache
             .get("https://nominatim.openstreetmap.org/search", {
-                params: { q, format: "json", polygon: 1, addressdetails: 1, limit : 5 },
+                params: { q, format: "json", polygon: 1, addressdetails: 1, limit: 5 },
             })
             .then((res) => {
                 console.log(res.data);
 
                 const addresses = res.data.map(({ address, lat, lon }: any) => {
-                    const { postcode, town, country, road } = address
+                    const { postcode, town, country, road, house_number, municipality } = address
                     return ({
+                        address_number: house_number,
                         postal_code: postcode,
-                        city: town,
+                        city: town ?? municipality,
                         street_name: road,
                         country,
                         lat: parseFloat(lat),
