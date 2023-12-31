@@ -1,4 +1,4 @@
-import { INavLink } from "@/types/interfaces";
+import { INavLink } from "@components/layouts/DefaultLayout/Header/NavItem";
 import { useTranslation } from "react-i18next";
 
 export const useNavLinks = () => {
