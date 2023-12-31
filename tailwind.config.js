@@ -9,11 +9,12 @@ export default {
         "card-shrink": "artisanDetailsShrink 0.5s ease-in-out",
       },
       colors: {
-        primary: "#CAF1F6",
-        secondary: "#00A2C7",
-        accent: "#7DCEDC",
-        card: "#F2FAFB",
+        primary: "#003554",
+        secondary: "#00A6FB",
+        dark: "#051923",
+        lightwhite: "#F3F3F3",
         "primary-0.9": "rgba(0,53,84,0.9)",
+        tertiary: "#CAF1F6"
       },
     },
   },
