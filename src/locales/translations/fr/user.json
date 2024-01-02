@@ -1,0 +1,15 @@
+{
+ "userType": {
+  "client": "Client",
+  "artisan": "Artisan",
+  "label": "Quel type d'utilisateur êtes-vous?"
+ },
+ "username": {
+  "label": "Entrez votre nom d'utilisateur",
+  "placeholder": "Nom d'utilisateur"
+ },
+ "phone": {
+  "label": "Entrez votre numéro de téléphone",
+  "placeholder": "Numéro de téléphone"
+ }
+}
