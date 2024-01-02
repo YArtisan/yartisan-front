@@ -15,5 +15,8 @@
   "label": "Entrez votre mot de passe",
   "placeholder": "Mot de passe"
  },
- "forgotPassword": "J'ai oublié mon mot de passe"
+ "forgotPassword": "J'ai oublié mon mot de passe",
+ "forgotPasswordTitle": "Mot de passe oublié?",
+ "forgotPasswordSubTitle": "Nous vous enverrons un code de vérification.",
+ "resetPasswordButton": "Réinitialiser mon mot de passe."
 }
