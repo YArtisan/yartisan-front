@@ -1,4 +1,5 @@
 import { Login } from "@/authentication/login/pages/Login";
+import { ForgotPassword } from "@/authentication/password/forgot-password/pages/ForgotPassword";
 import { Register } from "@/authentication/register/pages/Register";
 import { AuthenticationLayout } from "@/authentication/shared/components/AuthenticationLayout";
 import { WelcomingLayout } from "@/welcoming/components/WelcomingLayout";
@@ -35,6 +36,14 @@ export const AppRoutes = (): ReactElement => {
       <WelcomingLayout>
        <Register />
       </WelcomingLayout>
+     </AuthenticationLayout>
+    }
+   />
+   <Route
+    path="/forgot-password"
+    element={
+     <AuthenticationLayout>
+      <ForgotPassword />
      </AuthenticationLayout>
     }
    />
