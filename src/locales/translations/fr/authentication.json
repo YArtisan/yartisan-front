@@ -1,4 +1,19 @@
 {
- "redirectToConnect": "Se connecter",
- "redirectToRegister": "S'inscrire"
+ "connect": "Se connecter",
+ "register": "S'inscrire",
+ "welcoming": "Bienvenue sur Yartisan",
+ "highlight": "Explorez un monde d'artisans triés sur le volet, chacun doté d'un savoir-faire exceptionnel et d'un engagement envers l'excellence. Notre interface conviviale facilite la recherche du professionnel parfait pour votre projet, garantissant une expérience sans tracas du début à la fin.",
+ "noAccount": "Pas de compte?",
+ "haveAccount": "Déjà un compte?",
+ "connection": "Connexion",
+ "registering": "Créer son compte",
+ "emailAddress": {
+  "label": "Entrez votre adresse email",
+  "placeholder": "Adresse email"
+ },
+ "password": {
+  "label": "Entrez votre mot de passe",
+  "placeholder": "Mot de passe"
+ },
+ "forgotPassword": "J'ai oublié mon mot de passe"
 }

@@ -35,14 +35,14 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
 
         <ul
           className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[930px]:left-0 max-[930px]:bg-primary max-[930px]:bg-opacity-90 max-[930px]:w-full max-[930px]:absolute max-[930px]:top-full max-[930px]:h-[calc(100vh-80px)] ${isExpanded
-              ? "max-[930px]:max-w-[450px] max-[930px]:px-5"
-              : "max-[930px]:max-w-[0px]"
+            ? "max-[930px]:max-w-[450px] max-[930px]:px-5"
+            : "max-[930px]:max-w-[0px]"
             }`}
         >
           <div
             className={`flex min-[930px]:items-center min-[930px]:justify-center h-full ${isExpanded
-                ? "max-[930px]:flex-col max-[930px]:gap-10 max-[930px]:py-5"
-                : "max-[930px]:opacity-0"
+              ? "max-[930px]:flex-col max-[930px]:gap-10 max-[930px]:py-5"
+              : "max-[930px]:opacity-0"
               }`}
           >
             <AuthButtons className="min-[930px]:hidden mx-auto" />
@@ -123,9 +123,9 @@ const AuthButtons = ({
       {...props}
     >
       <Button template="secondary" invertColors>
-        {t('authentication:redirectToRegister')}
+        {t('authentication:register')}
       </Button>
-      <Button template="secondary">{t('authentication:redirectToConnect')}</Button>
+      <Button template="secondary">{t('authentication:connect')}</Button>
     </div >
   );
 };

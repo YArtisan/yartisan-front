@@ -7,6 +7,8 @@ import authenticationFr from '../locales/translations/fr/authentication.json'
 import authenticationEn from '../locales/translations/en/authentication.json'
 import navigationFr from '../locales/translations/fr/navigation.json'
 import navigationEn from '../locales/translations/en/navigation.json'
+import userFr from '../locales/translations/fr/user.json'
+import userEn from '../locales/translations/en/user.json'
 
 i18n
  .use(initReactI18next)
@@ -20,12 +22,14 @@ i18n
    fr: {
     artisanFilter: artisanFilterFr,
     authentication: authenticationFr,
-    navigation: navigationFr
+    navigation: navigationFr,
+    user: userFr
    },
    en: {
     artisanFilter: artisanFilterEn,
     authentication: authenticationEn,
-    navigation: navigationEn
+    navigation: navigationEn,
+    user: userEn
    }
   }
  })
