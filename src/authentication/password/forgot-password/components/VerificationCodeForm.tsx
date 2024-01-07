@@ -12,14 +12,14 @@ interface Props {
 
 export const VerificationCodeForm = ({ email }: Props): ReactElement => {
  const { t } = useTranslation()
- const [code, setCode] = useState('    ')
+ const [code, setCode] = useState('')
 
  return (
   <AuthenticationFormCard cardClassName="min-w-7 w-1/3">
    <PasswordNavigationBar className="mb-14" />
    <Title className="flex justify-center">{t('authentication:forgotPasswordTitle')}</Title>
    <div className="flex justify-center mt-4 font-bold">{t('authentication:resetPasswordSubTitle', { email })}</div>
-   <DigitCodeInput {...{ code, setCode }} className="mt-14" />
+   <DigitCodeInput {...{ setCode }} className="mt-14" />
    <div className="flex justify-center mt-4">
     <p className="mr-1">{t('authentication:resetPasswordNoCodeSentQuestion')}</p>
     <button className="font-semibold">{t('authentication:resetPasswordNoCodeSentLink')}</button>

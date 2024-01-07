@@ -4,7 +4,7 @@ import { Title } from "@/text/components/Title";
 import { EmailInput } from "@/user/components/form/EmailInput";
 import { PasswordInput } from "@/user/components/form/PasswordInput";
 import Button from "@atoms/Button";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 interface Props {
@@ -14,12 +14,14 @@ interface Props {
 
 export const LoginForm = ({ className, onClick }: Props): ReactElement => {
  const { t } = useTranslation()
+ const [email, setEmail] = useState<string>('')
+ const [password, setPassword] = useState<string>('')
 
  return (
   <AuthenticationFormCard {...{ className, cardClassName: 'h-3/5 w-2/3' }}>
    <Title>{t('authentication:connection')}</Title>
-   <EmailInput container={{ className: "mt-16" }} />
-   <PasswordInput container={{ className: "mt-8" }} />
+   <EmailInput {...{ onChange: setEmail, value: email }} container={{ className: "mt-16" }} />
+   <PasswordInput {...{ onChange: setPassword, value: password }} container={{ className: "mt-8" }} />
    <div className="flex justify-between items-center mt-10 flex-col md:flex-row">
     <div className="flex justify-center items-between lg:flex-col xl:flex-row">
      {t('authentication:noAccount')}
