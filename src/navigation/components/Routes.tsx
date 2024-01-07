@@ -1,5 +1,6 @@
 import { Login } from "@/authentication/login/pages/Login";
 import { ForgotPassword } from "@/authentication/password/forgot-password/pages/ForgotPassword";
+import { VerificationCode } from "@/authentication/password/forgot-password/pages/VerificationCode";
 import { Register } from "@/authentication/register/pages/Register";
 import { AuthenticationLayout } from "@/authentication/shared/components/AuthenticationLayout";
 import { WelcomingLayout } from "@/welcoming/components/WelcomingLayout";
@@ -44,6 +45,14 @@ export const AppRoutes = (): ReactElement => {
     element={
      <AuthenticationLayout>
       <ForgotPassword />
+     </AuthenticationLayout>
+    }
+   />
+   <Route
+    path="/forgot-password/code-verification"
+    element={
+     <AuthenticationLayout>
+      <VerificationCode />
      </AuthenticationLayout>
     }
    />
