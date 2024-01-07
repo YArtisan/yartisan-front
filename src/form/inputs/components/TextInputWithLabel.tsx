@@ -12,7 +12,7 @@ interface Props {
 export const TextInputWithLabel = ({ label, textInput, container }: Props): ReactElement => {
  return (
   <ContainerWithInputLabel {...{ label, container }}>
-   <TextInput {...textInput} />
+   <TextInput {...{ ...textInput }} />
   </ContainerWithInputLabel>
  )
 }

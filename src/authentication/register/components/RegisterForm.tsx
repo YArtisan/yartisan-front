@@ -1,5 +1,5 @@
 import { AuthenticationFormCard } from "@/authentication/shared/components/AuthenticationFormCard";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { EmailInput } from "@/user/components/form/EmailInput";
 import { PasswordInput } from "@/user/components/form/PasswordInput";
@@ -15,11 +15,17 @@ interface Props {
 
 export const RegisterForm = ({ className }: Props): ReactElement => {
  const { t } = useTranslation()
+ const [userFunction, setUserFunction] = useState<string>('')
 
  return (
   <AuthenticationFormCard {...{ className, cardClassName: "w-2/3" }}>
    <Title>{t('authentication:registering')}</Title>
-   <RadioSwitchFunctionGroupInputWithLabel container={{ className: "mt-8" }} className="mb-5" />
+   <RadioSwitchFunctionGroupInputWithLabel
+    container={{ className: "mt-8" }}
+    className="mb-5"
+    selectedValue={userFunction}
+    setSelectedValue={setUserFunction}
+   />
    <EmailInput container={{ className: "mb-5" }} />
    <UsernameInput container={{ className: "mb-5" }} />
    <PhoneInput container={{ className: "mb-5" }} />
