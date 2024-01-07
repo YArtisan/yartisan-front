@@ -18,5 +18,9 @@
  "forgotPassword": "J'ai oublié mon mot de passe",
  "forgotPasswordTitle": "Mot de passe oublié?",
  "forgotPasswordSubTitle": "Nous vous enverrons un code de vérification.",
- "resetPasswordButton": "Réinitialiser mon mot de passe."
+ "resetPasswordButton": "Réinitialiser mon mot de passe",
+ "resetPasswordSubTitle": "Nous avons envoyé un code à l'email {{email}}.",
+ "resetPasswordNoCodeSentQuestion": "Vous n'avez pas reçu le code?",
+ "resetPasswordNoCodeSentLink": "Cliquez pour renvoyer.",
+ "resetPasswordCodeButton": "Continuez"
 }
