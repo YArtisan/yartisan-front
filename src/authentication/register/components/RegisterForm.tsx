@@ -1,5 +1,5 @@
 import { AuthenticationFormCard } from "@/authentication/shared/components/AuthenticationFormCard";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { EmailInput } from "@/user/components/form/EmailInput";
 import { PasswordInput } from "@/user/components/form/PasswordInput";
@@ -15,15 +15,25 @@ interface Props {
 
 export const RegisterForm = ({ className }: Props): ReactElement => {
  const { t } = useTranslation()
+ const [userFunction, setUserFunction] = useState<string>('')
+ const [email, setEmail] = useState<string>('')
+ const [userName, setUserName] = useState<string>('')
+ const [phone, setPhone] = useState<string>('')
+ const [password, setPassword] = useState<string>('')
 
  return (
   <AuthenticationFormCard {...{ className, cardClassName: "w-2/3" }}>
    <Title>{t('authentication:registering')}</Title>
-   <RadioSwitchFunctionGroupInputWithLabel container={{ className: "mt-8" }} className="mb-5" />
-   <EmailInput container={{ className: "mb-5" }} />
-   <UsernameInput container={{ className: "mb-5" }} />
-   <PhoneInput container={{ className: "mb-5" }} />
-   <PasswordInput container={{ className: "mb-5" }} />
+   <RadioSwitchFunctionGroupInputWithLabel
+    container={{ className: "mt-8" }}
+    className="mb-5"
+    selectedValue={userFunction}
+    setSelectedValue={setUserFunction}
+   />
+   <EmailInput {...{ value: email, onChange: setEmail }} container={{ className: "mb-5" }} />
+   <UsernameInput {...{ value: userName, onChange: setUserName }} container={{ className: "mb-5" }} />
+   <PhoneInput {...{ value: phone, onChange: setPhone }} container={{ className: "mb-5" }} />
+   <PasswordInput {...{ value: password, onChange: setPassword }} container={{ className: "mb-5" }} />
    <div className="flex justify-start">
     {t('authentication:haveAccount')}
     <a href="/login" className="ml-1 text-blue-600">{t('authentication:connect')}</a>

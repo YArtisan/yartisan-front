@@ -7,13 +7,17 @@ import { DivProps } from "@styles/types/DivProps";
 interface Props {
  className?: string
  container?: DivProps
+ selectedValue: string
+ setSelectedValue: (newValue: string) => void
 }
 
-export const RadioSwitchFunctionGroupInputWithLabel = ({ className = '', container = {} }: Props): ReactElement => {
+export const RadioSwitchFunctionGroupInputWithLabel = ({
+ className = '', container = {}, selectedValue, setSelectedValue
+}: Props): ReactElement => {
  const { t } = useTranslation()
  return (
   <ContainerWithInputLabel {...{ container, label: t('user:userType.label') }}>
-   <RadioSwitchFunctionGroupInput {...{ className }} />
+   <RadioSwitchFunctionGroupInput {...{ className, selectedValue, setSelectedValue }} />
   </ContainerWithInputLabel>
  )
 }

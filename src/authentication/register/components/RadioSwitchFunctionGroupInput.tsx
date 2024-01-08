@@ -5,10 +5,13 @@ import { useTranslation } from "react-i18next";
 
 interface Props {
   className?: string
+  selectedValue: string
+  setSelectedValue: (newValue: string) => void
 }
 
-export const RadioSwitchFunctionGroupInput = ({ className }: Props): ReactElement => {
+export const RadioSwitchFunctionGroupInput = ({ className, selectedValue, setSelectedValue }: Props): ReactElement => {
   const { t } = useTranslation()
+
   const options = [{
     title: t(`user:userType.${UserType.client}`),
     inputId: UserType.client,
@@ -21,6 +24,6 @@ export const RadioSwitchFunctionGroupInput = ({ className }: Props): ReactElemen
   }]
 
   return (
-    <RadioSwitchGroupInput {...{ options, className }} />
+    <RadioSwitchGroupInput {...{ options, className, selectedValue, setSelectedValue }} />
   )
 }

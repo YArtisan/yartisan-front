@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export const ForgotPasswordForm = (): ReactElement => {
  const { t } = useTranslation()
  const navigate = useNavigate()
- const [email, setEmail] = useState()
+ const [email, setEmail] = useState<string>('')
 
  const onClick = (): void => {
   navigate('/forgot-password/code-verification', { state: { email } })
@@ -21,7 +21,7 @@ export const ForgotPasswordForm = (): ReactElement => {
    <PasswordNavigationBar className="mb-14" />
    <Title className="flex justify-center">{t('authentication:forgotPasswordTitle')}</Title>
    <div className="flex justify-center mt-4 font-bold">{t('authentication:forgotPasswordSubTitle')}</div>
-   <EmailInput container={{ className: 'my-14' }} />
+   <EmailInput {...{ onChange: setEmail, value: email }} container={{ className: 'my-14' }} />
    <Button {...{ onClick }} className="mt-6" template="secondary">{t('authentication:resetPasswordButton')}</Button>
   </AuthenticationFormCard>
  )
