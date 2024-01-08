@@ -1,6 +1,7 @@
 import { Login } from "@/authentication/login/pages/Login";
 import { ForgotPassword } from "@/authentication/password/forgot-password/pages/ForgotPassword";
 import { VerificationCode } from "@/authentication/password/forgot-password/pages/VerificationCode";
+import { ResetPassword } from "@/authentication/password/reset-password/pages/ResetPassword";
 import { Register } from "@/authentication/register/pages/Register";
 import { AuthenticationLayout } from "@/authentication/shared/components/AuthenticationLayout";
 import { WelcomingLayout } from "@/welcoming/components/WelcomingLayout";
@@ -53,6 +54,14 @@ export const AppRoutes = (): ReactElement => {
     element={
      <AuthenticationLayout>
       <VerificationCode />
+     </AuthenticationLayout>
+    }
+   />
+   <Route
+    path="/reset-password"
+    element={
+     <AuthenticationLayout>
+      <ResetPassword />
      </AuthenticationLayout>
     }
    />

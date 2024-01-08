@@ -17,7 +17,7 @@ export const ForgotPasswordForm = (): ReactElement => {
  }
 
  return (
-  <AuthenticationFormCard cardClassName="min-w-7 w-1/3">
+  <AuthenticationFormCard className="items-center" cardClassName="min-w-7 w-1/3">
    <PasswordNavigationBar className="mb-14" />
    <Title className="flex justify-center">{t('authentication:forgotPasswordTitle')}</Title>
    <div className="flex justify-center mt-4 font-bold">{t('authentication:forgotPasswordSubTitle')}</div>
