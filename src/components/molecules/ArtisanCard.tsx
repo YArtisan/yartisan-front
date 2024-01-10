@@ -10,7 +10,7 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 function ArtisanCard({ artisan, className, isSelected, ...props }: IProps) {
-  const { compagny_name, address, ratings, avg_price } = artisan;
+  const { compagny_name, address, ratings, average_price } = artisan;
   const avgRating = getAverageRating(ratings);
     ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
 
@@ -36,7 +36,7 @@ function ArtisanCard({ artisan, className, isSelected, ...props }: IProps) {
           <p className="underline">{ratings.length} avis</p>
         </div>
         <p className="bg-accent font-bold px-3 py-1 text-white rounded-lg h-fit">
-          ~ {avg_price} €
+          ~ {average_price} €
         </p>
       </div>
     </div>

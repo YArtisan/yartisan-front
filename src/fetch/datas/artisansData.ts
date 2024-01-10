@@ -3,7 +3,7 @@ import { ratings } from "./ratingsData";
 
 export const artisans: IArtisan[] = [
   {
-    id: 1,
+    _id: "1",
     address: {
       id: 1,
       address_number: 123,
@@ -12,15 +12,15 @@ export const artisans: IArtisan[] = [
       postal_code: "75001",
       country: "France",
     },
-    avg_price: 667,
+    average_price: 667,
     compagny_name: "Menuiserie Dupont",
-    phone: "01 23 45 67 89",
+    phone_number: "01 23 45 67 89",
     profile_picture:
       "https://f.maformation.fr/edito/sites/3/2019/08/menuisier.jpg",
     job_description:
       "Menuisier expérimenté spécialisé dans la fabrication de meubles sur mesure en bois massif.",
     number_of_employees: 5,
-    horaires: [
+    opening_time: [
       { day_of_week: 1, opening_time: "08:00", closing_time: "17:00" },
       { day_of_week: 2, opening_time: "08:00", closing_time: "17:00" },
       { day_of_week: 3, opening_time: "08:00", closing_time: "17:00" },
@@ -28,13 +28,13 @@ export const artisans: IArtisan[] = [
       { day_of_week: 5, opening_time: "08:00", closing_time: "17:00" },
       { day_of_week: 6, opening_time: "12:00", closing_time: "19:00" },
     ],
-    created_at: new Date("2023-01-10"),
-    last_update: new Date(),
+    createdAt: new Date("2023-01-10"),
+    updatedAt: new Date(),
     isVisible: true,
     ratings: ratings.filter(({ artisan_id }) => artisan_id === 1),
   },
   {
-    id: 2,
+    _id: "2",
     address: {
       id: 2,
       address_number: 456,
@@ -44,16 +44,16 @@ export const artisans: IArtisan[] = [
       country: "France",
     },
     compagny_name: "Scierie Martin",
-    avg_price: 2013,
-    phone: "02 34 56 78 90",
+    average_price: 2013,
+    phone_number: "02 34 56 78 90",
     profile_picture:
       "https://f.maformation.fr/edito/sites/3/2019/08/menuisier.jpg",
     job_description:
       "Bûcheron professionnel proposant des services d'abattage d'arbres et de découpe de bois de chauffage.",
     number_of_employees: 8,
-    created_at: new Date("2023-02-15"),
-    last_update: new Date(),
-    horaires: [
+    createdAt: new Date("2023-02-15"),
+    updatedAt: new Date(),
+    opening_time: [
       { day_of_week: 1, opening_time: "10:30", closing_time: "18:30" },
       { day_of_week: 2, opening_time: "11:00", closing_time: "19:00" },
       { day_of_week: 3, opening_time: "09:00", closing_time: "17:00" },
@@ -64,7 +64,7 @@ export const artisans: IArtisan[] = [
     ratings: ratings.filter(({ artisan_id }) => artisan_id === 2),
   },
   {
-    id: 3,
+    _id: "3",
     address: {
       id: 3,
       address_number: 789,
@@ -74,16 +74,16 @@ export const artisans: IArtisan[] = [
       country: "France",
     },
     compagny_name: "Atelier Bois et Fer",
-    phone: "03 45 67 89 01",
+    phone_number: "03 45 67 89 01",
     profile_picture:
       "https://f.maformation.fr/edito/sites/3/2019/08/menuisier.jpg",
-    avg_price: 1200,
+    average_price: 1200,
     job_description:
       "Forgeron passionné créant des pièces uniques en bois et en fer, alliant tradition et modernité.",
     number_of_employees: 3,
-    created_at: new Date("2023-03-20"),
-    last_update: new Date(),
-    horaires: [
+    createdAt: new Date("2023-03-20"),
+    updatedAt: new Date(),
+    opening_time: [
       { day_of_week: 1, opening_time: "09:00", closing_time: "17:30" },
       { day_of_week: 2, opening_time: "08:30", closing_time: "18:00" },
       { day_of_week: 3, opening_time: "10:00", closing_time: "19:30" },
@@ -94,7 +94,7 @@ export const artisans: IArtisan[] = [
     ratings: ratings.filter(({ artisan_id }) => artisan_id === 3),
   },
   {
-    id: 4,
+    _id: "4",
     address: {
       id: 4,
       address_number: 101,
@@ -104,17 +104,17 @@ export const artisans: IArtisan[] = [
       country: "France",
     },
     compagny_name: "Ébénisterie Leclerc",
-    phone: "04 56 78 90 12",
+    phone_number: "04 56 78 90 12",
     profile_picture:
       "https://f.maformation.fr/edito/sites/3/2019/08/menuisier.jpg",
-    avg_price: 450,
+    average_price: 450,
     job_description:
       "Ébéniste réputé pour la restauration de meubles anciens et la création de pièces uniques haut de gamme.",
     number_of_employees: 12,
-    created_at: new Date("2023-04-05"),
-    last_update: new Date(),
+    createdAt: new Date("2023-04-05"),
+    updatedAt: new Date(),
     isVisible: true,
-    horaires: [
+    opening_time: [
       { day_of_week: 1, opening_time: "08:00", closing_time: "16:00" },
       { day_of_week: 2, opening_time: "08:30", closing_time: "17:00" },
       { day_of_week: 3, opening_time: "09:00", closing_time: "17:30" },
@@ -124,7 +124,7 @@ export const artisans: IArtisan[] = [
     ratings: ratings.filter(({ artisan_id }) => artisan_id === 4),
   },
   {
-    id: 5,
+    _id: "5",
     address: {
       id: 5,
       address_number: 202,
@@ -134,17 +134,17 @@ export const artisans: IArtisan[] = [
       country: "France",
     },
     compagny_name: "Artisan Jardinier",
-    phone: "05 67 89 01 23",
+    phone_number: "05 67 89 01 23",
     profile_picture:
       "https://f.maformation.fr/edito/sites/3/2019/08/menuisier.jpg",
     job_description:
       "Jardinier expert offrant des services d'aménagement paysager, d'entretien de jardin et de plantation.",
     number_of_employees: 6,
-    avg_price: 600,
-    created_at: new Date("2023-05-15"),
-    last_update: new Date(),
+    average_price: 600,
+    createdAt: new Date("2023-05-15"),
+    updatedAt: new Date(),
     isVisible: true,
-    horaires: [
+    opening_time: [
       { day_of_week: 1, opening_time: "10:00", closing_time: "17:00" },
       { day_of_week: 2, opening_time: "09:30", closing_time: "16:30" },
       { day_of_week: 3, opening_time: "08:00", closing_time: "15:30" },

@@ -17,7 +17,7 @@ function Home() {
 
   const getFilteredArtisans = () => {
     return artisans.filter(
-      ({ compagny_name, job_description, avg_price, ratings }) => {
+      ({ compagny_name, job_description, average_price, ratings }) => {
         const { query, price, note } = filters;
         if (query) {
           if (
@@ -32,11 +32,11 @@ function Home() {
           if (
             typeof min === "number" &&
             typeof max === "number" &&
-            (avg_price < min || avg_price > max)
+            (average_price < min || average_price > max)
           )
             return false;
-          if (typeof min === "number" && avg_price < min) return false;
-          if (typeof max === "number" && avg_price > max) return false;
+          if (typeof min === "number" && average_price < min) return false;
+          if (typeof max === "number" && average_price > max) return false;
         }
 
         if (note && parseInt(note)) {

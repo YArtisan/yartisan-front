@@ -24,18 +24,18 @@ export interface IAddress {
 }
 
 export interface IArtisan {
-  id: number;
-  address: IAddress;
+  _id: string;
+  average_price: number;
   compagny_name: string;
-  phone: string;
-  profile_picture: string;
   job_description: string;
+  phone_number: string;
+  profile_picture: string;
   number_of_employees: number;
-  avg_price: number;
   ratings: IRating[];
-  horaires: IHoraire[];
-  created_at: Date;
-  last_update: Date;
+  opening_time: IHoraire[];
+  updatedAt: Date;
+  address: IAddress;
+  createdAt: Date;
   isVisible: boolean;
 }
 

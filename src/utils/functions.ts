@@ -40,7 +40,7 @@ export const getHoraires = (horaires: IHoraire[]): IMultiHoraire[] =>
         if (i === lastIndex)
           return {
             ...e,
-            days: [...e.days, curr.day_of_week],
+            days: [...e.days, curr.day_of_week].sort(),
           };
 
         return e;
@@ -61,3 +61,12 @@ export const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
 export const getRandomNumber = (min = 0, max = 999999) => Math.floor(Math.random() * 99999) + 1;
+
+export const isValidUrl = (url: string) => {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
