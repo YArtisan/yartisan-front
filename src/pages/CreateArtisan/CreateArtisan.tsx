@@ -1,4 +1,10 @@
-import { IAddress, IApiAddress, IHoraire } from "@/types/interfaces";
+import { postArtisant as postArtisan } from "@/fetch/artisanActions";
+import {
+  IAddress,
+  IApiAddress,
+  IArtisanFormData,
+  IHoraire,
+} from "@/types/interfaces";
 import Button from "@atoms/Button";
 import { AddressInput, TextAreaInput, TextInput } from "@atoms/Inputs";
 import HorairesInput from "@atoms/Inputs/HorairesInput";
@@ -6,21 +12,10 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaArrowLeft } from "react-icons/fa";
 
-interface IFormData {
-  compagny_name?: string;
-  phone?: string;
-  // profile_picture? : string;
-  job_description?: string;
-  average_price?: number;
-  address?: Partial<IApiAddress>;
-  horaires?: Partial<IHoraire>[];
-  // number_of_employees ?: number;
-}
-
 function CreateArtisan() {
   const { t } = useTranslation("createArtisan");
   const [errors, setErrors] = useState<string[]>([]);
-  const [form, setForm] = useState<IFormData>({});
+  const [form, setForm] = useState<IArtisanFormData>({});
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -31,10 +26,13 @@ function CreateArtisan() {
   const checkErrors = () => {
     const errors: string[] = [];
     const keys: Record<string, ((data: any) => boolean) | null> = {
-      company_name: null,
+      compagny_name: null,
       phone: null,
       job_description: null,
       average_price: null,
+      number_of_employees: null,
+      email: null,
+      profile_picture: null,
       address: (data: IApiAddress) => !data.lat || !data.lon,
       horaires: (data: IHoraire[]) =>
         data.length === 0 ||
@@ -44,7 +42,7 @@ function CreateArtisan() {
     };
 
     Object.entries(keys).map(([key, errorFunction]) => {
-      const data = form[key as keyof IFormData];
+      const data = form[key as keyof IArtisanFormData];
       if (!data) {
         errors.push(key);
       } else if (errorFunction && errorFunction(data)) {
@@ -58,16 +56,13 @@ function CreateArtisan() {
 
   const handleSubmit = () => {
     const errors = checkErrors();
-    console.log(errors);
 
     if (errors.length > 0) return;
-    alert("Submitted !");
-    console.log("form", form);
+    postArtisan(form).then(() => {
+      alert(`L'artisan ${form.compagny_name} a été ajouté !`);
+      // setForm({});
+    });
   };
-
-  useEffect(() => {
-    console.log("form", form);
-  }, [form]);
 
   return (
     <div className="relative bg-white w-full max-w-[1000px] mx-auto rounded-xl shadow-2xl p-2">
@@ -83,8 +78,10 @@ function CreateArtisan() {
           label={t("compagny_name")}
           placeholder={t("compagny_name")}
           id="compagny_name"
+          error={errors.includes("job_description")}
           onChange={handleChange}
-          value={form.compagny_name}
+          value={form.compagny_name ?? ""}
+          required
         />
         <TextAreaInput
           label={t("job_description")}
@@ -96,12 +93,32 @@ function CreateArtisan() {
           required
         />
         <TextInput
+          type="tel"
           label={t("phone")}
           placeholder="ex : 0612345678"
           id="phone"
           error={errors.includes("phone")}
           onChange={handleChange}
           value={form.phone ?? ""}
+          required
+        />
+        <TextInput
+          type="tel"
+          label={t("profile_picture")}
+          id="profile_picture"
+          error={errors.includes("profile_picture")}
+          onChange={handleChange}
+          value={form.profile_picture ?? ""}
+          required
+        />
+        <TextInput
+          type="email"
+          label={t("email")}
+          placeholder="ex : example@xyz.com"
+          id="email"
+          error={errors.includes("email")}
+          onChange={handleChange}
+          value={form.email ?? ""}
           required
         />
         <AddressInput
@@ -122,6 +139,17 @@ function CreateArtisan() {
           error={errors.includes("average_price")}
           onChange={handleChange}
           value={form.average_price ?? ""}
+          required
+        />
+        <TextInput
+          type="number"
+          min={0}
+          label={t("number_of_employees")}
+          placeholder={t("number_of_employees")}
+          id="number_of_employees"
+          error={errors.includes("number_of_employees")}
+          onChange={handleChange}
+          value={form.number_of_employees ?? ""}
           required
         />
         <HorairesInput

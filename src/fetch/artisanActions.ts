@@ -1,4 +1,4 @@
-import { IArtisan } from "@/types/interfaces";
+import { IArtisan, IArtisanFormData } from "@/types/interfaces";
 import { ratings } from "./datas/ratingsData";
 import { artisans } from "@/fetch/datas/artisansData";
 import { days } from "@utils/variables";
@@ -17,6 +17,21 @@ export const getAllArtisans = () => {
             return { ...artisantData, ratings, address: randomArtisan.address, opening_time }
           })
           resolve(artisansData);
+        })
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+export const postArtisant = (artisan: IArtisanFormData) => {
+  return new Promise<void>((resolve, reject) => {
+    try {
+      fetch(`${import.meta.env.VITE_YARTISAN_API_URL}/artisant/signup`, { method: "POST", body: JSON.stringify(artisan) })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          resolve();
         })
     } catch (error) {
       reject(error);
