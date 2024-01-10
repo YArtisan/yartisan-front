@@ -85,7 +85,7 @@ const AddressInput = ({
           divClassName="flex-1"
           className={className}
           placeholder={t("address_number")}
-          value={props.value?.address_number ?? ""}
+          value={props.value?.address_number?.toString() ?? ""}
           onChange={(e) => onChange("address_number", e.target.value)}
         />
         <TextInput

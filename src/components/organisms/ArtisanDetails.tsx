@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IArtisan } from "@/types/interfaces";
-import {
-  capitalize,
-  getHoraires,
-  getLatLonFromAddress,
-  isValidUrl,
-} from "@utils/functions";
+import { capitalize, getHoraires, isValidUrl } from "@utils/functions";
 import { days } from "@utils/variables";
 import Button from "@atoms/Button";
 import { getCompleteAddress } from "@utils/functions";
@@ -33,7 +28,6 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
   const address = getCompleteAddress(artisan.address);
 
   const horaires = getHoraires(artisan.opening_time);
-
 
   useEffect(() => {
     getLatLonFromAddress(address)
@@ -83,7 +77,9 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
               )} - ${opening_time} à ${closing_time}`;
             }
 
-            return <li key={`artisan-${compagny_name}-horaire-${i}`}>{text}</li>;
+            return (
+              <li key={`artisan-${compagny_name}-horaire-${i}`}>{text}</li>
+            );
           })}
         </ul>
         <p className="text-lg font-bold">Informations</p>

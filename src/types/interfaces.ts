@@ -44,6 +44,19 @@ export interface IArtisan {
   isVisible: boolean;
 }
 
+export interface IArtisanFormData {
+  compagny_name?: string;
+  phone?: string;
+  email?: string;
+  profile_picture?: string;
+  job_description?: string;
+  average_price?: string;
+  address?: Partial<IApiAddress>;
+  horaires?: Partial<IHoraire>[];
+  number_of_employees?: string;
+}
+
+
 export interface IMultiHoraire {
   days: number[];
   opening_time: string;
