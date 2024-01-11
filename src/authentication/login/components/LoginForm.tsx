@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 interface Props {
  className?: string
- onClick: () => void
+ onClick: (email: string, password: string) => Promise<void>
 }
 
 export const LoginForm = ({ className, onClick }: Props): ReactElement => {
@@ -29,7 +29,12 @@ export const LoginForm = ({ className, onClick }: Props): ReactElement => {
     </div>
     <ForgotPasswordLink />
    </div>
-   <Button className="mt-10 w-full" template="secondary" {...{ onClick }}>{t('authentication:connect')}</Button>
+   <Button
+    className="mt-10 w-full"
+    template="secondary"
+    {...{ onClick: async () => await onClick(email, password) }}>
+    {t('authentication:connect')}
+   </Button>
   </AuthenticationFormCard>
  )
 }
