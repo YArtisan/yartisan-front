@@ -1,5 +1,5 @@
 
-import { IAddress, IHoraire, IMultiHoraire, IRating } from "@/types/interfaces";
+import { IAddress, IOpeningHours, IMultiHoraire, IRating } from "@/types/interfaces";
 
 export const getAverageRating = (ratings: IRating[]) =>
   ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
@@ -11,10 +11,14 @@ export const getCompleteAddress = (address: Partial<IAddress>) => {
   return [street, city, address.country].filter(Boolean).join(", ")
 };
 
-export const getHoraires = (horaires: IHoraire[]): IMultiHoraire[] =>
-  horaires.reduce((prev: IMultiHoraire[], curr: IHoraire): IMultiHoraire[] => {
+export const getHoraires = (horaires: IOpeningHours[]): IMultiHoraire[] => {
+
+  return horaires.reduce((prev: IMultiHoraire[], curr: IOpeningHours): IMultiHoraire[] => {
     const lastIndex = prev.length - 1;
     const previous = prev[lastIndex];
+
+    console.log("curr",curr);
+
 
     if (
       previous &&
@@ -41,6 +45,7 @@ export const getHoraires = (horaires: IHoraire[]): IMultiHoraire[] =>
       },
     ];
   }, []);
+}
 
 export const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);

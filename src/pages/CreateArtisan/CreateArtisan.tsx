@@ -3,12 +3,12 @@ import {
   IAddress,
   IApiAddress,
   IArtisanFormData,
-  IHoraire,
+  IOpeningHours,
 } from "@/types/interfaces";
 import Button from "@atoms/Button";
 import { AddressInput, TextAreaInput, TextInput } from "@atoms/Inputs";
 import HorairesInput from "@atoms/Inputs/HorairesInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -26,18 +26,19 @@ function CreateArtisan() {
   const checkErrors = () => {
     const errors: string[] = [];
     const keys: Record<string, ((data: any) => boolean) | null> = {
-      compagny_name: null,
-      phone: null,
+      company_name: null,
+      phone_number: null,
       job_description: null,
       average_price: null,
       number_of_employees: null,
       email: null,
       profile_picture: null,
+      password: null,
       address: (data: IApiAddress) => !data.lat || !data.lon,
-      horaires: (data: IHoraire[]) =>
+      opening_hours: (data: IOpeningHours[]) =>
         data.length === 0 ||
         data.some(
-          ({ closing_time, opening_time }) => !closing_time || !opening_time
+          ({ closing_time, opening_time: opening_hours }) => !closing_time || !opening_hours
         ),
     };
 
@@ -58,10 +59,16 @@ function CreateArtisan() {
     const errors = checkErrors();
 
     if (errors.length > 0) return;
-    postArtisan(form).then(() => {
-      alert(`L'artisan ${form.compagny_name} a été ajouté !`);
-      // setForm({});
-    });
+    console.log("form", form);
+
+    postArtisan(form)
+      .then(() => {
+        alert(`L'artisan ${form.company_name} a été ajouté !`);
+        // setForm({});
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
   };
 
   return (
@@ -75,12 +82,22 @@ function CreateArtisan() {
       </a>
       <div className="flex flex-col gap-4 mx-auto w-full max-w-[700px] pb-6">
         <TextInput
-          label={t("compagny_name")}
-          placeholder={t("compagny_name")}
-          id="compagny_name"
-          error={errors.includes("job_description")}
+          label={t("company_name")}
+          placeholder={t("company_name")}
+          id="company_name"
+          error={errors.includes("company_name")}
           onChange={handleChange}
-          value={form.compagny_name ?? ""}
+          value={form.company_name ?? ""}
+          required
+        />
+        <TextInput
+          label={t("password")}
+          placeholder={t("password")}
+          id="password"
+          type="password"
+          error={errors.includes("password")}
+          onChange={handleChange}
+          value={form.password ?? ""}
           required
         />
         <TextAreaInput
@@ -94,12 +111,12 @@ function CreateArtisan() {
         />
         <TextInput
           type="tel"
-          label={t("phone")}
+          label={t("phone_number")}
           placeholder="ex : 0612345678"
-          id="phone"
-          error={errors.includes("phone")}
+          id="phone_number"
+          error={errors.includes("phone_number")}
           onChange={handleChange}
-          value={form.phone ?? ""}
+          value={form.phone_number ?? ""}
           required
         />
         <TextInput
@@ -153,12 +170,12 @@ function CreateArtisan() {
           required
         />
         <HorairesInput
-          label={t("horaires")}
-          placeholder={t("horaires")}
-          id="horaires"
-          error={errors.includes("horaires")}
-          handleChange={(horaires) => setForm({ ...form, horaires })}
-          value={form.horaires}
+          label={t("opening_hours")}
+          placeholder={t("opening_hours")}
+          id="opening_hours"
+          error={errors.includes("opening_hours")}
+          handleChange={(opening_hours) => setForm({ ...form, opening_hours })}
+          value={form.opening_hours}
           required
         />
         <Button

@@ -17,11 +17,11 @@ function Home() {
 
   const getFilteredArtisans = () => {
     return artisans.filter(
-      ({ compagny_name, job_description, average_price, ratings }) => {
+      ({ company_name, job_description, average_price, ratings }) => {
         const { query, price, note } = filters;
         if (query) {
           if (
-            !compagny_name.toLowerCase().includes(query.toLowerCase()) &&
+            !company_name.toLowerCase().includes(query.toLowerCase()) &&
             !job_description.toLowerCase().includes(query.toLowerCase())
           )
             return false;

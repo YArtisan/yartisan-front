@@ -1,6 +1,6 @@
 import InputWrapper from "./InputWrapper";
 import TextInput from "./TextInput";
-import { IHoraire } from "@/types/interfaces";
+import { IOpeningHours } from "@/types/interfaces";
 import { IBaseInputProps } from "./InputWrapper";
 import { useTranslation } from "react-i18next";
 // import { days } from "@utils/variables";
@@ -8,8 +8,8 @@ import { capitalize } from "@utils/functions";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export interface IHorairesInputProps extends IBaseInputProps {
-  value?: Partial<IHoraire>[];
-  handleChange?: (value: Partial<IHoraire>[]) => void;
+  value?: Partial<IOpeningHours>[];
+  handleChange?: (value: Partial<IOpeningHours>[]) => void;
 }
 
 const HorairesInput = ({
@@ -22,7 +22,7 @@ const HorairesInput = ({
   const { t } = useTranslation("horaireInput");
   const days = t("days:days", { returnObjects: true }) as string[];
 
-  const onChange = (day_of_week: number, value: Partial<IHoraire>) => {
+  const onChange = (day_of_week: number, value: Partial<IOpeningHours>) => {
     if (handleChange) {
       const val = props.value ?? [];
       const idx = val.findIndex((e) => e.day_of_week === day_of_week);
@@ -42,7 +42,7 @@ const HorairesInput = ({
     <InputWrapper label={label} error={error} id={props.id} required={props.required}>
       {days.map((day, i) => {
         const existing = props.value?.find((e) => e.day_of_week === i);
-        const value: Partial<IHoraire> = existing ?? { day_of_week: i };
+        const value: Partial<IOpeningHours> = existing ?? { day_of_week: i };
         return (
           <div
             className="flex flex-1 flex-wrap gap-5 items-center justify-between max-[400px]:flex-col"

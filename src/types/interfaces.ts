@@ -1,4 +1,4 @@
-export interface IHoraire {
+export interface IOpeningHours {
   day_of_week: number;
   opening_time: string;
   closing_time: string;
@@ -31,13 +31,14 @@ export interface IApiAddress extends Partial<IAddress> {
 export interface IArtisan {
   _id: string;
   average_price: number;
-  compagny_name: string;
+  company_name: string;
   job_description: string;
   phone_number: string;
   profile_picture: string;
+  email: string;
   number_of_employees: number;
   ratings: IRating[];
-  opening_time: IHoraire[];
+  opening_hours: IOpeningHours[];
   updatedAt: Date;
   address: IAddress;
   createdAt: Date;
@@ -45,14 +46,15 @@ export interface IArtisan {
 }
 
 export interface IArtisanFormData {
-  compagny_name?: string;
-  phone?: string;
+  company_name?: string;
+  phone_number?: string;
   email?: string;
+  password?: string;
   profile_picture?: string;
   job_description?: string;
   average_price?: string;
   address?: Partial<IApiAddress>;
-  horaires?: Partial<IHoraire>[];
+  opening_hours?: Partial<IOpeningHours>[];
   number_of_employees?: string;
 }
 

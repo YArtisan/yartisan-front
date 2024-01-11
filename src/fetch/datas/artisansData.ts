@@ -4,6 +4,7 @@ import { ratings } from "./ratingsData";
 export const artisans: IArtisan[] = [
   {
     _id: "1",
+    email : "example@email.com",
     address: {
       id: 1,
       address_number: 123,
@@ -13,14 +14,14 @@ export const artisans: IArtisan[] = [
       country: "France",
     },
     average_price: 667,
-    compagny_name: "Menuiserie Dupont",
+    company_name: "Menuiserie Dupont",
     phone_number: "01 23 45 67 89",
     profile_picture:
       "https://f.maformation.fr/edito/sites/3/2019/08/menuisier.jpg",
     job_description:
       "Menuisier expérimenté spécialisé dans la fabrication de meubles sur mesure en bois massif.",
     number_of_employees: 5,
-    opening_time: [
+    opening_hours: [
       { day_of_week: 1, opening_time: "08:00", closing_time: "17:00" },
       { day_of_week: 2, opening_time: "08:00", closing_time: "17:00" },
       { day_of_week: 3, opening_time: "08:00", closing_time: "17:00" },
@@ -35,6 +36,7 @@ export const artisans: IArtisan[] = [
   },
   {
     _id: "2",
+    email : "example@email.com",
     address: {
       id: 2,
       address_number: 456,
@@ -43,7 +45,7 @@ export const artisans: IArtisan[] = [
       postal_code: "13002",
       country: "France",
     },
-    compagny_name: "Scierie Martin",
+    company_name: "Scierie Martin",
     average_price: 2013,
     phone_number: "02 34 56 78 90",
     profile_picture:
@@ -53,7 +55,7 @@ export const artisans: IArtisan[] = [
     number_of_employees: 8,
     createdAt: new Date("2023-02-15"),
     updatedAt: new Date(),
-    opening_time: [
+    opening_hours: [
       { day_of_week: 1, opening_time: "10:30", closing_time: "18:30" },
       { day_of_week: 2, opening_time: "11:00", closing_time: "19:00" },
       { day_of_week: 3, opening_time: "09:00", closing_time: "17:00" },
@@ -65,6 +67,7 @@ export const artisans: IArtisan[] = [
   },
   {
     _id: "3",
+    email : "example@email.com",
     address: {
       id: 3,
       address_number: 789,
@@ -73,7 +76,7 @@ export const artisans: IArtisan[] = [
       postal_code: "69002",
       country: "France",
     },
-    compagny_name: "Atelier Bois et Fer",
+    company_name: "Atelier Bois et Fer",
     phone_number: "03 45 67 89 01",
     profile_picture:
       "https://f.maformation.fr/edito/sites/3/2019/08/menuisier.jpg",
@@ -83,7 +86,7 @@ export const artisans: IArtisan[] = [
     number_of_employees: 3,
     createdAt: new Date("2023-03-20"),
     updatedAt: new Date(),
-    opening_time: [
+    opening_hours: [
       { day_of_week: 1, opening_time: "09:00", closing_time: "17:30" },
       { day_of_week: 2, opening_time: "08:30", closing_time: "18:00" },
       { day_of_week: 3, opening_time: "10:00", closing_time: "19:30" },
@@ -95,6 +98,7 @@ export const artisans: IArtisan[] = [
   },
   {
     _id: "4",
+    email : "example@email.com",
     address: {
       id: 4,
       address_number: 101,
@@ -103,7 +107,7 @@ export const artisans: IArtisan[] = [
       postal_code: "33000",
       country: "France",
     },
-    compagny_name: "Ébénisterie Leclerc",
+    company_name: "Ébénisterie Leclerc",
     phone_number: "04 56 78 90 12",
     profile_picture:
       "https://f.maformation.fr/edito/sites/3/2019/08/menuisier.jpg",
@@ -114,7 +118,7 @@ export const artisans: IArtisan[] = [
     createdAt: new Date("2023-04-05"),
     updatedAt: new Date(),
     isVisible: true,
-    opening_time: [
+    opening_hours: [
       { day_of_week: 1, opening_time: "08:00", closing_time: "16:00" },
       { day_of_week: 2, opening_time: "08:30", closing_time: "17:00" },
       { day_of_week: 3, opening_time: "09:00", closing_time: "17:30" },
@@ -125,6 +129,7 @@ export const artisans: IArtisan[] = [
   },
   {
     _id: "5",
+    email : "example@email.com",
     address: {
       id: 5,
       address_number: 202,
@@ -133,7 +138,7 @@ export const artisans: IArtisan[] = [
       postal_code: "67000",
       country: "France",
     },
-    compagny_name: "Artisan Jardinier",
+    company_name: "Artisan Jardinier",
     phone_number: "05 67 89 01 23",
     profile_picture:
       "https://f.maformation.fr/edito/sites/3/2019/08/menuisier.jpg",
@@ -144,7 +149,7 @@ export const artisans: IArtisan[] = [
     createdAt: new Date("2023-05-15"),
     updatedAt: new Date(),
     isVisible: true,
-    opening_time: [
+    opening_hours: [
       { day_of_week: 1, opening_time: "10:00", closing_time: "17:00" },
       { day_of_week: 2, opening_time: "09:30", closing_time: "16:30" },
       { day_of_week: 3, opening_time: "08:00", closing_time: "15:30" },

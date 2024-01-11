@@ -1,13 +1,14 @@
 {
   "title": "Company informations",
-  "compagny_name": "Company name",
+  "company_name": "Company name",
   "job_description": "Description",
-  "phone": "Phone number",
+  "phone_number": "Phone number",
+  "password": "Password",
   "email": "E-mail address",
   "profile_picture": "Profile picture URL",
   "number_of_employees": "Number of employees",
   "address": "Address",
   "average_price": "Average price (in €)",
-  "horaires": "Opening hours",
+  "opening_hours": "Opening hours",
   "create": "Create"
 }
