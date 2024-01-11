@@ -1,1 +1,1 @@
-export const days = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
+export const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]

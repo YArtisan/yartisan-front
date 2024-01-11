@@ -1,0 +1,11 @@
+{
+  "country": "Pays",
+  "postal_code": "Code postal",
+  "city": "Ville",
+  "address_number": "Numéro de rue",
+  "street_name": "Rue",
+  "testAddress": "Chercher l'adresse",
+  "foundAddresses": "Adresses trouvées",
+  "addressValid": "Cette adresse est valide",
+  "addressInvalid": "Cette adresse est invalide"
+}

@@ -1,33 +1,19 @@
-import { axiosWithCache } from "@utils/axiosConfig";
-import { IAddress, IHoraire, IMultiHoraire, IRating } from "@/types/interfaces";
 
-export const getLatLonFromAddress = (address: string | IAddress) => {
-  const q = typeof address !== "string" ? getCompleteAddress(address) : address;
-  return new Promise<{ lat: number; lon: number }>((resolve, reject) => {
-    axiosWithCache
-      .get("https://nominatim.openstreetmap.org/search", {
-        params: { q, format: "json", polygon: 1, addressdetails: 1 },
-      })
-      .then((res) => {
-        const { lat, lon } = res.data[0];
-        resolve({ lat, lon });
-      })
-      .catch((err) => reject(err.data));
-  });
-};
+import { IAddress, IOpeningHours, IMultiHoraire, IRating } from "@/types/interfaces";
 
 export const getAverageRating = (ratings: IRating[]) =>
   ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
 
-export const getCompleteAddress = (address: IAddress) => {
-  return [
-    `${address.address_number} ${address.street_name}`,
-    `${address.postal_code} ${address.city}`,
-  ].join(", ");
+export const getCompleteAddress = (address: Partial<IAddress>) => {
+  const street = [address.address_number, address.street_name].filter(Boolean).join(" ");
+  const city = [address.postal_code, address.city].filter(Boolean).join(" ")
+
+  return [street, city, address.country].filter(Boolean).join(", ")
 };
 
-export const getHoraires = (horaires: IHoraire[]): IMultiHoraire[] =>
-  horaires.reduce((prev: IMultiHoraire[], curr: IHoraire): IMultiHoraire[] => {
+export const getHoraires = (horaires: IOpeningHours[]): IMultiHoraire[] => {
+
+  return horaires.reduce((prev: IMultiHoraire[], curr: IOpeningHours): IMultiHoraire[] => {
     const lastIndex = prev.length - 1;
     const previous = prev[lastIndex];
 
@@ -40,7 +26,7 @@ export const getHoraires = (horaires: IHoraire[]): IMultiHoraire[] =>
         if (i === lastIndex)
           return {
             ...e,
-            days: [...e.days, curr.day_of_week],
+            days: [...e.days, curr.day_of_week].sort(),
           };
 
         return e;
@@ -56,8 +42,18 @@ export const getHoraires = (horaires: IHoraire[]): IMultiHoraire[] =>
       },
     ];
   }, []);
+}
 
 export const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
 export const getRandomNumber = (min = 0, max = 999999) => Math.floor(Math.random() * 99999) + 1;
+
+export const isValidUrl = (url: string) => {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}

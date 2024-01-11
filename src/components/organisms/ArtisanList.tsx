@@ -35,10 +35,10 @@ function ArtisanList({ artisans }: { artisans: IArtisan[] }) {
           )
           .map((artisan, i) => (
             <ArtisanCard
-              key={`artisan-${i}-${artisan.compagny_name}`}
+              key={`artisan-${i}-${artisan.company_name}`}
               artisan={artisan}
               onClick={() => setSelectedArtisan(artisan)}
-              isSelected={selectedArtisan?.id === artisan.id}
+              isSelected={selectedArtisan?._id === artisan._id}
             />
           ))}
       </div>
