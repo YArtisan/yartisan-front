@@ -24,7 +24,7 @@ export const getAllArtisans = () => {
   });
 };
 
-export const postArtisant = (artisan: IArtisanFormData) => {
+export const postArtisan = (artisan: IArtisanFormData) => {
   return new Promise<void>((resolve, reject) => {
     try {
       fetch(`${import.meta.env.VITE_YARTISAN_API_URL}/artisant/signup`, {
