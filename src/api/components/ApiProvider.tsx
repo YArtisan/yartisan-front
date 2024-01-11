@@ -1,4 +1,3 @@
-import { useOnAuthStateChanged } from '@/authentication/login/hooks/useOnAuthStateChanged'
 import { ReactElement, ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
@@ -9,8 +8,6 @@ interface Props {
 }
 
 export const ApiProvider = ({ children }: Props): ReactElement => {
- useOnAuthStateChanged()
-
  return (
   <QueryClientProvider client={queryClient}>
    {children}

@@ -1,7 +1,8 @@
 export interface RegisterFormInput {
  email: string
- userName: string
- phone: string
+ firstname: string
+ lastname: string
+ phone_number: string
  password: string
  userFunction: string
 }

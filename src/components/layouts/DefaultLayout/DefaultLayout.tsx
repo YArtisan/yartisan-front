@@ -5,7 +5,8 @@ interface IProps {
   children: React.ReactNode;
 }
 
-function DefaultLayout({ children }: IProps) {
+function DefaultLayout ({ children }: IProps) {
+  const { darkMode } = useDarkModeState();
   const [navbarExpanded, setNavbarExpanded] = useState(false);
 
   return (

@@ -1,18 +1,17 @@
 import { firebaseAuthentication } from "@/api/service/firebase"
-import axios from "axios"
 import { signInWithEmailAndPassword } from "firebase/auth"
+import { useNavigate } from "react-router-dom"
 
 interface Return {
   loginWithEmailAndPassword: (email: string, password: string) => Promise<void>
 }
 
 export const useLogin = (): Return => {
+  const navigate = useNavigate()
+
   const loginWithEmailAndPassword = async (email: string, password: string): Promise<void> => {
     await signInWithEmailAndPassword(firebaseAuthentication, email, password)
-    const token = await firebaseAuthentication?.currentUser?.getIdToken()
-    const { data } = await axios
-      .post(`${import.meta.env.VITE_YARTISAN_API_URL}/users/signin`, {}, { headers: { token } })
-    console.log({ data })
+    navigate('/')
   }
 
   return {
