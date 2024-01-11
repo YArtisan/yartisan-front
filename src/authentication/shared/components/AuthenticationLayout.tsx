@@ -7,7 +7,7 @@ interface Props {
 export const AuthenticationLayout = ({ children }: Props): ReactElement => {
  return (
   <div className="h-screen">
-   <div className="h-2/3 bg-tertiary w-full">
+   <div className="h-2/3 bg-primary w-full">
     <div className="ml-10 pt-10 font-bold text-lg">Yartisan</div>
    </div>
    <div className="h-1/3 bg-white w-full"></div>
