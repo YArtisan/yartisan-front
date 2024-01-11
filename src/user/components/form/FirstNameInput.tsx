@@ -9,9 +9,9 @@ interface Props {
  onChange: (newValue: string) => void
 }
 
-export const UsernameInput = ({ container, value, onChange }: Props): ReactElement => {
+export const FirstnameInput = ({ container, value, onChange }: Props): ReactElement => {
  const { t } = useTranslation()
  return (
-  <TextInputWithLabel {...{ container }} label={t('user:username.label')} textInput={{ value, onChange, type: "text", placeholder: t('user:username.placeholder'), className: "w-full" }} />
+  <TextInputWithLabel {...{ container }} label={t('user:firstname.label')} textInput={{ value, onChange, type: "text", placeholder: t('user:firstname.placeholder'), className: "w-full" }} />
  )
 }

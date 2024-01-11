@@ -1,8 +1,18 @@
 import { ReactElement } from "react";
 import { RegisterForm } from "../components/RegisterForm";
+import { useRegister } from "../hooks/useRegister";
+import { useNavigate } from "react-router-dom";
 
 export const Register = (): ReactElement => {
+ const { register } = useRegister()
+ const navigate = useNavigate()
+
  return (
-  <RegisterForm className="w-1/2" />
+  <RegisterForm onClick={async (data) => {
+   try {
+    await register(data)
+   } catch (error) {}
+   navigate('/register-redirection')
+  }} className="w-1/2" />
  )
 }

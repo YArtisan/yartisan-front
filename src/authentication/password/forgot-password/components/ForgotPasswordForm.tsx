@@ -6,13 +6,16 @@ import { ReactElement, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { PasswordNavigationBar } from "../../shared/components/PasswordNavigationBar";
 import { useNavigate } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { firebaseAuthentication } from "@/api/service/firebase";
 
 export const ForgotPasswordForm = (): ReactElement => {
  const { t } = useTranslation()
  const navigate = useNavigate()
  const [email, setEmail] = useState<string>('')
 
- const onClick = (): void => {
+ const onClick = async (): Promise<void> => {
+  await sendPasswordResetEmail(firebaseAuthentication, email, { url: import.meta.env.VITE_WEB_APP_URL })
   navigate('/forgot-password/code-verification', { state: { email } })
  }
 

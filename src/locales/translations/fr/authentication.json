@@ -21,11 +21,12 @@
  },
  "forgotPassword": "J'ai oublié mon mot de passe",
  "forgotPasswordTitle": "Mot de passe oublié?",
- "forgotPasswordSubTitle": "Nous vous enverrons un code de vérification.",
+ "forgotPasswordSubTitle": "Nous allons vous envoyer un lien pour le changer.",
  "resetPasswordButton": "Réinitialiser mon mot de passe",
- "resetPasswordSubTitle": "Nous avons envoyé un code à l'email {{email}}.",
+ "resetPasswordSubTitle": "Nous avons envoyé un lien à l'email {{email}}.",
  "resetPasswordNoCodeSentQuestion": "Vous n'avez pas reçu le code?",
  "resetPasswordNoCodeSentLink": "Cliquez pour renvoyer.",
  "resetPasswordCodeButton": "Continuez",
- "resetPasswordTitle": "Réinitialiser mon mot de passe"
+ "resetPasswordTitle": "Réinitialiser mon mot de passe",
+ "registerRedirection": "Vous avez reçu un email pour valider votre authentification"
 }
