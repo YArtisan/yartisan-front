@@ -8,14 +8,17 @@ import { RadioSwitchFunctionGroupInputWithLabel } from "./RadioSwitchFunctionGro
 import Button from "@atoms/Button";
 import { Title } from "@/text/components/Title";
 import { UsernameInput } from "@/user/components/form/UsernameInput";
+import { UserType } from "@/user/enums/UserType";
+import { RegisterFormInput } from "../types/RegisterFormInput.type";
 
 interface Props {
  className: string
+ onClick: (input: RegisterFormInput) => Promise<void>
 }
 
-export const RegisterForm = ({ className }: Props): ReactElement => {
+export const RegisterForm = ({ className, onClick }: Props): ReactElement => {
  const { t } = useTranslation()
- const [userFunction, setUserFunction] = useState<string>('')
+ const [userFunction, setUserFunction] = useState<string>(UserType.client)
  const [email, setEmail] = useState<string>('')
  const [userName, setUserName] = useState<string>('')
  const [phone, setPhone] = useState<string>('')
@@ -38,7 +41,15 @@ export const RegisterForm = ({ className }: Props): ReactElement => {
     {t('authentication:haveAccount')}
     <a href="/login" className="ml-1 text-blue-600">{t('authentication:connect')}</a>
    </div>
-   <Button className="mt-6 w-full" template="secondary">{t('authentication:connect')}</Button>
+   <Button {...{
+    onClick: async () => await onClick({
+     email,
+     userName,
+     phone,
+     password,
+     userFunction
+    })
+   }} className="mt-6 w-full" template="secondary">{t('authentication:register')}</Button>
   </AuthenticationFormCard>
  )
 }
