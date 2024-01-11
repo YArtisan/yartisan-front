@@ -17,9 +17,6 @@ export const getHoraires = (horaires: IOpeningHours[]): IMultiHoraire[] => {
     const lastIndex = prev.length - 1;
     const previous = prev[lastIndex];
 
-    console.log("curr",curr);
-
-
     if (
       previous &&
       previous.opening_time === curr.opening_time &&

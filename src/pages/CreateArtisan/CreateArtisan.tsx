@@ -59,15 +59,12 @@ function CreateArtisan() {
     const errors = checkErrors();
 
     if (errors.length > 0) return;
-    console.log("form", form);
-
     postArtisan(form)
       .then(() => {
         alert(`L'artisan ${form.company_name} a été ajouté !`);
-        // setForm({});
       })
-      .catch((err) => {
-        console.log("error", err);
+      .catch(() => {
+        alert(`L'artisan ${form.company_name} n'a pas été ajouté !`);
       });
   };
 
