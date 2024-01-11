@@ -3,6 +3,7 @@ import { ForgotPassword } from "@/authentication/password/forgot-password/pages/
 import { VerificationCode } from "@/authentication/password/forgot-password/pages/VerificationCode";
 import { ResetPassword } from "@/authentication/password/reset-password/pages/ResetPassword";
 import { Register } from "@/authentication/register/pages/Register";
+import { RegisterRedirection } from "@/authentication/register/pages/RegisterRediction";
 import { AuthenticationLayout } from "@/authentication/shared/components/AuthenticationLayout";
 import { WelcomingLayout } from "@/welcoming/components/WelcomingLayout";
 import DefaultLayout from "@components/layouts/DefaultLayout/DefaultLayout";
@@ -62,6 +63,14 @@ export const AppRoutes = (): ReactElement => {
     element={
      <AuthenticationLayout>
       <ResetPassword />
+     </AuthenticationLayout>
+    }
+   />
+   <Route
+    path="/register-redirection"
+    element={
+     <AuthenticationLayout>
+      <RegisterRedirection />
      </AuthenticationLayout>
     }
    />

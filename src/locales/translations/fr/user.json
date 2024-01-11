@@ -4,9 +4,13 @@
   "artisan": "Artisan",
   "label": "Quel type d'utilisateur êtes-vous?"
  },
- "username": {
-  "label": "Entrez votre nom d'utilisateur",
-  "placeholder": "Nom d'utilisateur"
+ "firstname": {
+  "label": "Entrez votre prénom",
+  "placeholder": "Prénom"
+ },
+ "lastname": {
+  "label": "Entrez votre nom",
+  "placeholder": "Nom"
  },
  "phone": {
   "label": "Entrez votre numéro de téléphone",

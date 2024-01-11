@@ -1,12 +1,16 @@
 import Button from "@atoms/Button";
 import React, { useState } from "react";
-import { FaBars, FaBell } from "react-icons/fa";
+import { FaBars, FaBell, FaSignOutAlt } from "react-icons/fa";
 import { BiSolidMessage } from "react-icons/bi";
 import { BsGearFill } from "react-icons/bs";
 import NavItem from "./NavItem";
 import Window from "@components/layouts/DefaultLayout/Header/Window/Window";
 import { useNavLinks } from "@/navigation/hooks/useNavLinks";
 import { useTranslation } from "react-i18next";
+import { useAuthState } from "@/user/components/UserProvider";
+import { signOut } from "firebase/auth";
+import { firebaseAuthentication } from "@/api/service/firebase";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   isExpanded: boolean;
@@ -32,7 +36,6 @@ const Header = ({ isExpanded, setIsExpanded }: IProps) => {
         <a href="/">
           <p className="text-2xl font-bold text-black h-fit">YARTISAN</p>
         </a>
-
         <ul
           className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[930px]:left-0 max-[930px]:bg-primary max-[930px]:bg-opacity-90 max-[930px]:w-full max-[930px]:absolute max-[930px]:top-full max-[930px]:h-[calc(100vh-80px)] ${isExpanded
             ? "max-[930px]:max-w-[450px] max-[930px]:px-5"
@@ -116,16 +119,35 @@ const AuthButtons = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
   const { t } = useTranslation()
+  const { connectedUser } = useAuthState()
+  const navigate = useNavigate()
 
   return (
     <div
       className={["flex gap-1 flex-wrap justify-center", className].join(" ")}
       {...props}
     >
-      <Button template="secondary" invertColors>
-        {t('authentication:register')}
-      </Button>
-      <Button template="secondary">{t('authentication:connect')}</Button>
+      {connectedUser != null
+        ? (
+          <div className="flex justify-center">
+            <div className="self-center mx-2 text-white sm:text-black">{connectedUser?.email}</div>
+            <Button onClick={() => {
+              signOut(firebaseAuthentication)
+              navigate('/login')
+            }} template="secondary">
+              <FaSignOutAlt />
+            </Button>
+          </div>
+        )
+        : (
+          <>
+            <Button onClick={() => { navigate('/register') }} template="secondary" invertColors>
+              {t('authentication:register')}
+            </Button>
+            <Button onClick={() => { navigate('/login') }} template="secondary">{t('authentication:connect')}</Button>
+          </>
+        )
+      }
     </div >
   );
 };

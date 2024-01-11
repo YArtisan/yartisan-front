@@ -1,15 +1,16 @@
-import { AuthenticationFormCard } from "@/authentication/shared/components/AuthenticationFormCard";
-import { ReactElement, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { EmailInput } from "@/user/components/form/EmailInput";
-import { PasswordInput } from "@/user/components/form/PasswordInput";
-import { PhoneInput } from "@/user/components/form/PhoneInput";
-import { RadioSwitchFunctionGroupInputWithLabel } from "./RadioSwitchFunctionGroupInputWithLabel";
-import Button from "@atoms/Button";
-import { Title } from "@/text/components/Title";
-import { UsernameInput } from "@/user/components/form/UsernameInput";
-import { UserType } from "@/user/enums/UserType";
-import { RegisterFormInput } from "../types/RegisterFormInput.type";
+import { AuthenticationFormCard } from "@/authentication/shared/components/AuthenticationFormCard"
+import { ReactElement, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { EmailInput } from "@/user/components/form/EmailInput"
+import { PasswordInput } from "@/user/components/form/PasswordInput"
+import { PhoneInput } from "@/user/components/form/PhoneInput"
+import { RadioSwitchFunctionGroupInputWithLabel } from "./RadioSwitchFunctionGroupInputWithLabel"
+import Button from "@atoms/Button"
+import { Title } from "@/text/components/Title"
+import { UserType } from "@/user/enums/UserType"
+import { RegisterFormInput } from "../types/RegisterFormInput.type"
+import { FirstnameInput } from "@/user/components/form/FirstNameInput"
+import { LastnameInput } from "@/user/components/form/LastNameInput"
 
 interface Props {
  className: string
@@ -20,7 +21,8 @@ export const RegisterForm = ({ className, onClick }: Props): ReactElement => {
  const { t } = useTranslation()
  const [userFunction, setUserFunction] = useState<string>(UserType.client)
  const [email, setEmail] = useState<string>('')
- const [userName, setUserName] = useState<string>('')
+ const [firstname, setfirstname] = useState<string>('')
+ const [lastname, setlastname] = useState<string>('')
  const [phone, setPhone] = useState<string>('')
  const [password, setPassword] = useState<string>('')
 
@@ -34,7 +36,8 @@ export const RegisterForm = ({ className, onClick }: Props): ReactElement => {
     setSelectedValue={setUserFunction}
    />
    <EmailInput {...{ value: email, onChange: setEmail }} container={{ className: "mb-5" }} />
-   <UsernameInput {...{ value: userName, onChange: setUserName }} container={{ className: "mb-5" }} />
+   <FirstnameInput {...{ value: firstname, onChange: setfirstname }} container={{ className: "mb-5" }} />
+   <LastnameInput {...{ value: lastname, onChange: setlastname }} container={{ className: "mb-5" }} />
    <PhoneInput {...{ value: phone, onChange: setPhone }} container={{ className: "mb-5" }} />
    <PasswordInput {...{ value: password, onChange: setPassword }} container={{ className: "mb-5" }} />
    <div className="flex justify-start">
@@ -44,8 +47,9 @@ export const RegisterForm = ({ className, onClick }: Props): ReactElement => {
    <Button {...{
     onClick: async () => await onClick({
      email,
-     userName,
-     phone,
+     firstname,
+     lastname,
+     phone_number: phone,
      password,
      userFunction
     })
