@@ -14,7 +14,7 @@ export default {
         dark: "#051923",
         lightwhite: "#F3F3F3",
         "primary-0.9": "rgba(0,53,84,0.9)",
-        "bg-card": "#F2FAFB",
+        "card": "#F2FAFB",
       },
     },
   },
