@@ -6,16 +6,12 @@ export const getAllArtisans = () => {
     try {
       fetch(`${import.meta.env.VITE_YARTISAN_API_URL}/artisant/get-all-artisant`)
         .then((res) => res.json())
-        .then(({data}) => {
-          console.log("GET", data);
-
+        .then(({ data }) => {
           const artisansData = data?.map((e: any) => {
             const { artisantData, opening_time, address } = e;
             return { ...artisantData, ratings, address, opening_hours: opening_time }
           })
 
-          console.log(artisansData);
-          
           resolve(artisansData ?? []);
         })
     } catch (error) {
@@ -34,8 +30,7 @@ export const postArtisan = (artisan: IArtisanFormData) => {
         }
       })
         .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           resolve();
         })
     } catch (error) {
@@ -50,7 +45,6 @@ export const postArtisant = (artisan: IArtisanFormData) => {
       fetch(`${import.meta.env.VITE_YARTISAN_API_URL}/artisant/signup`, { method: "POST", body: JSON.stringify(artisan) })
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
           resolve();
         })
     } catch (error) {
