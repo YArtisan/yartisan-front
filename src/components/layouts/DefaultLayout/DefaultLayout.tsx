@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DefaultHeader from "./DefaultHeader/DefaultHeader";
+import { useDarkModeState } from "@/context/DarkModeContext";
 
 interface IProps {
   children: React.ReactNode;
