@@ -43,3 +43,18 @@ export const postArtisant = (artisan: IArtisanFormData) => {
     }
   });
 };
+
+export const postArtisant = (artisan: IArtisanFormData) => {
+  return new Promise<void>((resolve, reject) => {
+    try {
+      fetch(`${import.meta.env.VITE_YARTISAN_API_URL}/artisant/signup`, { method: "POST", body: JSON.stringify(artisan) })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          resolve();
+        })
+    } catch (error) {
+      reject(error);
+    }
+  });
+};

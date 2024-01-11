@@ -1,6 +1,5 @@
 import { postArtisant as postArtisan } from "@/fetch/artisanActions";
 import {
-  IAddress,
   IApiAddress,
   IArtisanFormData,
   IOpeningHours,
@@ -38,7 +37,8 @@ function CreateArtisan() {
       opening_hours: (data: IOpeningHours[]) =>
         data.length === 0 ||
         data.some(
-          ({ closing_time, opening_time: opening_hours }) => !closing_time || !opening_hours
+          ({ closing_time, opening_time: opening_hours }) =>
+            !closing_time || !opening_hours
         ),
     };
 
