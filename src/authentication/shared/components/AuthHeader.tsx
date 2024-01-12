@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { OptionButtons } from "../../../components/layouts/HeaderButtons/HeaderButtons";
 
 function AuthHeader () {
