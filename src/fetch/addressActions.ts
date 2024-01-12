@@ -1,5 +1,5 @@
+import { axiosWithCache } from "@/api/service/axios";
 import { IAddress, IApiAddress, ICoords } from "@/types/interfaces";
-import { axiosWithCache } from "@utils/axiosConfig";
 import { getCompleteAddress } from "@utils/functions";
 
 export const getLatLonFromAddress = (address: string | IAddress) => {

@@ -63,20 +63,11 @@ function ArtisanForm({ onClick }: Props) {
     const errors = checkErrors();
 
     if (errors.length > 0) return;
-<<<<<<< HEAD:src/authentication/register/components/ArtisanForm.tsx
+    
     await onClick({
       ...form,
       userFunction: UserType.artisan,
     });
-=======
-    postArtisan(form)
-      .then(() => {
-        alert(`L'artisan ${form.company_name} a été ajouté !`);
-      })
-      .catch(() => {
-        alert(`L'artisan ${form.company_name} n'a pas été ajouté !`);
-      });
->>>>>>> 754138339dd5b3e1e9e9e8b2df0333ae450f26d0:src/pages/CreateArtisan/CreateArtisan.tsx
   };
 
   return (
@@ -85,26 +76,26 @@ function ArtisanForm({ onClick }: Props) {
         <TextInputWithLabel
           label={t("company_name")}
           textInput={{
-            className : "w-full",
+            className: "w-full",
             placeholder: t("company_name"),
             id: "company_name",
-            error: errors.includes("company_name")
-              ? defaultErrorText
-              : "",
+            error: errors.includes("company_name") ? defaultErrorText : "",
             onChange: (value) => handleChange("company_name", value),
             value: form.company_name ?? "",
             required: true,
           }}
         />
-        <TextInput
+        <TextInputWithLabel
           label={t("password")}
-          placeholder={t("password")}
-          id="password"
-          type="password"
-          error={errors.includes("password")}
-          onChange={handleChange}
-          value={form.password ?? ""}
-          required
+          textInput={{
+            placeholder: t("password"),
+            id: "password",
+            type: "password",
+            error: errors.includes("password"),
+            onChange: (value) => handleChange("company_name", value),
+            value: form.password ?? "",
+            required: true,
+          }}
         />
         <TextAreaInput
           label={t("job_description")}
