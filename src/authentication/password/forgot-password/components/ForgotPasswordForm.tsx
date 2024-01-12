@@ -8,14 +8,17 @@ import { PasswordNavigationBar } from "../../shared/components/PasswordNavigatio
 import { useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { firebaseAuthentication } from "@/api/service/firebase";
+import { useCurrentUrl } from "@utils/useCurrentUrl";
 
 export const ForgotPasswordForm = (): ReactElement => {
  const { t } = useTranslation()
  const navigate = useNavigate()
  const [email, setEmail] = useState<string>('')
+ const { url } = useCurrentUrl()
 
  const onClick = async (): Promise<void> => {
-  await sendPasswordResetEmail(firebaseAuthentication, email, { url: import.meta.env.VITE_WEB_APP_URL })
+  console.log({ url })
+  await sendPasswordResetEmail(firebaseAuthentication, email, { url })
   navigate('/forgot-password/code-verification', { state: { email } })
  }
 

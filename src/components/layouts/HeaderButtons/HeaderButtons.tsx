@@ -1,29 +1,52 @@
 import React, { useState } from "react";
 import Button from "@atoms/Button";
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaSignOutAlt } from "react-icons/fa";
 import { BiSolidMessage } from "react-icons/bi";
 import { BsGearFill } from "react-icons/bs";
 import Window from "@components/layouts/HeaderButtons/Window/Window";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { useAuthState } from "@/user/components/UserProvider";
+import { signOut } from "firebase/auth";
+import { firebaseAuthentication } from "@/api/service/firebase";
 
 export const AuthButtons = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
   const { t } = useTranslation();
+  const navigate = useNavigate()
+  const { connectedUser } = useAuthState()
 
   return (
     <div
       className={["flex gap-1 flex-wrap justify-center", className].join(" ")}
       {...props}
     >
-      <Button template="secondary" invertColors>
-        {t("authentication:redirectToRegister")}
-      </Button>
-      <Button template="secondary">
-        {t("authentication:redirectToConnect")}
-      </Button>
-    </div>
+      {connectedUser != null
+        ? (
+          <div className="flex justify-center">
+            <div className="self-center">{connectedUser?.email}</div>
+            <Button onClick={async () => {
+              await signOut(firebaseAuthentication)
+              navigate('/')
+            }}>
+              <FaSignOutAlt />
+            </Button>
+          </div>
+        )
+        : (
+          <>
+            <Button onClick={() => { navigate('/register') }} template="secondary" invertColors>
+              {t("authentication:redirectToRegister")}
+            </Button>
+            <Button onClick={() => { navigate('/login') }} template="secondary">
+              {t("authentication:redirectToConnect")}
+            </Button>
+          </>
+        )
+      }
+    </div >
   );
 };
 
@@ -40,11 +63,10 @@ export const OptionButtons = () => {
   return (
     <div className="min-[400px]:relative flex items-center gap-1 h-full">
       <div
-        className={`${
-          nbMessages > 0
-            ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
-            : ""
-        }`}
+        className={`${nbMessages > 0
+          ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
+          : ""
+          }`}
       >
         <BiSolidMessage
           size={25}
@@ -52,11 +74,10 @@ export const OptionButtons = () => {
         />
       </div>
       <div
-        className={`${
-          nbNotifications > 0
-            ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
-            : ""
-        }`}
+        className={`${nbNotifications > 0
+          ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
+          : ""
+          }`}
       >
         <FaBell
           size={25}
