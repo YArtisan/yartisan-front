@@ -1,4 +1,34 @@
 {
-  "redirectToConnect": "Login",
+  "connect": "Log In",
+  "register": "Register",
+  "welcoming": "Welcome to Yartisan",
+  "highlight": "Explore a world of carefully selected artisans, each equipped with exceptional expertise and a commitment to excellence. Our user-friendly interface makes it easy to find the perfect professional for your project, ensuring a hassle-free experience from start to finish.",
+  "noAccount": "No account?",
+  "haveAccount": "Already have an account?",
+  "connection": "Connection",
+  "registering": "Create an account",
+  "emailAddress": {
+    "label": "Enter your email address",
+    "placeholder": "Email Address"
+  },
+  "password": {
+    "label": "Enter your password",
+    "placeholder": "Password"
+  },
+  "confirmPassword": {
+    "label": "Confirm your password",
+    "placeholder": "Confirm Password"
+  },
+  "forgotPassword": "Forgot my password",
+  "forgotPasswordTitle": "Forgot Password?",
+  "forgotPasswordSubTitle": "We will send you a link to reset it.",
+  "resetPasswordButton": "Reset my password",
+  "resetPasswordSubTitle": "We have sent a link to the email {{email}}.",
+  "resetPasswordNoCodeSentQuestion": "Did not receive the code?",
+  "resetPasswordNoCodeSentLink": "Click to resend.",
+  "resetPasswordCodeButton": "Continue",
+  "resetPasswordTitle": "Reset Password",
+  "registerRedirection": "You have received an email to validate your authentication",
+  "redirectToConnect": "Log In",
   "redirectToRegister": "Register"
 }
