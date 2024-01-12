@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import { useTranslation } from "react-i18next";
 import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 interface Props {
  className: string
@@ -11,9 +12,9 @@ export const PasswordNavigationBar = ({ className }: Props): ReactElement => {
 
  return (
   <div {...{ className: `flex justify-between items-center ${className}` }}>
-   <a href="/login">
+   <Link to="/login">
     <FaArrowLeft size={26} />
-   </a>
+   </Link>
    <div className="">{t('authentication:welcoming')}</div>
   </div>
  )

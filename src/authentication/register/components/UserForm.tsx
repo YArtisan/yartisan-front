@@ -8,13 +8,14 @@ import { LastnameInput } from "@/user/components/form/LastNameInput";
 import { RegisterFormInput } from "../types/RegisterFormInput.type";
 import { useTranslation } from "react-i18next";
 import { UserType } from "@/user/enums/UserType";
+import { Link } from "react-router-dom";
 
 interface Props {
   className: string;
   onClick: (input: RegisterFormInput) => Promise<void>;
 }
 
-function UserForm({ className, onClick }: Props) {
+function UserForm ({ className, onClick }: Props) {
   const { t } = useTranslation();
   const [email, setEmail] = useState<string>("");
   const [firstname, setfirstname] = useState<string>("");
@@ -46,9 +47,9 @@ function UserForm({ className, onClick }: Props) {
       />
       <div className="flex justify-start">
         {t("authentication:haveAccount")}
-        <a href="/login" className="ml-1 text-blue-600">
+        <Link to="/login" className="ml-1 text-blue-600">
           {t("authentication:connect")}
-        </a>
+        </Link>
       </div>
       <Button
         {...{
