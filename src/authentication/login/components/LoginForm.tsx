@@ -6,6 +6,7 @@ import { PasswordInput } from "@/user/components/form/PasswordInput";
 import Button from "@atoms/Button";
 import { ReactElement, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Props {
  className?: string
@@ -16,6 +17,7 @@ export const LoginForm = ({ className, onClick }: Props): ReactElement => {
  const { t } = useTranslation()
  const [email, setEmail] = useState<string>('')
  const [password, setPassword] = useState<string>('')
+ const navigate = useNavigate()
 
  return (
   <AuthenticationFormCard {...{ className, cardClassName: 'h-3/5 w-2/3' }}>
@@ -25,7 +27,7 @@ export const LoginForm = ({ className, onClick }: Props): ReactElement => {
    <div className="flex justify-between items-center mt-10 flex-col md:flex-row">
     <div className="flex justify-center items-between lg:flex-col xl:flex-row">
      {t('authentication:noAccount')}
-     <a href="/register" className="lg:ml-0 xl:ml-1 text-blue-600">{t('authentication:register')}</a>
+     <Link to="/register" className="lg:ml-0 xl:ml-1 text-blue-600">{t('authentication:register')}</Link>
     </div>
     <ForgotPasswordLink />
    </div>

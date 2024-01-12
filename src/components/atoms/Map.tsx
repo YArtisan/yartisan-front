@@ -6,7 +6,7 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   coords: { lon: number; lat: number };
 }
 
-function ChangeView({
+function ChangeView ({
   center,
   zoom,
 }: {
@@ -18,7 +18,7 @@ function ChangeView({
   return null;
 }
 
-function Map({ coords, className, ...props }: IProps) {
+function Map ({ coords, className, ...props }: IProps) {
   return (
     <div id="map" className={className}>
       <MapContainer

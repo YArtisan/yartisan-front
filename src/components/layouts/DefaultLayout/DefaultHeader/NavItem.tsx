@@ -1,6 +1,7 @@
 import { INavLink } from "@/types/interfaces";
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 interface INavItemProps extends INavLink, React.HTMLAttributes<HTMLLIElement> {
   pagePath: string;
@@ -31,28 +32,25 @@ const NavItem = ({
       onMouseLeave={() => setIsHovering(false)}
       className="relative min-[930px]:h-full flex items-center"
     >
-      <a
-        className={`${
-          active
-            ? "text-white bg-secondary max-[930px]:bg-secondary max-[930px]:text-white max-[930px]:rounded-md"
-            : "hover:bg-gray-200 max-[930px]:hover:text-secondary max-[930px]:text-black"
-        } relative px-2 w-full h-full font-bold  text-xl min-[930px]:text-lg duration-200 flex items-center gap-1 after:absolute after:bottom-0 after:h-1`}
-        href={href}
+      <Link
+        className={`${active
+          ? "text-white bg-secondary max-[930px]:bg-secondary max-[930px]:text-white max-[930px]:rounded-md"
+          : "hover:bg-gray-200 max-[930px]:hover:text-secondary max-[930px]:text-black"
+          } relative px-2 w-full h-full font-bold  text-xl min-[930px]:text-lg duration-200 flex items-center gap-1 after:absolute after:bottom-0 after:h-1`}
+        to={href}
       >
         {label}
         {dropdown && large && (
           <>{isHovering ? <FaChevronUp /> : <FaChevronDown />}</>
         )}
-      </a>
+      </Link>
       {dropdown && (
         <ul
-          className={`${
-            large
-              ? `${
-                  isHovering ? "" : "opacity-0 pointer-events-none"
-                } absolute bg-black top-full left-0 p-2 w-full`
-              : ""
-          } pl-4`}
+          className={`${large
+            ? `${isHovering ? "" : "opacity-0 pointer-events-none"
+            } absolute bg-black top-full left-0 p-2 w-full`
+            : ""
+            } pl-4`}
         >
           {dropdown.map((navItem, index) => (
             <NavItem

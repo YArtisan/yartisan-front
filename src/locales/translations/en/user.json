@@ -1,1 +1,19 @@
-{}
+{
+ "userType": {
+  "client": "Client",
+  "artisan": "Artisan",
+  "label": "What type of user are you?"
+ },
+ "firstname": {
+  "label": "Enter your first name",
+  "placeholder": "First Name"
+ },
+ "lastname": {
+  "label": "Enter your last name",
+  "placeholder": "Last Name"
+ },
+ "phone": {
+  "label": "Enter your phone number",
+  "placeholder": "Phone Number"
+ }
+}

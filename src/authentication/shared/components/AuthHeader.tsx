@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import { OptionButtons } from "../../../components/layouts/HeaderButtons/HeaderButtons";
 
-function AuthHeader() {
+function AuthHeader () {
   return (
     <nav className="w-full h-14 px-3 duration-200 flex items-center justify-between gap-5 fixed top-0 z-10 backdrop-blur-sm">
-      <a href="/">
+      <Link to="/">
         <p className="text-2xl font-bold text-secondary h-fit">YARTISAN</p>
-      </a>
+      </Link>
       <OptionButtons />
     </nav>
   );
