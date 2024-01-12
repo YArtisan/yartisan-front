@@ -1,6 +1,6 @@
-import axios from "@/api/service/axios";
+import axios from "@/api/service/axios"
 import { firebaseAuthentication } from "@/api/service/firebase"
-import { useAuthState } from "@/user/components/UserProvider";
+import { useAuthState } from "@/user/components/UserProvider"
 
 export const useOnAuthStateChanged = async (): Promise<void> => {
  const { setConnectedUser, connectedUser } = useAuthState()
