@@ -1,4 +1,4 @@
-import AuthHeader from "./AuthHeader";
+import AuthHeader from "../../../authentication/shared/components/AuthHeader";
 
 interface IProps {
   children: React.ReactNode;

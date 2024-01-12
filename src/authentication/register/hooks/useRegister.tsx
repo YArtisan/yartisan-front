@@ -13,7 +13,7 @@ export const useRegister = () => {
   setUserFunction(userFunction as UserType)
   const response = await createUserWithEmailAndPassword(firebaseAuthentication, email, password)
   const token = await firebaseAuthentication?.currentUser?.getIdToken()
-  await Promise.all([
+  return Promise.all([
    sendEmailVerification(response.user, { url: import.meta.env.VITE_WEB_APP_URL }),
    axios.post(`/users/signup`, { ...data, user_id: response.user.uid }, {
     headers: { authorization: token ? `Bearer ${token}` : '' }

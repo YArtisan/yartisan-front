@@ -1,4 +1,4 @@
-import { OptionButtons } from "../HeaderButtons/HeaderButtons";
+import { OptionButtons } from "../../../components/layouts/HeaderButtons/HeaderButtons";
 
 function AuthHeader() {
   return (

@@ -1,32 +1,34 @@
 {
- "connect": "Se connecter",
- "register": "S'inscrire",
- "welcoming": "Bienvenue sur Yartisan",
- "highlight": "Explorez un monde d'artisans triés sur le volet, chacun doté d'un savoir-faire exceptionnel et d'un engagement envers l'excellence. Notre interface conviviale facilite la recherche du professionnel parfait pour votre projet, garantissant une expérience sans tracas du début à la fin.",
- "noAccount": "Pas de compte?",
- "haveAccount": "Déjà un compte?",
- "connection": "Connexion",
- "registering": "Créer son compte",
- "emailAddress": {
-  "label": "Entrez votre adresse email",
-  "placeholder": "Adresse email"
- },
- "password": {
-  "label": "Entrez votre mot de passe",
-  "placeholder": "Mot de passe"
- },
- "confirmPassword": {
-  "label": "Confirmez votre mot de passe",
-  "placeholder": "Confirmation du mot de passe"
- },
- "forgotPassword": "J'ai oublié mon mot de passe",
- "forgotPasswordTitle": "Mot de passe oublié?",
- "forgotPasswordSubTitle": "Nous allons vous envoyer un lien pour le changer.",
- "resetPasswordButton": "Réinitialiser mon mot de passe",
- "resetPasswordSubTitle": "Nous avons envoyé un lien à l'email {{email}}.",
- "resetPasswordNoCodeSentQuestion": "Vous n'avez pas reçu le code?",
- "resetPasswordNoCodeSentLink": "Cliquez pour renvoyer.",
- "resetPasswordCodeButton": "Continuez",
- "resetPasswordTitle": "Réinitialiser mon mot de passe",
- "registerRedirection": "Vous avez reçu un email pour valider votre authentification"
+  "redirectToConnect": "Se connecter",
+  "redirectToRegister": "S'inscrire",
+  "connect": "Se connecter",
+  "register": "S'inscrire",
+  "welcoming": "Bienvenue sur Yartisan",
+  "highlight": "Explorez un monde d'artisans triés sur le volet, chacun doté d'un savoir-faire exceptionnel et d'un engagement envers l'excellence. Notre interface conviviale facilite la recherche du professionnel parfait pour votre projet, garantissant une expérience sans tracas du début à la fin.",
+  "noAccount": "Pas de compte?",
+  "haveAccount": "Déjà un compte?",
+  "connection": "Connexion",
+  "registering": "Créer son compte",
+  "emailAddress": {
+    "label": "Entrez votre adresse email",
+    "placeholder": "Adresse email"
+  },
+  "password": {
+    "label": "Entrez votre mot de passe",
+    "placeholder": "Mot de passe"
+  },
+  "confirmPassword": {
+    "label": "Confirmez votre mot de passe",
+    "placeholder": "Confirmation du mot de passe"
+  },
+  "forgotPassword": "J'ai oublié mon mot de passe",
+  "forgotPasswordTitle": "Mot de passe oublié?",
+  "forgotPasswordSubTitle": "Nous allons vous envoyer un lien pour le changer.",
+  "resetPasswordButton": "Réinitialiser mon mot de passe",
+  "resetPasswordSubTitle": "Nous avons envoyé un lien à l'email {{email}}.",
+  "resetPasswordNoCodeSentQuestion": "Vous n'avez pas reçu le code?",
+  "resetPasswordNoCodeSentLink": "Cliquez pour renvoyer.",
+  "resetPasswordCodeButton": "Continuez",
+  "resetPasswordTitle": "Réinitialiser mon mot de passe",
+  "registerRedirection": "Vous avez reçu un email pour valider votre authentification"
 }

@@ -1,3 +1,5 @@
+import { UserType } from "@/user/enums/UserType";
+
 export interface IOpeningHours {
   day_of_week: number;
   opening_time: string;
@@ -56,6 +58,7 @@ export interface IArtisanFormData {
   address?: Partial<IApiAddress>;
   opening_hours?: Partial<IOpeningHours>[];
   number_of_employees?: string;
+  userFunction?: UserType
 }
 
 

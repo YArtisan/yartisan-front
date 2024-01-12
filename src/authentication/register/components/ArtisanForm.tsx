@@ -1,25 +1,29 @@
-import { postArtisant as postArtisan } from "@/fetch/artisanActions";
+import { TextInputWithLabel } from "@/form/inputs/components/TextInputWithLabel";
 import {
   IApiAddress,
   IArtisanFormData,
   IOpeningHours,
 } from "@/types/interfaces";
+import { UserType } from "@/user/enums/UserType";
 import Button from "@atoms/Button";
 import { AddressInput, TextAreaInput, TextInput } from "@atoms/Inputs";
 import HorairesInput from "@atoms/Inputs/HorairesInput";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaArrowLeft } from "react-icons/fa";
 
-function CreateArtisan() {
+interface Props {
+  onClick: (input: IArtisanFormData) => Promise<void>;
+}
+
+const defaultErrorText = "Veuillez remplir correctement ce champ.";
+
+function ArtisanForm({ onClick }: Props) {
   const { t } = useTranslation("createArtisan");
   const [errors, setErrors] = useState<string[]>([]);
   const [form, setForm] = useState<IArtisanFormData>({});
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm({ ...form, [e.target.id]: e.target.value });
+  const handleChange = (slug: keyof IArtisanFormData, value: string) => {
+    setForm({ ...form, [slug]: value });
   };
 
   const checkErrors = () => {
@@ -55,37 +59,32 @@ function CreateArtisan() {
     return errors;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const errors = checkErrors();
 
     if (errors.length > 0) return;
-    postArtisan(form)
-      .then(() => {
-        alert(`L'artisan ${form.company_name} a été ajouté !`);
-      })
-      .catch(() => {
-        alert(`L'artisan ${form.company_name} n'a pas été ajouté !`);
-      });
+    await onClick({
+      ...form,
+      userFunction: UserType.artisan,
+    });
   };
 
   return (
-    <div className="relative bg-white w-full max-w-[1000px] mx-auto rounded-xl shadow-2xl p-2">
-      <h1 className="text-center mb-6">{t("title")}</h1>
-      <a href="/profile">
-        <FaArrowLeft
-          className="absolute top-2 left-2 duration-150 cursor-pointer hover:scale-110"
-          size={25}
-        />
-      </a>
+    <div className="relative w-full p-2">
       <div className="flex flex-col gap-4 mx-auto w-full max-w-[700px] pb-6">
-        <TextInput
+        <TextInputWithLabel
           label={t("company_name")}
-          placeholder={t("company_name")}
-          id="company_name"
-          error={errors.includes("company_name")}
-          onChange={handleChange}
-          value={form.company_name ?? ""}
-          required
+          textInput={{
+            className : "w-full",
+            placeholder: t("company_name"),
+            id: "company_name",
+            error: errors.includes("company_name")
+              ? defaultErrorText
+              : "",
+            onChange: (value) => handleChange("company_name", value),
+            value: form.company_name ?? "",
+            required: true,
+          }}
         />
         <TextInput
           label={t("password")}
@@ -175,10 +174,16 @@ function CreateArtisan() {
           value={form.opening_hours}
           required
         />
+        <div className="flex justify-start">
+          {t("authentication:haveAccount")}
+          <a href="/login" className="ml-1 text-blue-600">
+            {t("authentication:connect")}
+          </a>
+        </div>
         <Button
           onClick={handleSubmit}
           template="secondary"
-          className="mt-6 w-52 mx-auto rounded-xl"
+          className="mt-6 w-full mx-auto"
         >
           {t("create")}
         </Button>
@@ -187,4 +192,4 @@ function CreateArtisan() {
   );
 }
 
-export default CreateArtisan;
+export default ArtisanForm;

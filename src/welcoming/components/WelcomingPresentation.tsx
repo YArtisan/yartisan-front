@@ -14,7 +14,7 @@ export const WelcomingPresentation = ({ className }: Props): ReactElement => {
    <div className="flex-1">
     <div className="text-4xl font-bold mb-4">YArtisan</div>
     <div className="text-2xl mb-8">{t('authentication:welcoming')}</div>
-    <div className="text-md">{t('authentication:highlight')}</div>
+    <div className="text-md text-justify">{t('authentication:highlight')}</div>
    </div>
    <img className="flex-1" src={rocketPicture} />
   </div>

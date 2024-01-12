@@ -6,9 +6,7 @@ import { Register } from "@/authentication/register/pages/Register";
 import { RegisterRedirection } from "@/authentication/register/pages/RegisterRediction";
 import { AuthenticationLayout } from "@/authentication/shared/components/AuthenticationLayout";
 import { WelcomingLayout } from "@/welcoming/components/WelcomingLayout";
-import AuthLayout from "@components/layouts/AuthLayout/AuthLayout";
 import DefaultLayout from "@components/layouts/DefaultLayout/DefaultLayout";
-import CreateArtisan from "@pages/CreateArtisan/CreateArtisan";
 import Home from "@pages/Home/Home";
 import { ReactElement } from "react";
 import { Routes, Route } from "react-router-dom";
@@ -22,14 +20,6 @@ export const AppRoutes = (): ReactElement => {
           <DefaultLayout>
             <Home />
           </DefaultLayout>
-        }
-      />
-               <Route
-        path="/profile/artisan"
-        element={
-          <AuthLayout>
-            <CreateArtisan />
-          </AuthLayout>
         }
       />
       <Route
@@ -49,6 +39,14 @@ export const AppRoutes = (): ReactElement => {
             <WelcomingLayout>
               <Register />
             </WelcomingLayout>
+          </AuthenticationLayout>
+        }
+      />
+      <Route
+        path="/register-redirection"
+        element={
+          <AuthenticationLayout>
+            <RegisterRedirection />
           </AuthenticationLayout>
         }
       />
