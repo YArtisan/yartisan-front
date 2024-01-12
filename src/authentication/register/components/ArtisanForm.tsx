@@ -63,10 +63,20 @@ function ArtisanForm({ onClick }: Props) {
     const errors = checkErrors();
 
     if (errors.length > 0) return;
+<<<<<<< HEAD:src/authentication/register/components/ArtisanForm.tsx
     await onClick({
       ...form,
       userFunction: UserType.artisan,
     });
+=======
+    postArtisan(form)
+      .then(() => {
+        alert(`L'artisan ${form.company_name} a été ajouté !`);
+      })
+      .catch(() => {
+        alert(`L'artisan ${form.company_name} n'a pas été ajouté !`);
+      });
+>>>>>>> 754138339dd5b3e1e9e9e8b2df0333ae450f26d0:src/pages/CreateArtisan/CreateArtisan.tsx
   };
 
   return (

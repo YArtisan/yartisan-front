@@ -74,6 +74,22 @@ export const AppRoutes = (): ReactElement => {
           </AuthenticationLayout>
         }
       />
+      <Route
+        path="/register-redirection"
+        element={
+          <AuthenticationLayout>
+            <RegisterRedirection />
+          </AuthenticationLayout>
+        }
+      />
+      <Route
+        path="/profile/artisan"
+        element={
+          <AuthLayout>
+            <CreateArtisan />
+          </AuthLayout>
+        }
+      />
     </Routes>
-  );
-};
+  )
+}
