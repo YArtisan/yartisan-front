@@ -10,6 +10,7 @@ import { AddressInput, TextAreaInput, TextInput } from "@atoms/Inputs";
 import HorairesInput from "@atoms/Inputs/HorairesInput";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 interface Props {
   onClick: (input: IArtisanFormData) => Promise<void>;
@@ -17,7 +18,7 @@ interface Props {
 
 const defaultErrorText = "Veuillez remplir correctement ce champ.";
 
-function ArtisanForm({ onClick }: Props) {
+function ArtisanForm ({ onClick }: Props) {
   const { t } = useTranslation("createArtisan");
   const [errors, setErrors] = useState<string[]>([]);
   const [form, setForm] = useState<IArtisanFormData>({});
@@ -63,7 +64,7 @@ function ArtisanForm({ onClick }: Props) {
     const errors = checkErrors();
 
     if (errors.length > 0) return;
-    
+
     await onClick({
       ...form,
       userFunction: UserType.artisan,
@@ -177,9 +178,9 @@ function ArtisanForm({ onClick }: Props) {
         />
         <div className="flex justify-start">
           {t("authentication:haveAccount")}
-          <a href="/login" className="ml-1 text-blue-600">
+          <Link to="/login" className="ml-1 text-blue-600">
             {t("authentication:connect")}
-          </a>
+          </Link>
         </div>
         <Button
           onClick={handleSubmit}
