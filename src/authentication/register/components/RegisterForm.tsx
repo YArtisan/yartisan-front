@@ -19,7 +19,7 @@ export const RegisterForm = ({ className, onClick }: Props): ReactElement => {
   const [userFunction, setUserFunction] = useState<string>(UserType.client);
 
   return (
-    <AuthenticationFormCard {...{ className, cardClassName: "w-2/3" }}>
+    <AuthenticationFormCard {...{ className, cardClassName: `w-2/3 ${userFunction === UserType.client ? '' : 'h-full'}` }}>
       <Title>{t("authentication:registering")}</Title>
       <RadioSwitchFunctionGroupInputWithLabel
         container={{ className: "mt-8" }}
