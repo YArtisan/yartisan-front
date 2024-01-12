@@ -35,7 +35,7 @@ function ArtisanCard({ artisan, className, isSelected, ...props }: IProps) {
           <RatingStars number={avgRating} withScore />
           <p className="underline">{ratings.length} avis</p>
         </div>
-        <p className="bg-accent font-bold px-3 py-1 text-white rounded-lg h-fit">
+        <p className="bg-accent font-bold px-3 py-1 rounded-lg h-fit">
           ~ {average_price} €
         </p>
       </div>
