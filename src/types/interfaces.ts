@@ -48,17 +48,17 @@ export interface IArtisan {
 }
 
 export interface IArtisanFormData {
-  company_name?: string;
-  phone_number?: string;
-  email?: string;
-  password?: string;
-  profile_picture?: string;
-  job_description?: string;
-  average_price?: string;
-  address?: Partial<IApiAddress>;
-  opening_hours?: Partial<IOpeningHours>[];
-  number_of_employees?: string;
-  userFunction?: UserType
+  company_name: string;
+  phone_number: string;
+  email: string;
+  password: string;
+  profile_picture: string;
+  job_description: string;
+  average_price: string;
+  address: Partial<IApiAddress>;
+  opening_hours: Partial<IOpeningHours>[];
+  number_of_employees: string;
+  userFunction: UserType
 }
 
 

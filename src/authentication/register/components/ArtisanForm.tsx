@@ -20,7 +20,7 @@ const defaultErrorText = "Veuillez remplir correctement ce champ.";
 function ArtisanForm({ onClick }: Props) {
   const { t } = useTranslation("createArtisan");
   const [errors, setErrors] = useState<string[]>([]);
-  const [form, setForm] = useState<IArtisanFormData>({});
+  const [form, setForm] = useState<Partial<IArtisanFormData>>({});
 
   const handleChange = (slug: keyof IArtisanFormData, value: string) => {
     setForm({ ...form, [slug]: value });
@@ -63,11 +63,11 @@ function ArtisanForm({ onClick }: Props) {
     const errors = checkErrors();
 
     if (errors.length > 0) return;
-    
+
     await onClick({
       ...form,
       userFunction: UserType.artisan,
-    });
+    } as IArtisanFormData);
   };
 
   return (
@@ -88,11 +88,12 @@ function ArtisanForm({ onClick }: Props) {
         <TextInputWithLabel
           label={t("password")}
           textInput={{
+            className: "w-full",
             placeholder: t("password"),
             id: "password",
             type: "password",
-            error: errors.includes("password"),
-            onChange: (value) => handleChange("company_name", value),
+            error: errors.includes("password") ? defaultErrorText : "",
+            onChange: (value) => handleChange("password", value),
             value: form.password ?? "",
             required: true,
           }}
@@ -102,7 +103,7 @@ function ArtisanForm({ onClick }: Props) {
           placeholder={t("job_description")}
           id="job_description"
           error={errors.includes("job_description")}
-          onChange={handleChange}
+          onChange={(e) => handleChange("job_description", e.target.value)}
           value={form.job_description ?? ""}
           required
         />
@@ -112,7 +113,7 @@ function ArtisanForm({ onClick }: Props) {
           placeholder="ex : 0612345678"
           id="phone_number"
           error={errors.includes("phone_number")}
-          onChange={handleChange}
+          onChange={(e) => handleChange("phone_number", e.target.value)}
           value={form.phone_number ?? ""}
           required
         />
@@ -121,7 +122,7 @@ function ArtisanForm({ onClick }: Props) {
           label={t("profile_picture")}
           id="profile_picture"
           error={errors.includes("profile_picture")}
-          onChange={handleChange}
+          onChange={(e) => handleChange("profile_picture", e.target.value)}
           value={form.profile_picture ?? ""}
           required
         />
@@ -131,7 +132,7 @@ function ArtisanForm({ onClick }: Props) {
           placeholder="ex : example@xyz.com"
           id="email"
           error={errors.includes("email")}
-          onChange={handleChange}
+          onChange={(e) => handleChange("email", e.target.value)}
           value={form.email ?? ""}
           required
         />
@@ -151,7 +152,7 @@ function ArtisanForm({ onClick }: Props) {
           placeholder={t("average_price")}
           id="average_price"
           error={errors.includes("average_price")}
-          onChange={handleChange}
+          onChange={(e) => handleChange("average_price", e.target.value)}
           value={form.average_price ?? ""}
           required
         />
@@ -162,7 +163,7 @@ function ArtisanForm({ onClick }: Props) {
           placeholder={t("number_of_employees")}
           id="number_of_employees"
           error={errors.includes("number_of_employees")}
-          onChange={handleChange}
+          onChange={(e) => handleChange("number_of_employees", e.target.value)}
           value={form.number_of_employees ?? ""}
           required
         />
