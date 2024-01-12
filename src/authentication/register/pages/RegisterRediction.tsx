@@ -8,7 +8,7 @@ export const RegisterRedirection = (): ReactElement => {
 
  return (
   <AuthenticationFormCard {...{ cardClassName: "w-1/3" }}>
-   <Title className="mb-6">{t('authentication:Register')}</Title>
+   <Title className="mb-6">{t('authentication:register')}</Title>
    <div>
     {t('authentication:registerRedirection')}
    </div>

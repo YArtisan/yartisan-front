@@ -28,5 +28,7 @@
  "resetPasswordNoCodeSentLink": "Cliquez pour renvoyer.",
  "resetPasswordCodeButton": "Continuez",
  "resetPasswordTitle": "Réinitialiser mon mot de passe",
- "registerRedirection": "Vous avez reçu un email pour valider votre authentification"
+ "registerRedirection": "Vous avez reçu un email pour valider votre authentification",
+ "redirectToConnect": "Se connecter",
+ "redirectToRegister": "S'enregistrer"
 }
