@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { FaBars, FaBell, FaSignOutAlt } from "react-icons/fa";
 import { BiSolidMessage } from "react-icons/bi";
 import { BsGearFill } from "react-icons/bs";
-import NavItem from "./NavItem";
-import Window from "@components/layouts/DefaultLayout/Header/Window/Window";
 import { useNavLinks } from "@/navigation/hooks/useNavLinks";
 import { useTranslation } from "react-i18next";
 import { useAuthState } from "@/user/components/UserProvider";
 import { signOut } from "firebase/auth";
 import { firebaseAuthentication } from "@/api/service/firebase";
 import { Link, useNavigate } from "react-router-dom";
+import Window from "@components/layouts/HeaderButtons/Window/Window";
+import NavItem from "../DefaultHeader/NavItem";
 
 interface IProps {
   isExpanded: boolean;

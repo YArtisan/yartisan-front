@@ -14,7 +14,9 @@ export default {
         dark: "#051923",
         lightwhite: "#F3F3F3",
         "primary-0.9": "rgba(0,53,84,0.9)",
-        "card": "#F2FAFB",
+        card: "#F2FAFB",
+        "message-me": "#00A2C7",
+        "message-other": "#107D98",
       },
       flex: {
         2: "2 2 0%",

@@ -7,6 +7,7 @@ import { RegisterRedirection } from "@/authentication/register/pages/RegisterRed
 import { AuthenticationLayout } from "@/authentication/shared/components/AuthenticationLayout";
 import { WelcomingLayout } from "@/welcoming/components/WelcomingLayout";
 import DefaultLayout from "@components/layouts/DefaultLayout/DefaultLayout";
+import Chat from "@pages/Chat/Chat";
 import Home from "@pages/Home/Home";
 import { ReactElement } from "react";
 import { Routes, Route } from "react-router-dom";
@@ -19,6 +20,14 @@ export const AppRoutes = (): ReactElement => {
         element={
           <DefaultLayout>
             <Home />
+          </DefaultLayout>
+        }
+      />
+      <Route
+        path="/chat"
+        element={
+          <DefaultLayout bgBlue>
+            <Chat />
           </DefaultLayout>
         }
       />

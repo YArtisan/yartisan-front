@@ -1,4 +1,5 @@
 import { UserType } from "@/user/enums/UserType";
+import { User } from "@/user/types/User";
 
 export interface IOpeningHours {
   day_of_week: number;
@@ -58,9 +59,8 @@ export interface IArtisanFormData {
   address: Partial<IApiAddress>;
   opening_hours: Partial<IOpeningHours>[];
   number_of_employees: string;
-  userFunction: UserType
+  userFunction: UserType;
 }
-
 
 export interface IMultiHoraire {
   days: number[];
@@ -73,4 +73,27 @@ export interface INavLink {
   label: string;
   dropdown?: INavLink[];
 }
-export interface ICoords { lat: number; lon: number }
+export interface ICoords {
+  lat: number;
+  lon: number;
+}
+
+export interface IMessage {
+  _id: string;
+  conversation_id: string;
+  expediteur_id: string;
+  message: string;
+  created_at: string;
+  last_update: string;
+}
+
+export interface IConversation {
+  _id: string;
+}
+// export interface IConversation {
+//   _id: string;
+//   user: User;
+//   artisan: IArtisan;
+//   created_at: string;
+//   last_update: string;
+// }

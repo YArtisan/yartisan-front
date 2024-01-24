@@ -5,17 +5,23 @@ import { useNavLinks } from "@/navigation/hooks/useNavLinks";
 import { AuthButtons, OptionButtons } from "../../HeaderButtons/HeaderButtons";
 import { Link } from "react-router-dom";
 
-interface IProps {
+interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   isExpanded: boolean;
   setIsExpanded: (val: boolean) => void;
 }
 
-const DefaultHeader = ({ isExpanded, setIsExpanded }: IProps) => {
+const DefaultHeader = ({ isExpanded, setIsExpanded, className, ...props }: IProps) => {
   const { navLinks } = useNavLinks();
   const pathname = window.location.pathname;
 
   return (
-    <nav className="w-full h-20 px-3 duration-200 flex items-center justify-between gap-5 fixed top-0 z-10 bg-white">
+    <nav
+      {...props}
+      className={[
+        "w-full h-20 px-3 duration-200 flex items-center justify-between gap-5 fixed top-0 z-10 bg-white",
+        className,
+      ].join(" ")}
+    >
       {/* Logo and nav links */}
       <div className="flex items-center gap-2 min-[930px]:gap-20 h-full">
         <Link to="/">
@@ -23,16 +29,18 @@ const DefaultHeader = ({ isExpanded, setIsExpanded }: IProps) => {
         </Link>
 
         <ul
-          className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[930px]:left-0 max-[930px]:bg-primary max-[930px]:bg-opacity-90 max-[930px]:w-full max-[930px]:absolute max-[930px]:top-full max-[930px]:h-[calc(100vh-80px)] ${isExpanded
-            ? "max-[930px]:max-w-[450px] max-[930px]:px-5"
-            : "max-[930px]:max-w-[0px]"
-            }`}
+          className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[930px]:left-0 max-[930px]:bg-primary max-[930px]:bg-opacity-90 max-[930px]:w-full max-[930px]:absolute max-[930px]:top-full max-[930px]:h-[calc(100vh-80px)] ${
+            isExpanded
+              ? "max-[930px]:max-w-[450px] max-[930px]:px-5"
+              : "max-[930px]:max-w-[0px]"
+          }`}
         >
           <div
-            className={`flex min-[930px]:items-center min-[930px]:justify-center h-full ${isExpanded
-              ? "max-[930px]:flex-col max-[930px]:gap-10 max-[930px]:py-5"
-              : "max-[930px]:opacity-0"
-              }`}
+            className={`flex min-[930px]:items-center min-[930px]:justify-center h-full ${
+              isExpanded
+                ? "max-[930px]:flex-col max-[930px]:gap-10 max-[930px]:py-5"
+                : "max-[930px]:opacity-0"
+            }`}
           >
             <AuthButtons className="min-[930px]:hidden mx-auto" />
             <div className="flex max-[930px]:flex-col max-[930px]:gap-2 min-[930px]:h-full">
