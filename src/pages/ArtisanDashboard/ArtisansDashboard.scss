@@ -1,0 +1,21 @@
+.passedOrder td, .passedOrder th {
+    // border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .passedOrder tr:nth-child(even){
+    background-color: #f2f2f2;
+
+}
+.passedOrder tbody tr{
+    transition: all 150ms ease-in-out;
+
+}
+
+thead tr{
+    text-align: left;
+}
+
+.right_column h2{
+    font-weight: bold;
+}
