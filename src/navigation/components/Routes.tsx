@@ -7,6 +7,7 @@ import { RegisterRedirection } from "@/authentication/register/pages/RegisterRed
 import { AuthenticationLayout } from "@/authentication/shared/components/AuthenticationLayout";
 import { WelcomingLayout } from "@/welcoming/components/WelcomingLayout";
 import DefaultLayout from "@components/layouts/DefaultLayout/DefaultLayout";
+import ArtisanDashboard from "@pages/ArtisanDashboard/ArtisansDashboard";
 import Home from "@pages/Home/Home";
 import { ReactElement } from "react";
 import { Routes, Route } from "react-router-dom";
@@ -82,6 +83,14 @@ export const AppRoutes = (): ReactElement => {
           </AuthenticationLayout>
         }
       />
+      <Route
+        path="/artisan-dashboard"
+        element={
+          <DefaultLayout>
+            <ArtisanDashboard />
+          </DefaultLayout>
+        }
+      />
     </Routes>
-  )
-}
+  );
+};
