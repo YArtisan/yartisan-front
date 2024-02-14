@@ -1,4 +1,5 @@
 import { ForgotPasswordLink } from "@/authentication/password/forgot-password/components/ForgotPasswordLink";
+import { SsoRegisterForm } from "@/authentication/register/components/SsoRegisterForm";
 import { AuthenticationFormCard } from "@/authentication/shared/components/AuthenticationFormCard";
 import { Title } from "@/text/components/Title";
 import { EmailInput } from "@/user/components/form/EmailInput";
@@ -6,7 +7,8 @@ import { PasswordInput } from "@/user/components/form/PasswordInput";
 import Button from "@atoms/Button";
 import { ReactElement, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"
+import { SsoLoginForm } from "./SsoLoginForm";
 
 interface Props {
  className?: string
@@ -17,13 +19,13 @@ export const LoginForm = ({ className, onClick }: Props): ReactElement => {
  const { t } = useTranslation()
  const [email, setEmail] = useState<string>('')
  const [password, setPassword] = useState<string>('')
- const navigate = useNavigate()
 
  return (
-  <AuthenticationFormCard {...{ className, cardClassName: 'h-3/5 w-2/3' }}>
+  <AuthenticationFormCard {...{ className, cardClassName: 'w-2/3' }}>
    <Title>{t('authentication:connection')}</Title>
    <EmailInput {...{ onChange: setEmail, value: email }} container={{ className: "mt-16" }} />
    <PasswordInput {...{ onChange: setPassword, value: password }} container={{ className: "mt-8" }} />
+   <SsoLoginForm />
    <div className="flex justify-between items-center mt-10 flex-col md:flex-row">
     <div className="flex justify-center items-between lg:flex-col xl:flex-row">
      {t('authentication:noAccount')}

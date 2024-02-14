@@ -18,7 +18,7 @@ interface Props {
 
 const defaultErrorText = "Veuillez remplir correctement ce champ.";
 
-function ArtisanForm ({ onClick }: Props) {
+function CompleteArtisanProfileForm ({ onClick }: Props) {
   const { t } = useTranslation("createArtisan");
   const [errors, setErrors] = useState<string[]>([]);
   const [form, setForm] = useState<Partial<IArtisanFormData>>({});
@@ -86,19 +86,6 @@ function ArtisanForm ({ onClick }: Props) {
             required: true,
           }}
         />
-        <TextInputWithLabel
-          label={t("password")}
-          textInput={{
-            className: "w-full",
-            placeholder: t("password"),
-            id: "password",
-            type: "password",
-            error: errors.includes("password") ? defaultErrorText : "",
-            onChange: (value) => handleChange("password", value),
-            value: form.password ?? "",
-            required: true,
-          }}
-        />
         <TextAreaInput
           label={t("job_description")}
           placeholder={t("job_description")}
@@ -125,16 +112,6 @@ function ArtisanForm ({ onClick }: Props) {
           error={errors.includes("profile_picture")}
           onChange={(e) => handleChange("profile_picture", e.target.value)}
           value={form.profile_picture ?? ""}
-          required
-        />
-        <TextInput
-          type="email"
-          label={t("email")}
-          placeholder="ex : example@xyz.com"
-          id="email"
-          error={errors.includes("email")}
-          onChange={(e) => handleChange("email", e.target.value)}
-          value={form.email ?? ""}
           required
         />
         <AddressInput
@@ -188,11 +165,11 @@ function ArtisanForm ({ onClick }: Props) {
           template="secondary"
           className="mt-6 w-full mx-auto"
         >
-          {t("create")}
+          {t("authentication:register")}
         </Button>
       </div>
     </div>
   );
 }
 
-export default ArtisanForm;
+export default CompleteArtisanProfileForm;

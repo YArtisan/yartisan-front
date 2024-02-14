@@ -1,38 +1,45 @@
+import { ForgotPasswordLink } from "@/authentication/password/forgot-password/components/ForgotPasswordLink";
+import { SsoRegisterForm } from "@/authentication/register/components/SsoRegisterForm";
 import { AuthenticationFormCard } from "@/authentication/shared/components/AuthenticationFormCard";
+import { Title } from "@/text/components/Title";
+import { EmailInput } from "@/user/components/form/EmailInput";
+import { PasswordInput } from "@/user/components/form/PasswordInput";
+import Button from "@atoms/Button";
 import { ReactElement, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { RadioSwitchFunctionGroupInputWithLabel } from "./RadioSwitchFunctionGroupInputWithLabel";
-import { RegisterFormInput } from "../types/RegisterFormInput.type";
-import { Title } from "@/text/components/Title";
-import { UserType } from "@/user/enums/UserType";
-import UserForm from "./UserForm";
-import ArtisanForm from "./ArtisanForm";
-import { IArtisanFormData } from "@/types/interfaces";
+import { Link } from "react-router-dom"
 
 interface Props {
-  className: string;
-  onClick: (input: RegisterFormInput | IArtisanFormData) => Promise<void>;
+ className?: string
+ onClick: (email: string, password: string) => Promise<void>
 }
 
 export const RegisterForm = ({ className, onClick }: Props): ReactElement => {
-  const { t } = useTranslation();
-  const [userFunction, setUserFunction] = useState<string>(UserType.client);
+ const { t } = useTranslation()
+ const [email, setEmail] = useState<string>('')
+ const [password, setPassword] = useState<string>('')
 
-  return (
-    <AuthenticationFormCard {...{ className, cardClassName: `w-2/3 ${userFunction === UserType.client ? '' : 'h-full'}` }}>
-      <Title>{t("authentication:registering")}</Title>
-      <RadioSwitchFunctionGroupInputWithLabel
-        container={{ className: "mt-8" }}
-        className="mb-5"
-        selectedValue={userFunction}
-        setSelectedValue={setUserFunction}
-      />
-      <div className="overflow-y-auto max-h-[900px]">
-        {userFunction === UserType.client && (
-          <UserForm className={className} onClick={onClick} />
-        )}
-        {userFunction === UserType.artisan && <ArtisanForm onClick={onClick} />}
-      </div>
-    </AuthenticationFormCard>
-  );
-};
+ return (
+  <AuthenticationFormCard {...{ className, cardClassName: 'w-2/3' }}>
+   <Title>{t("authentication:registering")}</Title>
+   <EmailInput {...{ onChange: setEmail, value: email }} container={{ className: "mt-16" }} />
+   <PasswordInput {...{ onChange: setPassword, value: password }} container={{ className: "mt-8 mb-3" }} />
+   <Button
+    className="my-5 w-full"
+    template="secondary"
+    {...{ onClick: async () => await onClick(email, password) }}>
+    {t('authentication:register')}
+   </Button>
+   <SsoRegisterForm />
+   <div className="flex justify-between items-center mt-10 flex-col md:flex-row">
+    <div className="flex justify-center items-between lg:flex-col xl:flex-row">
+     {t("authentication:haveAccount")}
+     <Link to="/login" className="ml-1 text-blue-600">
+      {t("authentication:connect")}
+     </Link>
+    </div>
+    <ForgotPasswordLink />
+   </div>
+  </AuthenticationFormCard>
+ )
+}

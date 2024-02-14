@@ -30,5 +30,6 @@
   "resetPasswordTitle": "Reset Password",
   "registerRedirection": "You have received an email to validate your authentication",
   "redirectToConnect": "Log In",
-  "redirectToRegister": "Register"
+  "redirectToRegister": "Register",
+  "googleSignIn": "Connect with Google"
 }

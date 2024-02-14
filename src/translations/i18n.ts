@@ -16,6 +16,8 @@ import daysFr from "../locales/translations/fr/days.json";
 import daysEn from "../locales/translations/en/days.json";
 import userFr from '../locales/translations/fr/user.json'
 import userEn from '../locales/translations/en/user.json'
+import expressionFr from '../locales/translations/fr/expression.json'
+import expressionEn from '../locales/translations/en/expression.json'
 
 i18n.use(initReactI18next).init({
     fallbackLng: "fr",
@@ -25,6 +27,7 @@ i18n.use(initReactI18next).init({
     },
     resources: {
         fr: {
+            expression: expressionFr,
             artisanFilter: artisanFilterFr,
             authentication: authenticationFr,
             navigation: navigationFr,
@@ -35,6 +38,7 @@ i18n.use(initReactI18next).init({
             user: userFr
         },
         en: {
+            expression: expressionEn,
             artisanFilter: artisanFilterEn,
             authentication: authenticationEn,
             navigation: navigationEn,
