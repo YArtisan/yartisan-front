@@ -9,7 +9,7 @@ export const getAllArtisans = () => {
         .then(({ data }) => {
           const artisansData = data?.map((e: any) => {
             const { artisantData, opening_time, address } = e;
-            return { ...artisantData, ratings, address, opening_hours: opening_time }
+            return { ...artisantData, ratings, address : address[0], opening_hours: opening_time }
           })
 
           resolve(artisansData ?? []);

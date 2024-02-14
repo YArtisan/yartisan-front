@@ -28,7 +28,6 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
     job_description,
   } = artisan;
   const address = getCompleteAddress(artisan.address);
-
   const horaires = getHoraires(artisan.opening_hours);
   
 
