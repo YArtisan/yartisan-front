@@ -30,5 +30,6 @@
  "resetPasswordTitle": "Réinitialiser mon mot de passe",
  "registerRedirection": "Vous avez reçu un email pour valider votre authentification",
  "redirectToConnect": "Se connecter",
- "redirectToRegister": "S'enregistrer"
+ "redirectToRegister": "S'enregistrer",
+ "googleSignIn": "Se connecter avec Google"
 }

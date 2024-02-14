@@ -1,3 +1,4 @@
+import { CompleteProfile } from "@/authentication/completeProfile/pages/CompleteProfile";
 import { Login } from "@/authentication/login/pages/Login";
 import { ForgotPassword } from "@/authentication/password/forgot-password/pages/ForgotPassword";
 import { VerificationCode } from "@/authentication/password/forgot-password/pages/VerificationCode";
@@ -47,6 +48,16 @@ export const AppRoutes = (): ReactElement => {
         element={
           <AuthenticationLayout>
             <RegisterRedirection />
+          </AuthenticationLayout>
+        }
+      />
+      <Route
+        path="/complete-profile"
+        element={
+          <AuthenticationLayout>
+            <WelcomingLayout>
+              <CompleteProfile />
+            </WelcomingLayout>
           </AuthenticationLayout>
         }
       />
