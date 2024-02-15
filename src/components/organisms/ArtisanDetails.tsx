@@ -8,12 +8,16 @@ import Ratings from "@molecules/Ratings/Ratings";
 import { FaBookmark, FaPlus } from "react-icons/fa";
 import { getLatLonFromAddress } from "@/fetch/addressActions";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { createConversation } from "@/fetch/conversationActions";
+import { useAuthState } from "@/user/components/UserProvider";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   artisan: IArtisan;
 }
 
 function ArtisanDetails({ artisan, className, ...props }: IProps) {
+  const { connectedUser } = useAuthState();
   const { t } = useTranslation("");
   const days = t("days:days", { returnObjects: true }) as string[];
   const [height, _setHeight] = useState(() => window.innerHeight - 100);
@@ -29,13 +33,20 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
   } = artisan;
   const address = getCompleteAddress(artisan.address);
   const horaires = getHoraires(artisan.opening_hours);
-  
+  const navigate = useNavigate();
 
   useEffect(() => {
     getLatLonFromAddress(address)
       .then((res) => setCoords(res))
       .catch(() => setCoords(null));
   }, [artisan]);
+
+  const handleContact = () => {
+    if (!connectedUser) return navigate("/login");
+    createConversation(connectedUser._id, artisan._id).then(() => {
+      navigate("/chat");
+    });
+  };
 
   return (
     <div
@@ -59,7 +70,7 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
           <FaBookmark size={24} />
         </div>
         <div className="flex gap-2 flex-wrap mb-6 text-sm">
-          <Button template="secondary" invertColors>
+          <Button template="secondary" invertColors onClick={handleContact}>
             Contacter
           </Button>
           <Button template="secondary">Réserver</Button>
@@ -79,9 +90,7 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
               )} - ${opening_time} à ${closing_time}`;
             }
 
-            return (
-              <li key={`artisan-${company_name}-horaire-${i}`}>{text}</li>
-            );
+            return <li key={`artisan-${company_name}-horaire-${i}`}>{text}</li>;
           })}
         </ul>
         <p className="text-lg font-bold">Informations</p>

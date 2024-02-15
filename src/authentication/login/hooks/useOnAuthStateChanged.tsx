@@ -14,6 +14,7 @@ export const useOnAuthStateChanged = async (): Promise<void> => {
     } = await axios.get(`/user`, {
       headers: { authorization: token ? `Bearer ${token}` : "" },
     });
+
     if (connectedUser !== undefined) return;
     setConnectedUser(data);
   });

@@ -15,38 +15,50 @@ export const AuthButtons = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
   const { t } = useTranslation();
-  const navigate = useNavigate()
-  const { connectedUser } = useAuthState()
+  const navigate = useNavigate();
+  const { connectedUser } = useAuthState();
 
   return (
     <div
       className={["flex gap-1 flex-wrap justify-center", className].join(" ")}
       {...props}
     >
-      {connectedUser != null
-        ? (
-          <div className="flex justify-center">
-            <div className="self-center mx-2 text-white sm:text-black">{connectedUser?.email}</div>
-            <Button onClick={async () => {
-              await signOut(firebaseAuthentication)
-              navigate('/login')
-            }}>
-              <FaSignOutAlt />
-            </Button>
+      {connectedUser != null ? (
+        <div className="flex justify-center">
+          <div className="self-center mx-2 text-white sm:text-black">
+            {connectedUser?.email}
           </div>
-        )
-        : (
-          <>
-            <Button onClick={() => { navigate('/register') }} template="secondary" invertColors>
-              {t("authentication:redirectToRegister")}
-            </Button>
-            <Button onClick={() => { navigate('/login') }} template="secondary">
-              {t("authentication:redirectToConnect")}
-            </Button>
-          </>
-        )
-      }
-    </div >
+          <Button
+            onClick={async () => {
+              await signOut(firebaseAuthentication);
+              navigate("/login");
+            }}
+          >
+            <FaSignOutAlt />
+          </Button>
+        </div>
+      ) : (
+        <>
+          <Button
+            onClick={() => {
+              navigate("/register");
+            }}
+            template="secondary"
+            invertColors
+          >
+            {t("authentication:redirectToRegister")}
+          </Button>
+          <Button
+            onClick={() => {
+              navigate("/login");
+            }}
+            template="secondary"
+          >
+            {t("authentication:redirectToConnect")}
+          </Button>
+        </>
+      )}
+    </div>
   );
 };
 
@@ -63,21 +75,25 @@ export const OptionButtons = () => {
   return (
     <div className="min-[400px]:relative flex items-center gap-1 h-full">
       <div
-        className={`${nbMessages > 0
-          ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
-          : ""
-          }`}
+        className={`${
+          nbMessages > 0
+            ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
+            : ""
+        }`}
       >
-        <BiSolidMessage
-          size={25}
-          className="duration-150 cursor-pointer hover:scale-125"
-        />
+        <a href="/chat">
+          <BiSolidMessage
+            size={25}
+            className="duration-150 cursor-pointer hover:scale-125"
+          />
+        </a>
       </div>
       <div
-        className={`${nbNotifications > 0
-          ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
-          : ""
-          }`}
+        className={`${
+          nbNotifications > 0
+            ? "relative after:absolute after:top-0 after:right-0 after:rounded-full after:bg-red-600 after:w-2 after:h-2"
+            : ""
+        }`}
       >
         <FaBell
           size={25}

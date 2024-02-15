@@ -89,11 +89,13 @@ export interface IMessage {
 
 export interface IConversation {
   _id: string;
+  user: User;
+  artisan: IArtisan;
+  created_at: string;
+  last_update: string;
+  data : {
+    name : string;
+    email : string;
+    phone : string;
+  }
 }
-// export interface IConversation {
-//   _id: string;
-//   user: User;
-//   artisan: IArtisan;
-//   created_at: string;
-//   last_update: string;
-// }

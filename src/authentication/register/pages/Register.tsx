@@ -11,8 +11,6 @@ export const Register = (): ReactElement => {
     <RegisterForm
       onClick={async (data) => {
         try {
-          // const registerFunction =
-          //   data.userFunction === UserType.artisan ? postArtisan : register;
           await register(data).then(() => navigate("/register-redirection"));
         } catch (error: any) {
           alert(error?.message ?? "Une erreur est survenue.");

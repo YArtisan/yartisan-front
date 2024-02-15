@@ -12,7 +12,11 @@ function Chat() {
     <div className="flex h-full gap-8 px-3">
       <ConversationList
         selectedConversation={selectedConversation}
-        onSelectConversation={setSelectedConversation}
+        onSelectConversation={(e) =>
+          setSelectedConversation(
+            selectedConversation?._id === e._id ? undefined : e
+          )
+        }
       />
       {selectedConversation && (
         <Conversation conversation={selectedConversation} />
