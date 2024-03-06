@@ -5,11 +5,13 @@ import { useTranslation } from "react-i18next";
 
 interface Props {
  container?: DivProps
+ value: string
+ onChange: (newValue: string) => void
 }
 
-export const EmailInput = ({ container }: Props): ReactElement => {
+export const EmailInput = ({ container, value, onChange }: Props): ReactElement => {
  const { t } = useTranslation()
  return (
-  <TextInputWithLabel {...{ container }} label={t('authentication:emailAddress.label')} textInput={{ type: "text", placeholder: t('authentication:emailAddress.placeholder'), className: "w-full" }} />
+  <TextInputWithLabel {...{ container }} label={t('authentication:emailAddress.label')} textInput={{ value, onChange, type: "text", placeholder: t('authentication:emailAddress.placeholder'), className: "w-full" }} />
  )
 }

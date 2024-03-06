@@ -30,6 +30,11 @@ h3 {
   font-family: $title_style;
 }
 
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
 @keyframes artisanDetailsGrow {
   from {
     max-height: 0;

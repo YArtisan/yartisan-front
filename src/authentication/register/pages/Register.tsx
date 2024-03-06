@@ -1,8 +1,11 @@
-import { ReactElement } from "react";
-import { RegisterForm } from "../components/RegisterForm";
+import { ReactElement } from "react"
+import { useEmailAndPasswordRegister } from "../hooks/useEmailAndPasswordRegister"
+import { RegisterForm } from "../components/RegisterForm"
 
 export const Register = (): ReactElement => {
- return (
-  <RegisterForm className="w-1/2" />
- )
+  const { register } = useEmailAndPasswordRegister()
+
+  return (
+    <RegisterForm onClick={register}></RegisterForm>
+  )
 }

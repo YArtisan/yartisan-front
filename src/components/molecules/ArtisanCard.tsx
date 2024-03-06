@@ -10,7 +10,7 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 function ArtisanCard({ artisan, className, isSelected, ...props }: IProps) {
-  const { compagny_name, address, ratings, avg_price } = artisan;
+  const { company_name, address, ratings, average_price } = artisan;
   const avgRating = getAverageRating(ratings);
     ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
 
@@ -25,7 +25,7 @@ function ArtisanCard({ artisan, className, isSelected, ...props }: IProps) {
     >
       <div className="flex justify-between">
         <div>
-          <p className="text-lg font-bold">{compagny_name}</p>
+          <p className="text-lg font-bold">{company_name}</p>
           <p>{getCompleteAddress(address)}</p>
         </div>
         <FaBookmark size={24} />
@@ -35,8 +35,8 @@ function ArtisanCard({ artisan, className, isSelected, ...props }: IProps) {
           <RatingStars number={avgRating} withScore />
           <p className="underline">{ratings.length} avis</p>
         </div>
-        <p className="bg-accent font-bold px-3 py-1 text-white rounded-lg h-fit">
-          ~ {avg_price} €
+        <p className="bg-accent font-bold px-3 py-1 rounded-lg h-fit">
+          ~ {average_price} €
         </p>
       </div>
     </div>

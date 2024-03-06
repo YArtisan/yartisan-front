@@ -1,0 +1,14 @@
+{
+  "title": "Information de l'entreprise",
+  "company_name": "Nom de l'entreprise",
+  "job_description": "Description",
+  "phone_number": "Numéro de téléphone",
+  "password": "Mot de passe",
+  "email": "Adresse e-mail",
+  "profile_picture": "URL de la photo de profile",
+  "number_of_employees": "Nombre d'employés",
+  "address": "Adresse",
+  "average_price": "Tarif moyen (en €)",
+  "opening_hours": "Horaires d'ouverture",
+  "create": "Créer"
+}

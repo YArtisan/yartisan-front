@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ILanguageContext {
   language: string;
-  setLanguage: (value: string) => void;
+  changeLanguage: (value: string) => void;
 }
 
 //@ts-ignore
@@ -18,10 +19,16 @@ export default function LanguageProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [language, setLanguage] = useState("");
+  const { i18n } = useTranslation();
+  const [language, setLanguage] = useState<string>("fr");
+
+  const changeLanguage = (value: string) => {
+    i18n.changeLanguage(value);
+    setLanguage(value);
+  };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage }}>
+    <LanguageContext.Provider value={{ language, changeLanguage }}>
       {children}
     </LanguageContext.Provider>
   );

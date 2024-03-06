@@ -15,5 +15,22 @@
   "label": "Entrez votre mot de passe",
   "placeholder": "Mot de passe"
  },
- "forgotPassword": "J'ai oublié mon mot de passe"
+ "confirmPassword": {
+  "label": "Confirmez votre mot de passe",
+  "placeholder": "Confirmation du mot de passe"
+ },
+ "forgotPassword": "J'ai oublié mon mot de passe",
+ "forgotPasswordTitle": "Mot de passe oublié?",
+ "forgotPasswordSubTitle": "Nous allons vous envoyer un lien pour le changer.",
+ "resetPasswordButton": "Réinitialiser mon mot de passe",
+ "resetPasswordSubTitle": "Nous avons envoyé un lien à l'email {{email}}.",
+ "resetPasswordNoCodeSentQuestion": "Vous n'avez pas reçu le code?",
+ "resetPasswordNoCodeSentLink": "Cliquez pour renvoyer.",
+ "resetPasswordCodeButton": "Continuez",
+ "resetPasswordTitle": "Réinitialiser mon mot de passe",
+ "registerRedirection": "Vous avez reçu un email pour valider votre authentification",
+ "redirectToConnect": "Se connecter",
+ "redirectToRegister": "S'enregistrer",
+ "googleSignIn": "Se connecter avec Google",
+ "googleRegister": "S'inscrire avec Google"
 }

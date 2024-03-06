@@ -1,33 +1,45 @@
+import { ForgotPasswordLink } from "@/authentication/password/forgot-password/components/ForgotPasswordLink";
+import { SsoRegisterForm } from "@/authentication/register/components/SsoRegisterForm";
 import { AuthenticationFormCard } from "@/authentication/shared/components/AuthenticationFormCard";
-import { ReactElement } from "react";
-import { useTranslation } from "react-i18next";
+import { Title } from "@/text/components/Title";
 import { EmailInput } from "@/user/components/form/EmailInput";
 import { PasswordInput } from "@/user/components/form/PasswordInput";
-import { UsernameInput } from "@/user/components/form/UserNameInput";
-import { PhoneInput } from "@/user/components/form/PhoneInput";
-import { RadioSwitchFunctionGroupInputWithLabel } from "./RadioSwitchFunctionGroupInputWithLabel";
 import Button from "@atoms/Button";
+import { ReactElement, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom"
 
 interface Props {
- className: string
+ className?: string
+ onClick: (email: string, password: string) => Promise<void>
 }
 
-export const RegisterForm = ({ className }: Props): ReactElement => {
+export const RegisterForm = ({ className, onClick }: Props): ReactElement => {
  const { t } = useTranslation()
+ const [email, setEmail] = useState<string>('')
+ const [password, setPassword] = useState<string>('')
 
  return (
-  <AuthenticationFormCard {...{ className }}>
-   <div className="text-6xl flex font-semibold">{t('authentication:registering')}</div>
-   <RadioSwitchFunctionGroupInputWithLabel container={{ className: "mt-8" }} className="mb-5" />
-   <EmailInput container={{ className: "mb-5" }} />
-   <UsernameInput container={{ className: "mb-5" }} />
-   <PhoneInput container={{ className: "mb-5" }} />
-   <PasswordInput container={{ className: "mb-5" }} />
-   <div className="flex justify-start">
-    {t('authentication:haveAccount')}
-    <a href="/login" className="ml-1 text-blue-600">{t('authentication:connect')}</a>
+  <AuthenticationFormCard {...{ className, cardClassName: 'w-2/3' }}>
+   <Title>{t("authentication:registering")}</Title>
+   <EmailInput {...{ onChange: setEmail, value: email }} container={{ className: "mt-16" }} />
+   <PasswordInput {...{ onChange: setPassword, value: password }} container={{ className: "mt-8 mb-3" }} />
+   <Button
+    className="my-5 w-full"
+    template="secondary"
+    {...{ onClick: async () => await onClick(email, password) }}>
+    {t('authentication:register')}
+   </Button>
+   <SsoRegisterForm />
+   <div className="flex justify-between items-center mt-10 flex-col md:flex-row">
+    <div className="flex justify-center items-between flex-row sm:flex-col">
+     {t("authentication:haveAccount")}
+     <Link to="/login" className="ml-1 md:ml-0 text-blue-600">
+      {t("authentication:connect")}
+     </Link>
+    </div>
+    <ForgotPasswordLink />
    </div>
-   <Button className="mt-6 w-full" template="secondary">{t('authentication:connect')}</Button>
   </AuthenticationFormCard>
  )
 }
