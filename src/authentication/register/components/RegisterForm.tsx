@@ -32,9 +32,9 @@ export const RegisterForm = ({ className, onClick }: Props): ReactElement => {
    </Button>
    <SsoRegisterForm />
    <div className="flex justify-between items-center mt-10 flex-col md:flex-row">
-    <div className="flex justify-center items-between lg:flex-col xl:flex-row">
+    <div className="flex justify-center items-between flex-row sm:flex-col">
      {t("authentication:haveAccount")}
-     <Link to="/login" className="ml-1 text-blue-600">
+     <Link to="/login" className="ml-1 md:ml-0 text-blue-600">
       {t("authentication:connect")}
      </Link>
     </div>

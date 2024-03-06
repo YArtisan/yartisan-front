@@ -28,7 +28,7 @@ export const CompleteProfile = (): ReactElement => {
    const registerFunction =
     data.userFunction === UserType.artisan ? postArtisan : createUser;
    await Promise.all([
-    !user.emailVerified ? sendEmailVerification(user, { url: `${url}/complete-profile` }) : null,
+    !user.emailVerified ? sendEmailVerification(user, { url }) : null,
     registerFunction(data)
    ])
    navigate("/register-redirection")
