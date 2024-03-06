@@ -23,27 +23,27 @@ const DefaultHeader = ({ isExpanded, setIsExpanded, className, ...props }: IProp
       ].join(" ")}
     >
       {/* Logo and nav links */}
-      <div className="flex items-center gap-2 min-[930px]:gap-20 h-full">
+      <div className="flex items-center gap-2 min-[975px]:gap-20 h-full">
         <Link to="/">
           <p className="text-2xl font-bold text-black h-fit">YARTISAN</p>
         </Link>
 
         <ul
-          className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[930px]:left-0 max-[930px]:bg-primary max-[930px]:bg-opacity-90 max-[930px]:w-full max-[930px]:absolute max-[930px]:top-full max-[930px]:h-[calc(100vh-80px)] ${
+          className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[975px]:left-0 max-[975px]:bg-primary max-[975px]:bg-opacity-90 max-[975px]:w-full max-[975px]:absolute max-[975px]:top-full max-[975px]:h-[calc(100vh-80px)] ${
             isExpanded
-              ? "max-[930px]:max-w-[450px] max-[930px]:px-5"
-              : "max-[930px]:max-w-[0px]"
+              ? "max-[975px]:max-w-[450px] max-[975px]:px-5"
+              : "max-[975px]:max-w-[0px]"
           }`}
         >
           <div
-            className={`flex min-[930px]:items-center min-[930px]:justify-center h-full ${
+            className={`flex min-[975px]:items-center min-[975px]:justify-center h-full ${
               isExpanded
-                ? "max-[930px]:flex-col max-[930px]:gap-10 max-[930px]:py-5"
-                : "max-[930px]:opacity-0"
+                ? "max-[975px]:flex-col max-[975px]:gap-10 max-[975px]:py-5"
+                : "max-[975px]:opacity-0"
             }`}
           >
-            <AuthButtons className="min-[930px]:hidden mx-auto" />
-            <div className="flex max-[930px]:flex-col max-[930px]:gap-2 min-[930px]:h-full">
+            <AuthButtons className="min-[975px]:hidden mx-auto" />
+            <div className="flex max-[975px]:flex-col max-[975px]:gap-2 min-[975px]:h-full">
               {navLinks.map((navItem, index) => {
                 return (
                   <NavItem
@@ -67,12 +67,12 @@ const DefaultHeader = ({ isExpanded, setIsExpanded, className, ...props }: IProp
 
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="min-[930px]:hidden"
+          className="min-[975px]:hidden"
         >
           <FaBars size={22} />
         </button>
 
-        <AuthButtons className="max-[930px]:hidden" />
+        <AuthButtons className="max-[975px]:hidden" />
       </div>
     </nav>
   );
