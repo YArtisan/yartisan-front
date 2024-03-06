@@ -8,9 +8,10 @@ import { useNavigate } from 'react-router-dom'
 interface Props {
  className?: string
  redirectionPath: string
+ text: string
 }
 
-export const GoogleSignButton = ({ redirectionPath, className = '' }: Props): ReactElement => {
+export const GoogleSignButton = ({ redirectionPath, className = '', text }: Props): ReactElement => {
  const { t } = useTranslation()
  const navigate = useNavigate()
 
@@ -24,7 +25,7 @@ export const GoogleSignButton = ({ redirectionPath, className = '' }: Props): Re
  return (
   <Button {...{ onClick }} className={`flex justify-center items-center ${className}`}>
    <img src='/images/google-icon.svg' className='w-7 h-7 mr-1' />
-   <p className='text-gray-500 ml-1'>{t('authentication:googleSignIn')}</p>
+   <p className='text-gray-500 ml-1'>{text}</p>
   </Button>
  )
 }

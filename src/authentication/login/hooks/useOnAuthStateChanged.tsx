@@ -12,7 +12,6 @@ export const useOnAuthStateChanged = async (): Promise<void> => {
 
     try {
       const { data: { data } } = await axios.get(`/user`);
-      console.log(data)
       if (connectedUser !== undefined) return;
       setConnectedUser(data);
     } catch (error) { }

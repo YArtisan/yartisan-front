@@ -31,5 +31,6 @@
   "registerRedirection": "You have received an email to validate your authentication",
   "redirectToConnect": "Log In",
   "redirectToRegister": "Register",
-  "googleSignIn": "Connect with Google"
+  "googleSignIn": "Connect with Google",
+  "googleRegister": "Register with Google"
 }
