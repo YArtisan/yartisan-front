@@ -1,3 +1,4 @@
+import "flag-icons/css/flag-icons.min.css";
 // import { useDarkModeState } from "@/context/DarkModeContext";
 // import { MdToggleOff, MdToggleOn } from "react-icons/md";
 import { useLanguageState } from "@/context/LanguageContext";
@@ -19,15 +20,20 @@ function Settings() {
         <DarkModeToggler size={25} />
         <p>{t("header:darkMode")}</p>
       </div> */}
+
       <div className="flex items-center gap-2 font-bold">
+        <p>{t("header:language")}</p>
         <select
           value={language}
           onChange={(e) => changeLanguage(e.target.value)}
         >
-          <option value="fr">FR</option>
+          <option className="fi fi-gr" value="fr">
+            FR
+          </option>
           <option value="en">EN</option>
         </select>
-        <p>{t("header:language")}</p>
+        {language === "fr" && <span className="fi fi-fr"></span>}
+        {language === "en" && <span className="fi fi-gb"></span>}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import Button from "@atoms/Button";
 import { getCompleteAddress } from "@utils/functions";
 import Map from "@atoms/Map";
 import Ratings from "@molecules/Ratings/Ratings";
-import { FaBookmark, FaPlus } from "react-icons/fa";
+import { FaPlus, FaRegBookmark } from "react-icons/fa";
 import { getLatLonFromAddress } from "@/fetch/addressActions";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -67,7 +67,7 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
       <div className="p-8 overflow-y-auto">
         <div className="flex justify-between">
           <p className="text-xl font-bold mb-2">{company_name}</p>
-          <FaBookmark size={24} />
+          <FaRegBookmark size={24} />
         </div>
         <div className="flex gap-2 flex-wrap mb-6 text-sm">
           <Button template="secondary" invertColors onClick={handleContact}>
@@ -76,21 +76,29 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
           <Button template="secondary">Réserver</Button>
         </div>
         <p className="text-lg font-bold">Horaires</p>
-        <ul className="pl-5 list-disc mb-6">
+        <ul className="mb-6">
           {horaires.map(({ opening_time, closing_time, ...horaire }, i) => {
-            let text = "";
+            let jours = "";
             const firstDay = days[horaire.days[0]];
 
             if (horaire.days.length > 1) {
               const lastDay = days[horaire.days[horaire.days.length - 1]];
-              text = `Du ${firstDay} au ${lastDay} - ${opening_time} à ${closing_time}`;
+              jours = `Du ${firstDay} au ${lastDay}`;
             } else {
-              text = `${capitalize(
-                firstDay
-              )} - ${opening_time} à ${closing_time}`;
+              jours = `${capitalize(firstDay)}`;
             }
 
-            return <li key={`artisan-${company_name}-horaire-${i}`}>{text}</li>;
+            const heures = `${opening_time} à ${closing_time}`;
+
+            return (
+              <li
+                className="flex items-center justify-between"
+                key={`artisan-${company_name}-horaire-${i}`}
+              >
+                <span>{jours}</span>
+                <span>{heures}</span>
+              </li>
+            );
           })}
         </ul>
         <p className="text-lg font-bold">Informations</p>

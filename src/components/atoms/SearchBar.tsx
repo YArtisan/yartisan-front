@@ -31,7 +31,7 @@ function SearchBar ({
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyPress}
         value={query}
-        className="p-2 flex-1 rounded-l-full"
+        className="p-2 pl-5 flex-1 rounded-l-full"
         placeholder={t('artisanFilter:searchArtisan')}
         type="text"
       />

@@ -20,7 +20,7 @@ export const AuthButtons = ({
 
   return (
     <div
-      className={["flex gap-1 flex-wrap justify-center", className].join(" ")}
+      className={["flex gap-3 flex-wrap justify-center", className].join(" ")}
       {...props}
     >
       {connectedUser != null ? (
@@ -73,7 +73,7 @@ export const OptionButtons = () => {
   };
 
   return (
-    <div className="min-[400px]:relative flex items-center gap-1 h-full">
+    <div className="min-[400px]:relative flex items-center gap-3 h-full">
       <div
         className={`${
           nbMessages > 0
@@ -106,7 +106,7 @@ export const OptionButtons = () => {
         className="duration-150 cursor-pointer hover:scale-125"
         onClick={() => toggleOpenMenu("settings")}
       />
-      <Window menu={openedMenu} />
+      <Window menu={openedMenu} clear={() => setOpenedMenu("")} />
     </div>
   );
 };

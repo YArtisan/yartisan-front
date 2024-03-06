@@ -19,7 +19,7 @@ function DefaultLayout({ children, bgBlue }: IProps) {
         className={`${bgBlue ? "!bg-card" : ""}`}
       />
       <main
-        className={`pt-20 pb-5 dark:bg-black h-full ${bgBlue ? "bg-card" : ""}`}
+        className={`pt-16 pb-5 dark:bg-black h-full ${bgBlue ? "bg-card" : ""}`}
       >
         {children}
       </main>

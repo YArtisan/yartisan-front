@@ -3,7 +3,7 @@ import React from "react";
 import { FaRegStar, FaStar, FaStarHalf, FaStarHalfAlt } from "react-icons/fa";
 
 interface IProps {
-  number: number;
+  number?: number;
   withScore?: boolean;
   filled?: boolean;
   className?: string;
@@ -19,7 +19,14 @@ const displayStars = (number: number, filled: boolean) => (
   </>
 );
 
-function RatingStars({ number, className, filled, withScore }: IProps) {
+function RatingStars({
+  number,
+  className,
+  filled,
+  withScore,
+  ...props
+}: IProps) {
+  if (!number) return;
   const hasTwoDecimals = (number * 100) % 10 !== 0;
 
   return (

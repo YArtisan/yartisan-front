@@ -18,32 +18,32 @@ const DefaultHeader = ({ isExpanded, setIsExpanded, className, ...props }: IProp
     <nav
       {...props}
       className={[
-        "w-full h-20 px-3 duration-200 flex items-center justify-between gap-5 fixed top-0 z-10 bg-white",
+        "w-full h-16 px-3 duration-200 flex items-center justify-between gap-5 fixed top-0 z-10 bg-white",
         className,
       ].join(" ")}
     >
       {/* Logo and nav links */}
-      <div className="flex items-center gap-2 min-[975px]:gap-20 h-full">
+      <div className="flex items-center gap-2 min-[1025px]:gap-20 h-full">
         <Link to="/">
           <p className="text-2xl font-bold text-black h-fit">YARTISAN</p>
         </Link>
 
         <ul
-          className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[975px]:left-0 max-[975px]:bg-primary max-[975px]:bg-opacity-90 max-[975px]:w-full max-[975px]:absolute max-[975px]:top-full max-[975px]:h-[calc(100vh-80px)] ${
+          className={`h-full overflow-hidden transition-[max-width,padding] duration-300 max-[1025px]:left-0 max-[1025px]:bg-primary max-[1025px]:bg-opacity-90 max-[1025px]:w-full max-[1025px]:absolute max-[1025px]:top-full max-[1025px]:h-[calc(100vh-80px)] ${
             isExpanded
-              ? "max-[975px]:max-w-[450px] max-[975px]:px-5"
-              : "max-[975px]:max-w-[0px]"
+              ? "max-[1025px]:max-w-[450px] max-[1025px]:px-5"
+              : "max-[1025px]:max-w-[0px]"
           }`}
         >
           <div
-            className={`flex min-[975px]:items-center min-[975px]:justify-center h-full ${
+            className={`flex min-[1025px]:items-center min-[1025px]:justify-center h-full ${
               isExpanded
-                ? "max-[975px]:flex-col max-[975px]:gap-10 max-[975px]:py-5"
-                : "max-[975px]:opacity-0"
+                ? "max-[1025px]:flex-col max-[1025px]:gap-10 max-[1025px]:py-5"
+                : "max-[1025px]:opacity-0"
             }`}
           >
-            <AuthButtons className="min-[975px]:hidden mx-auto" />
-            <div className="flex max-[975px]:flex-col max-[975px]:gap-2 min-[975px]:h-full">
+            <AuthButtons className="min-[1025px]:hidden mx-auto" />
+            <div className="flex max-[1025px]:flex-col max-[1025px]:gap-2 min-[1025px]:h-full">
               {navLinks.map((navItem, index) => {
                 return (
                   <NavItem
@@ -62,17 +62,17 @@ const DefaultHeader = ({ isExpanded, setIsExpanded, className, ...props }: IProp
       </div>
 
       {/* Boutons */}
-      <div className="flex items-center justify-center gap-5 h-full">
+      <div className="flex items-center justify-center gap-6 h-full">
         <OptionButtons />
 
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="min-[975px]:hidden"
+          className="min-[1025px]:hidden"
         >
           <FaBars size={22} />
         </button>
 
-        <AuthButtons className="max-[975px]:hidden" />
+        <AuthButtons className="max-[1025px]:hidden" />
       </div>
     </nav>
   );

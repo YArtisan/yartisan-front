@@ -20,12 +20,12 @@ const Notification = () => {
   };
 
   return (
-    <div className="flex flex-col gap-1 pb-2 border-b-2 border-black last:border-b-0">
+    <div className="flex flex-col gap-1 pb-2 border-b-[1px] border-gray-300 last:border-b-0">
       <div className="flex items-center justify-between">
         <p className="font-semibold">Notification title</p>
         <p className="text-sm">{getTimeSince(new Date("12/12/2023 15:00:00"))}</p>
       </div>
-      <p>Notification description</p>
+      <p className="text-sm">Notification description</p>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { IArtisan } from "@/types/interfaces";
 import { getAverageRating, getCompleteAddress } from "@utils/functions";
 import React from "react";
-import { FaBookmark, FaStar, FaStarHalf } from "react-icons/fa";
+import { FaRegBookmark } from "react-icons/fa";
 import RatingStars from "../atoms/RatingStars";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -12,7 +12,7 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 function ArtisanCard({ artisan, className, isSelected, ...props }: IProps) {
   const { company_name, address, ratings, average_price } = artisan;
   const avgRating = getAverageRating(ratings);
-    ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
+  ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
 
   return (
     <div
@@ -28,7 +28,7 @@ function ArtisanCard({ artisan, className, isSelected, ...props }: IProps) {
           <p className="text-lg font-bold">{company_name}</p>
           <p>{getCompleteAddress(address)}</p>
         </div>
-        <FaBookmark size={24} />
+        <FaRegBookmark size={24} />
       </div>
       <div className="flex justify-between gap-1 flex-wrap">
         <div className="flex flex-col">
