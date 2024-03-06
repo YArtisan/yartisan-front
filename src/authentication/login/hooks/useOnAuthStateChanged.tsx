@@ -6,16 +6,15 @@ export const useOnAuthStateChanged = async (): Promise<void> => {
   const { setConnectedUser, connectedUser } = useAuthState();
 
   firebaseAuthentication.onAuthStateChanged(async (user) => {
-    if (user === null || user?.emailVerified === false) return;
+    if (user === null) return;
     const token = await user?.getIdToken();
+    axios.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : ""
 
-    const {
-      data: { data },
-    } = await axios.get(`/user`, {
-      headers: { authorization: token ? `Bearer ${token}` : "" },
-    });
-
-    if (connectedUser !== undefined) return;
-    setConnectedUser(data);
+    try {
+      const { data: { data } } = await axios.get(`/user`);
+      console.log(data)
+      if (connectedUser !== undefined) return;
+      setConnectedUser(data);
+    } catch (error) { }
   });
 };

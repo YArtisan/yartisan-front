@@ -1,22 +1,11 @@
-import { ReactElement } from "react";
-import { RegisterForm } from "../components/RegisterForm";
-import { useRegister } from "../hooks/useRegister";
-import { useNavigate } from "react-router-dom";
+import { ReactElement } from "react"
+import { useEmailAndPasswordRegister } from "../hooks/useEmailAndPasswordRegister"
+import { RegisterForm } from "../components/RegisterForm"
 
 export const Register = (): ReactElement => {
-  const { register } = useRegister();
-  const navigate = useNavigate();
+  const { register } = useEmailAndPasswordRegister()
 
   return (
-    <RegisterForm
-      onClick={async (data) => {
-        try {
-          await register(data).then(() => navigate("/register-redirection"));
-        } catch (error: any) {
-          alert(error?.message ?? "Une erreur est survenue.");
-        }
-      }}
-      className="w-1/2"
-    />
-  );
-};
+    <RegisterForm onClick={register}></RegisterForm>
+  )
+}
