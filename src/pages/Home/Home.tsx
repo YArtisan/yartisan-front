@@ -1,6 +1,6 @@
 import { getAllArtisans } from "@/fetch/artisanActions";
 import { IArtisan } from "@/types/interfaces";
-import ArtisanList from "@organisms/ArtisanList";
+import ArtisanList from "@components/modules/ArtisanList/organisms/ArtisanList";
 import SearchBanner, { IFilters } from "@molecules/SearchBanner";
 import { getAverageRating } from "@utils/functions";
 import { useEffect, useState } from "react";
