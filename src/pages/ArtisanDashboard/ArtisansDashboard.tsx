@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import DashboardBanner from "@molecules/DashboardBanner";
-import ArtisanDashboardOrderInProgress from "@organisms/ArtisanDashboardOrderInProgress";
-import ArtisanDashboardOrderWaiting from "@organisms/ArtisanDashboardOrderWaiting";
-import ArtisanDashboardOrderPassed from "@organisms/ArtisanDashboardOrderPassed";
-import ArtisanDashboardDetails from "@organisms/ArtisanDashboardDetails";
+import DashboardBanner from "@components/modules/ArtisanDashboard/atoms/DashboardBanner";
+import ArtisanDashboardOrderInProgress from "@components/modules/ArtisanDashboard/molecules/ArtisanDashboardOrderInProgress";
+import ArtisanDashboardOrderWaiting from "@components/modules/ArtisanDashboard/molecules/ArtisanDashboardOrderWaiting";
+import ArtisanDashboardOrderPassed from "@components/modules/ArtisanDashboard/molecules/ArtisanDashboardOrderPassed";
+import ArtisanDashboardDetails from "@components/modules/ArtisanDashboard/molecules/ArtisanDashboardDetails";
 import "../ArtisanDashboard/ArtisansDashboard.scss";
 
 function ArtisanDashboard() {
@@ -26,9 +26,11 @@ function ArtisanDashboard() {
             <li onClick={() => handleTabClick("Commande passée")} className={selectedTab === "Commande passée" ? "selected" : ""}>Commande passée</li>
           </ul>
 
-          {(selectedTab === "Tout" || selectedTab === "Commande en cours") && <ArtisanDashboardOrderInProgress />}
-          {(selectedTab === "Tout" || selectedTab === "Commande en attente") && <ArtisanDashboardOrderWaiting />}
-          {(selectedTab === "Tout" || selectedTab === "Commande passée") && <ArtisanDashboardOrderPassed />}
+          <div className='flex flex-col gap-10'>
+            {(selectedTab === "Tout" || selectedTab === "Commande en cours") && <ArtisanDashboardOrderInProgress />}
+            {(selectedTab === "Tout" || selectedTab === "Commande en attente") && <ArtisanDashboardOrderWaiting />}
+            {(selectedTab === "Tout" || selectedTab === "Commande passée") && <ArtisanDashboardOrderPassed />}
+          </div>
         </section>
 
         <section className="right_column flex flex-col gap-8">

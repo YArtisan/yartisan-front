@@ -1,4 +1,11 @@
+import { useAuthState } from "@/user/components/UserProvider";
+import { ArtisanUser } from "@/user/types/User";
+import Map from "@atoms/Map";
+
 const ArtisanDashboardDetails = () => {
+  const authState = useAuthState();
+  const user: ArtisanUser | undefined = authState.connectedUser as ArtisanUser;
+
   return (
     <>
       <div>
@@ -49,29 +56,26 @@ const ArtisanDashboardDetails = () => {
       </div>
       <div className="flex flex-col gap-2">
         <h2>Informations</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem quis
-          incidunt iure sapiente nulla sunt repellat. A, excepturi voluptas
-          officia mollitia alias deleniti nisi maiores, eaque quod, deserunt
-          fugit praesentium.
-        </p>
+        <p>{user?.job_description}</p>
       </div>
       <div className="flex flex-col gap-2">
         <h2>Email</h2>
-        <p>Ynov@Ynov.com</p>
+        <p>{user?.email}</p>
       </div>
       <div className="flex flex-col gap-2">
         <h2>Téléphone</h2>
-        <p>06.52.67.94.35</p>
+        <p>{user?.phone_number}</p>
       </div>
       <div className="flex flex-col gap-2">
         <h2>Tarif moyen</h2>
-        <p>250$</p>
+        <p>{user?.average_price}€ </p>
       </div>
       <div className="flex flex-col gap-2">
         <h2>Addresse</h2>
         <p>245 rue jean pierre arnault, Lyon 5, FRANCE</p>
-        <div className="w-full h-[300px] bg-slate-400 rounded-md"></div>
+        <div className="w-full h-[300px] bg-slate-400 rounded-md overflow-hidden">
+          <Map coords={{ lat: 300, lon: 0 }} />
+        </div>
       </div>
     </>
   );

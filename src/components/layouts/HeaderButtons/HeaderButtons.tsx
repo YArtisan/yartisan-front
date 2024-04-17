@@ -25,9 +25,12 @@ export const AuthButtons = ({
     >
       {connectedUser != null ? (
         <div className="flex justify-center">
-          <div className="self-center mx-2 text-white sm:text-black">
+          <a
+            href="/artisan-dashboard"
+            className="self-center mx-2 text-white sm:text-black"
+          >
             {connectedUser?.email}
-          </div>
+          </a>
           <Button
             onClick={async () => {
               await signOut(firebaseAuthentication);

@@ -1,6 +1,6 @@
 import { IConversation } from "@/types/interfaces";
-import Conversation from "@components/chat/Conversation";
-import ConversationList from "@components/chat/ConversationList";
+import Conversation from "@components/modules/chat/Conversation";
+import ConversationList from "@components/modules/chat/ConversationList";
 import { useState } from "react";
 
 function Chat() {

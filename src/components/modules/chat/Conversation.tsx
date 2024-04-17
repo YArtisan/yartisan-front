@@ -2,7 +2,7 @@ import { TextInput } from "@/form/inputs/components/TextInput";
 import { IConversation, IMessage } from "@/types/interfaces";
 import { useEffect, useRef, useState } from "react";
 import { MdSend } from "react-icons/md";
-import { colors } from "../../utils/variables";
+import { colors } from "../../../utils/variables";
 import { Socket, io } from "socket.io-client";
 import Message from "./Message";
 import { useAuthState } from "@/user/components/UserProvider";

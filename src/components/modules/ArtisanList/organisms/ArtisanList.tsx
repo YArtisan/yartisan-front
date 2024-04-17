@@ -1,6 +1,6 @@
 import { IArtisan } from "@/types/interfaces";
-import ArtisanCard from "@molecules/ArtisanCard";
-import ArtisanDetails from "@organisms/ArtisanDetails";
+import ArtisanCard from "@components/modules/ArtisanList/molecules/ArtisanCard";
+import ArtisanDetails from "@components/modules/ArtisanList/organisms/ArtisanDetails";
 import { getAverageRating } from "@utils/functions";
 import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";

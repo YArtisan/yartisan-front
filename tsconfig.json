@@ -13,13 +13,13 @@
     "resolveJsonModule": true,
     "paths": {
       "@atoms/*": [
-        "src/components/atoms/*"
+        "src/components/shared/atoms/*"
       ],
       "@molecules/*": [
-        "src/components/molecules/*"
+        "src/components/shared/molecules/*"
       ],
       "@organisms/*": [
-        "src/components/organisms/*"
+        "src/components/shared/organisms/*"
       ],
       "@pages/*": [
         "src/pages/*"
@@ -32,6 +32,9 @@
       ],
       "@components/*": [
         "src/components/*"
+      ],
+      "@shared/*": [
+        "src/components/shared/*"
       ],
       "@/*": [
         "src/*"
