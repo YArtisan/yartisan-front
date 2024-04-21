@@ -35,9 +35,7 @@ function CompleteArtisanProfileForm ({ onClick }: Props) {
       job_description: null,
       average_price: null,
       number_of_employees: null,
-      email: null,
       profile_picture: null,
-      password: null,
       address: (data: IApiAddress) => !data.lat || !data.lon,
       opening_hours: (data: IOpeningHours[]) =>
         data.length === 0 ||
@@ -62,6 +60,9 @@ function CompleteArtisanProfileForm ({ onClick }: Props) {
 
   const handleSubmit = async () => {
     const errors = checkErrors();
+
+    console.log(errors);
+    
 
     if (errors.length > 0) return;
 
