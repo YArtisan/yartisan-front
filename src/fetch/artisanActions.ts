@@ -28,6 +28,8 @@ export const getAllArtisans = () => {
 };
 
 export const postArtisan = (artisan: IArtisanFormData) => {
+  console.log("register artisant", artisan);
+  
   return new Promise<void>((resolve, reject) => {
     try {
       fetch(`${import.meta.env.VITE_YARTISAN_API_URL}/artisant/signup`, {

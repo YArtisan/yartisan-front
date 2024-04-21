@@ -23,7 +23,9 @@ export const CompleteProfile = (): ReactElement => {
   try {
    const user = firebaseAuthentication?.currentUser
    data.email = user?.email ?? user?.emailVerified ?? ''
-   data.password = 'empty'
+   console.log("register data", data);
+   
+//    data.password = 'empty'
    if (user == null) throw new Error("not user auth");
    const registerFunction =
     data.userFunction === UserType.artisan ? postArtisan : createUser;
