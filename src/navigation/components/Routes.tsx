@@ -106,9 +106,9 @@ export const AppRoutes = (): ReactElement => {
       <Route
         path="/artisan-dashboard"
         element={
-          <DefaultLayout>
+          <AuthenticationLayout>
             <ArtisanDashboard />
-          </DefaultLayout>
+          </AuthenticationLayout>
         }
       />
     </Routes>

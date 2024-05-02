@@ -53,7 +53,6 @@ function Home() {
     <div className="flex flex-col gap-8">
       <SearchBanner value={filters} handleChange={setFilters} />
       <ArtisanList artisans={getFilteredArtisans()} />
-      <p>2</p>
     </div>
   );
 }
