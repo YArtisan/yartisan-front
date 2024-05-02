@@ -85,6 +85,7 @@ export interface IMessage {
   message: string;
   created_at: string;
   last_update: string;
+  url?: string;
 }
 
 export interface IConversation {
@@ -93,9 +94,9 @@ export interface IConversation {
   artisan: IArtisan;
   created_at: string;
   last_update: string;
-  data : {
-    name : string;
-    email : string;
-    phone : string;
-  }
+  data: {
+    name: string;
+    email: string;
+    phone: string;
+  };
 }
