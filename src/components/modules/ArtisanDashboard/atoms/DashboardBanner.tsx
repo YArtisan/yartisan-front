@@ -3,17 +3,28 @@ import { ArtisanUser } from "@/user/types/User";
 import React from "react";
 
 const DashboardBanner = () => {
-  const authState = useAuthState();
-  const user: ArtisanUser | undefined = authState.connectedUser as ArtisanUser;
+  const { connectedUser } = useAuthState();
+  const user = connectedUser;
+
+  if (!user) return null;
+
+  const imgUrl =
+    user.userFunction === "artisan"
+      ? (user as ArtisanUser).profile_picture
+      : "/images/user.jpg";
+  const name =
+    user.userFunction === "artisan"
+      ? (user as ArtisanUser).company_name
+      : user.email;
 
   return (
-    <div className="bg-primary flex items-center h-[150px] lg:h-[200px] rounded-md px-10 gap-4">
+    <div className="bg-white flex items-center h-[150px] lg:h-[200px] rounded-md px-10 gap-4">
       <img
         className="w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] rounded-full object-cover"
-        src={user?.profile_picture}
+        src={imgUrl}
         alt=""
       />
-      <h1 className="text-2xl lg:text-4xl">{user?.company_name}</h1>
+      <h1 className="text-2xl lg:text-4xl max-[550px]:break-all">{name}</h1>
     </div>
   );
 };

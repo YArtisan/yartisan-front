@@ -11,10 +11,11 @@ export interface IRating {
   id: number;
   user_id: number;
   artisan_id: number;
-  score: number;
+  score: string;
   avis: string;
-  created_at: Date;
-  last_update: Date;
+  user: { firstName: string; lastname: string };
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface IAddress {

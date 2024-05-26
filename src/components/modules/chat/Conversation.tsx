@@ -16,9 +16,9 @@ interface IProps {
 }
 
 interface StripeCheckoutDto {
-  productName: string;
-  productDescription: string;
-  productPrice: string;
+  name: string;
+  description: string;
+  price: string;
 }
 
 function Conversation({ conversation }: IProps) {
@@ -114,24 +114,24 @@ function Conversation({ conversation }: IProps) {
   };
 
   const handleSubmitProposition = () => {
-    const { productName, productDescription, productPrice } = propositionData;
+    const { name, description, price } = propositionData;
     const errors = [];
-    if (!productName) errors.push("productName");
-    if (!productDescription) errors.push("productDescription");
-    if (!productPrice) errors.push("productPrice");
+    if (!name) errors.push("productName");
+    if (!description) errors.push("productDescription");
+    if (!price) errors.push("productPrice");
     if (errors.length > 0) return setPropositionErrors(errors);
     setPropositionErrors([]);
 
     axios
       .post("/create-checkout-session", {
         ...propositionData,
-        productPrice: Math.floor(parseFloat(productPrice!) * 100),
+        price: Math.floor(parseFloat(price!) * 100),
+        user_id: conversation.user._id,
+        artisan_id: conversation.artisan._id,
       })
-      .then((res) => {
-        const { paymentUrl } = res.data;
+      .then(() => {
         sendMessage(
-          `Voici une proposition pour le produit suivant : ${productName}.\nDescription : ${productDescription}\nPour un montant de : ${productPrice} €.\nCliquez sur le message pour accéder au paiement.`,
-          paymentUrl
+          `Vous avez reçu une proposition pour le produit suivant : ${name}.\nDescription : ${description}\nPour un montant de : ${price} €.\nVeuillez consulter votre compte pour régler la commande.`
         );
         setIsProposing(false);
         setPropositionData({});
@@ -166,13 +166,13 @@ function Conversation({ conversation }: IProps) {
                 ? "border-red-500 placeholder:text-red-500"
                 : ""
             } `}
-            value={propositionData.productName}
+            value={propositionData.name}
             onChange={(e) => {
               if (propositionErrors.includes("productName"))
                 setPropositionErrors(
                   propositionErrors.filter((e) => e !== "productName")
                 );
-              setPropositionData({ ...propositionData, productName: e });
+              setPropositionData({ ...propositionData, name: e });
             }}
           />
           <TextInput
@@ -183,13 +183,13 @@ function Conversation({ conversation }: IProps) {
                 ? "border-red-500 placeholder:text-red-500"
                 : ""
             } `}
-            value={propositionData.productDescription}
+            value={propositionData.description}
             onChange={(e) => {
               if (propositionErrors.includes("productDescription"))
                 setPropositionErrors(
                   propositionErrors.filter((e) => e !== "productDescription")
                 );
-              setPropositionData({ ...propositionData, productDescription: e });
+              setPropositionData({ ...propositionData, description: e });
             }}
           />
           <TextInput
@@ -200,7 +200,7 @@ function Conversation({ conversation }: IProps) {
                 ? "border-red-500 placeholder:text-red-500"
                 : ""
             } `}
-            value={propositionData.productPrice}
+            value={propositionData.price}
             onChange={(e) => {
               if (propositionErrors.includes("productPrice"))
                 setPropositionErrors(
@@ -208,7 +208,7 @@ function Conversation({ conversation }: IProps) {
                 );
               setPropositionData({
                 ...propositionData,
-                productPrice: e,
+                price: e,
               });
             }}
           />{" "}

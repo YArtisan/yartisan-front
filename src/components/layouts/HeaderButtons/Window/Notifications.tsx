@@ -1,9 +1,9 @@
 function Notifications() {
   return (
     <div className="flex flex-col gap-2 max-[400px]:w-full w-72">
-      {Array.from(new Array(3).keys()).map((i) => (
+      {/* {Array.from(new Array(3).keys()).map((i) => (
         <Notification key={`notification-${i}`} />
-      ))}
+      ))} */}
     </div>
   );
 }

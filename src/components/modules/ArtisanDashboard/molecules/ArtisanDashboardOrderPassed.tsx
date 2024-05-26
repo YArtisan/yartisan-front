@@ -1,4 +1,4 @@
-const ArtisanDashboardOrderPassed = () => {
+const ArtisanDashboardOrder = () => {
   const data2 = [
     {
       id: 1,
@@ -75,4 +75,4 @@ const ArtisanDashboardOrderPassed = () => {
   );
 };
 
-export default ArtisanDashboardOrderPassed;
+export default ArtisanDashboardOrder;

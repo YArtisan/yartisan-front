@@ -26,7 +26,7 @@ export const AuthButtons = ({
       {connectedUser != null ? (
         <div className="flex justify-center">
           <a
-            href="/artisan-dashboard"
+            href="/dashboard"
             className="self-center mx-2 text-white sm:text-black"
           >
             {connectedUser?.email}
@@ -68,8 +68,8 @@ export const AuthButtons = ({
 export const OptionButtons = () => {
   type Menu = "settings" | "notifications" | "";
   const [openedMenu, setOpenedMenu] = useState<Menu>("");
-  const nbMessages = 2;
-  const nbNotifications = 2;
+  const nbMessages = 0;
+  const nbNotifications = 0;
 
   const toggleOpenMenu = (value: Menu) => {
     setOpenedMenu(openedMenu === value ? "" : value);

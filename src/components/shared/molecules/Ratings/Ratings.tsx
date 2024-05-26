@@ -7,7 +7,7 @@ function Ratings({ ratings }: { ratings: IRating[] }) {
     <div className="flex flex-col gap-3">
       <RatingScore ratings={ratings} />
       {ratings
-        .sort((r) => -r.score)
+        .sort((a, b) => parseInt(a.score) - parseInt(b.score))
         .map((r) => (
           <UserRating key={`user-rating-${r.id}`} rating={r} />
         ))}

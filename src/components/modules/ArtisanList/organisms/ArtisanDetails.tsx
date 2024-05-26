@@ -18,7 +18,7 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 
 function ArtisanDetails({ artisan, className, ...props }: IProps) {
   const { connectedUser } = useAuthState();
-  const { t } = useTranslation("");
+  const { t } = useTranslation("artisan-details");
   const days = t("days:days", { returnObjects: true }) as string[];
   const [height, _setHeight] = useState(() => window.innerHeight - 100);
   const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(
@@ -73,7 +73,6 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
           <Button template="secondary" invertColors onClick={handleContact}>
             Contacter
           </Button>
-          <Button template="secondary">Réserver</Button>
         </div>
         <p className="text-lg font-bold">Horaires</p>
         <ul className="mb-6">
@@ -108,16 +107,6 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
         <p className="text-lg font-bold">Adresse</p>
         <p className="mb-4">{address}</p>
         {coords && <Map className="mb-4" coords={coords} />}
-        <div className="flex items-center justify-between mb-8">
-          <p className="text-lg font-bold">Avis</p>
-          <Button
-            template="secondary"
-            className="flex items-center gap-2 text-sm"
-          >
-            <FaPlus />
-            <p className="font-semibold">Ajouter un avis</p>
-          </Button>
-        </div>
         <Ratings ratings={ratings} />
       </div>
     </div>
