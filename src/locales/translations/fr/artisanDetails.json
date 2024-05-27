@@ -1,7 +1,10 @@
 {
-  "searchArtisan": "Search an artisan...",
-  "industry": "Industry",
-  "grade": "Rating",
-  "price": "Price",
-  "or": "or"
+  "banner": "Bannière de {{companyName}}",
+  "contact": "Contacter",
+  "openingHours": "Horaires",
+  "from": "Du",
+  "to": "au",
+  "information": "Informations",
+  "averagePrice": "Tarif moyen",
+  "address": "Adresse"
 }

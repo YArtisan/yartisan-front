@@ -1,0 +1,34 @@
+{
+  "options": {
+    "all": "Toutes les commandes",
+    "waiting": "Commandes en cours",
+    "shipping": "Commandes en cours de livraison",
+    "cancelled": "Commandes annulées",
+    "paid": "Commandes payées",
+    "refunded": "Commandes remboursées",
+    "done": "Commandes terminées"
+  },
+  "orderUpdated": "La commande a été modifiée.",
+  "error": "Une erreur est survenue.",
+  "note": "Laissez une note entre 1 et 5 à l'artisan",
+  "noteRequirement": "La note doit être un chiffre entre 1 et 5.",
+  "comment": "Vous pouvez laisser un commentaire à l'artisan si vous le souhaitez, sinon appuyez sur \"OK\"",
+  "added": "Votre avis a été ajouté !",
+  "status": {
+    "waiting": "En attente de paiement",
+    "paid": "Payée",
+    "shipping": "En livraison",
+    "cancelled": "Annulée",
+    "refunded": "Remboursée",
+    "done": "Terminée"
+  },
+  "headers": {
+    "customer": "Client",
+    "name": "Nom",
+    "description": "Description",
+    "date": "Date",
+    "amount": "Montant",
+    "status": "Statut",
+    "operation": "Opération"
+  }
+}

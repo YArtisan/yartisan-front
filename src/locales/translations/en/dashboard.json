@@ -1,0 +1,34 @@
+{
+  "options": {
+    "all": "All orders",
+    "waiting": "Orders in progress",
+    "shipping": "Orders in shipping",
+    "cancelled": "Cancelled orders",
+    "paid": "Paid orders",
+    "refunded": "Refunded orders",
+    "done": "Completed orders"
+  },
+  "orderUpdated": "The order has been updated.",
+  "error": "An error has occured.",
+  "note": "Give the artisan a score between 1 and 5",
+  "noteRequirement": "The score must be a number between 1 and 5.",
+  "comment": "You can leave a comment to the artisan if you wish, otherwise click on \"OK\"",
+  "added": "Your rating has been added !",
+  "status": {
+    "waiting": "Waiting for payment",
+    "paid": "Paid",
+    "shipping": "Shipping",
+    "cancelled": "Cancelled",
+    "refunded": "Refunded",
+    "done": "Completed"
+  },
+  "headers": {
+    "customer": "Customer",
+    "name": "Name",
+    "description": "Description",
+    "date": "Date",
+    "amount": "Amount",
+    "status": "Status",
+    "operation": "Operation"
+  }
+}

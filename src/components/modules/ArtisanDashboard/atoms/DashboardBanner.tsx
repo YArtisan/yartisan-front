@@ -24,7 +24,7 @@ const DashboardBanner = () => {
         src={imgUrl}
         alt=""
       />
-      <h1 className="text-2xl lg:text-4xl max-[550px]:break-all">{name}</h1>
+      <h1 className="text-2xl lg:text-4xl break-all">{name}</h1>
     </div>
   );
 };

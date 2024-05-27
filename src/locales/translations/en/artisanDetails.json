@@ -1,3 +1,10 @@
 {
-
+  "banner": "Banner of {{companyName}}",
+  "contact": "Contact",
+  "openingHours": "Opening Hours",
+  "from": "from",
+  "to": "to",
+  "information": "Information",
+  "averagePrice": "Average Price",
+  "address": "Address"
 }

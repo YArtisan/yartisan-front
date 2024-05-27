@@ -7,7 +7,8 @@ import { Socket, io } from "socket.io-client";
 import Message from "./Message";
 import { useAuthState } from "@/user/components/UserProvider";
 import Button from "@atoms/Button";
-import axios from "@/api/service/axios";
+import { useTranslation } from "react-i18next";
+import OfferForm from "./OfferForm";
 
 const URL = import.meta.env.VITE_YARTISAN_API_URL;
 
@@ -15,19 +16,11 @@ interface IProps {
   conversation: IConversation;
 }
 
-interface StripeCheckoutDto {
-  name: string;
-  description: string;
-  price: string;
-}
-
 function Conversation({ conversation }: IProps) {
+  const { t } = useTranslation("conversation");
   const { connectedUser } = useAuthState();
   const [isProposing, setIsProposing] = useState(false);
-  const [propositionErrors, setPropositionErrors] = useState<string[]>([]);
-  const [propositionData, setPropositionData] = useState<
-    Partial<StripeCheckoutDto>
-  >({});
+
   const [messages, setMessages] = useState<Partial<IMessage>[]>([]);
   const [messageText, setMessageText] = useState<string>("");
   const [socket, setSocket] = useState<Socket<any, any> | null>(null);
@@ -57,9 +50,6 @@ function Conversation({ conversation }: IProps) {
     }
 
     function onConversationJoined(messages: Partial<IMessage>[]) {
-      console.log("conversation joined", conversation._id);
-      console.log("messages", messages);
-
       setMessages(messages);
       scrollBottom();
     }
@@ -113,34 +103,9 @@ function Conversation({ conversation }: IProps) {
     );
   };
 
-  const handleSubmitProposition = () => {
-    const { name, description, price } = propositionData;
-    const errors = [];
-    if (!name) errors.push("productName");
-    if (!description) errors.push("productDescription");
-    if (!price) errors.push("productPrice");
-    if (errors.length > 0) return setPropositionErrors(errors);
-    setPropositionErrors([]);
+  if (!socket) return <p>{t("waiting")}</p>;
 
-    axios
-      .post("/create-checkout-session", {
-        ...propositionData,
-        price: Math.floor(parseFloat(price!) * 100),
-        user_id: conversation.user._id,
-        artisan_id: conversation.artisan._id,
-      })
-      .then(() => {
-        sendMessage(
-          `Vous avez reçu une proposition pour le produit suivant : ${name}.\nDescription : ${description}\nPour un montant de : ${price} €.\nVeuillez consulter votre compte pour régler la commande.`
-        );
-        setIsProposing(false);
-        setPropositionData({});
-      });
-  };
-
-  if (!socket) return <p>Veuillez patienter...</p>;
-
-  if (!connectedUser) return <p>Vous n'êtes pas connectés.</p>;
+  if (!connectedUser) return <p>{t("not-auth")}</p>;
 
   return (
     <div className="bg-white rounded shadow-xl flex-1 overflow-hidden flex flex-col gap-2">
@@ -151,75 +116,19 @@ function Conversation({ conversation }: IProps) {
           <p className="text-secondary font-bold">{conversation.data.email}</p>
         </div>
         <div className="flex flex-col">
-          <p>Téléphone</p>
+          <p>{t("phone")}</p>
           <p className="text-secondary font-bold">{conversation.data.phone}</p>
         </div>
       </div>
       {isProposing ? (
-        <div className="flex-1 flex flex-col overflow-auto px-4 gap-2 w-full">
-          <p className="text-lg font-bold">Proposition de produit</p>
-          <TextInput
-            type="text"
-            placeholder="Nom du produit"
-            className={`${
-              propositionErrors.includes("productName")
-                ? "border-red-500 placeholder:text-red-500"
-                : ""
-            } `}
-            value={propositionData.name}
-            onChange={(e) => {
-              if (propositionErrors.includes("productName"))
-                setPropositionErrors(
-                  propositionErrors.filter((e) => e !== "productName")
-                );
-              setPropositionData({ ...propositionData, name: e });
-            }}
-          />
-          <TextInput
-            type="text"
-            placeholder="Description du produit"
-            className={`${
-              propositionErrors.includes("productDescription")
-                ? "border-red-500 placeholder:text-red-500"
-                : ""
-            } `}
-            value={propositionData.description}
-            onChange={(e) => {
-              if (propositionErrors.includes("productDescription"))
-                setPropositionErrors(
-                  propositionErrors.filter((e) => e !== "productDescription")
-                );
-              setPropositionData({ ...propositionData, description: e });
-            }}
-          />
-          <TextInput
-            type="number"
-            placeholder="Prix du produit"
-            className={`${
-              propositionErrors.includes("productPrice")
-                ? "border-red-500 placeholder:text-red-500"
-                : ""
-            } `}
-            value={propositionData.price}
-            onChange={(e) => {
-              if (propositionErrors.includes("productPrice"))
-                setPropositionErrors(
-                  propositionErrors.filter((e) => e !== "productPrice")
-                );
-              setPropositionData({
-                ...propositionData,
-                price: e,
-              });
-            }}
-          />{" "}
-          <Button
-            template="secondary"
-            onClick={handleSubmitProposition}
-            className="w-fit mx-auto"
-          >
-            Soumettre la proposition
-          </Button>
-        </div>
+        <OfferForm
+          conversation={conversation}
+          submit={({ price, description, name }) =>
+            sendMessage(
+              `Vous avez reçu une proposition pour le produit suivant : ${name}.\nDescription : ${description}\nPour un montant de : ${price} €.\nVeuillez consulter votre compte pour régler la commande.`
+            )
+          }
+        />
       ) : (
         <div
           id="messages-box"
@@ -243,7 +152,7 @@ function Conversation({ conversation }: IProps) {
             invertColors={isProposing}
             onClick={() => setIsProposing(!isProposing)}
           >
-            {isProposing ? "Annuler la proposition" : "Faire une proposition"}
+            {isProposing ? t("offer.off") : t("offer.on")}
           </Button>
         )}
         <TextInput

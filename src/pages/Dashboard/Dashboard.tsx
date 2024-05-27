@@ -5,6 +5,8 @@ import "../Dashboard/Dashboard.scss";
 import axios from "@/api/service/axios";
 import { useAuthState } from "@/user/components/UserProvider";
 import Button from "@atoms/Button";
+import NotAuth from "@atoms/NotAuth";
+import { useTranslation } from "react-i18next";
 
 interface IOrder {
   _id: string;
@@ -19,18 +21,19 @@ interface IOrder {
 }
 
 function Dashboard() {
+  const { t } = useTranslation("dashboard");
   const { connectedUser } = useAuthState();
   const [selectedTab, setSelectedTab] = useState("all");
   const [orders, setOrders] = useState<IOrder[]>([]);
 
-  const tabs = [
-    { value: "all", label: "Toutes les commandes" },
-    { value: "waiting", label: "Commandes en cours" },
-    { value: "shipping", label: "Commandes en cours de livraison" },
-    { value: "cancelled", label: "Commandes annulées" },
-    { value: "paid", label: "Commandes payées" },
-    { value: "refunded", label: "Commandes remboursées" },
-    { value: "done", label: "Commandes terminées" },
+  const options = [
+    { value: "all", label: t("options.all") },
+    { value: "waiting", label: t("options.waiting") },
+    { value: "shipping", label: t("options.shipping") },
+    { value: "cancelled", label: t("options.cancelled") },
+    { value: "paid", label: t("options.paid") },
+    { value: "refunded", label: t("options.refunded") },
+    { value: "done", label: t("options.done") },
   ];
 
   useEffect(() => {
@@ -44,8 +47,8 @@ function Dashboard() {
   const handleUpdate = (id: string, data: Partial<IOrder>) => {
     axios
       .put("/order/" + id, data)
-      .then((res) => {
-        alert("La commande a été modifiée.");
+      .then(() => {
+        alert(t("orderUpdated"));
         setOrders((old) =>
           old.map((e) => {
             if (e._id !== id) return e;
@@ -55,24 +58,22 @@ function Dashboard() {
       })
       .catch((err) => {
         console.log(err);
-        alert("Une erreur est survenue.");
+        alert(t("error"));
       });
   };
 
   const addRating = (order: IOrder) => {
-    const score = prompt("Laissez une note entre 1 et 5 à l'artisan");
+    const score = prompt(t("note"));
     if (
       !score ||
       Number.isNaN(score) ||
       parseInt(score) > 5 ||
       parseInt(score) < 1
     ) {
-      return alert("La note doit être un chiffre entre 1 et 5.");
+      return alert("noteRequirement");
     }
 
-    const avis = prompt(
-      'Vous pouvez laisser un commentaire à l\'artisan si vous le souhaitez, sinon appuyez sur "OK"'
-    );
+    const avis = prompt(t("comment"));
 
     axios
       .post("/rating/new", {
@@ -82,39 +83,30 @@ function Dashboard() {
         avis,
       })
       .then(() => {
-        alert("Votre avis a été ajouté !");
+        alert(t("added"));
       })
       .catch((err) => {
         console.log(err);
-        alert("Une erreur est survenue.");
+        alert(t("error"));
       });
   };
 
-  if (!connectedUser)
-    return (
-      <div className="flex flex-col items-center absolute right-1/2 top-1/2 translate-x-1/2 w-fit">
-        <p className="font-bold mb-4 text-xl">Vous n'êtes pas connecté</p>
-        <a href="/">
-          <Button template="secondary">Retour à l'accueil</Button>
-        </a>
-      </div>
-    );
+  if (!connectedUser) return <NotAuth />;
 
   const getStatusLabel = (status: string) => {
     switch (status) {
       case "waiting":
-        return { label: "En attente de paiement", className: "bg-orange-500" };
+        return { label: t("status." + status), className: "bg-orange-500" };
       case "paid":
-        return { label: "Payée", className: "bg-blue-500" };
+        return { label: t("status." + status), className: "bg-blue-500" };
       case "shipping":
-        return { label: "En livraison", className: "bg-yellow-500" };
+        return { label: t("status." + status), className: "bg-yellow-500" };
       case "cancelled":
-        return { label: "Annulée", className: "bg-red-500" };
+        return { label: t("status." + status), className: "bg-red-500" };
       case "refunded":
-        return { label: "Remboursée", className: "bg-red-500" };
+        return { label: t("status." + status), className: "bg-red-500" };
       case "done":
-        return { label: "Terminée", className: "bg-green-500" };
-
+        return { label: t("status." + status), className: "bg-green-500" };
       default:
         return { label: "", className: "" };
     }
@@ -131,7 +123,7 @@ function Dashboard() {
               className="mb-2 outline-none border-b-2 border-b-secondary"
               onChange={(e) => setSelectedTab(e.target.value)}
             >
-              {tabs.map(({ value, label }) => (
+              {options.map(({ value, label }) => (
                 <option
                   key={`tab-${value}`}
                   value={value}
@@ -146,13 +138,13 @@ function Dashboard() {
               <table className="passedOrder">
                 <thead className="bg-secondary">
                   <tr>
-                    <th></th>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Montant</th>
-                    <th>Statut</th>
-                    <th>Opération</th>
+                    <td>{t("headers.customer")}</td>
+                    <td>{t("headers.name")}</td>
+                    <td>{t("headers.description")}</td>
+                    <td>{t("headers.date")}</td>
+                    <td>{t("headers.amount")}</td>
+                    <td>{t("headers.status")}</td>
+                    <td>{t("headers.operation")}</td>
                   </tr>
                 </thead>
                 <tbody>

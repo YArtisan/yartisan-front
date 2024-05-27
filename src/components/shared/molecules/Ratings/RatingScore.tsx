@@ -3,11 +3,11 @@ import Jauge from "@atoms/Jauge";
 import RatingStars from "@atoms/RatingStars";
 import { getAverageRating } from "@utils/functions";
 import { FaStar } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 function RatingScore({ ratings }: { ratings: IRating[] }) {
+  const { t } = useTranslation("ratings");
   const avg = getAverageRating(ratings);
-  console.log(avg);
-
   const hasTwoDecimals = (avg * 100) % 10 === 0;
 
   return (
@@ -19,7 +19,9 @@ function RatingScore({ ratings }: { ratings: IRating[] }) {
           </p>
         )}
         <RatingStars number={avg} className="text-3xl text-yellow-400" filled />
-        <p className="italic underline">{ratings.length} avis</p>
+        <p className="italic underline">
+          {t(ratings.length > 1 ? "reviews_plural" :"reviews", { count: ratings.length })}
+        </p>
       </div>
       {ratings.length > 0 && (
         <div className="flex flex-col gap-1 mb-6">
@@ -27,7 +29,7 @@ function RatingScore({ ratings }: { ratings: IRating[] }) {
             .reverse()
             .map((i) => {
               const occurences = ratings.filter(
-                ({ score }) => score === i + 1
+                ({ score }) => parseInt(score) === i + 1
               ).length;
 
               return (

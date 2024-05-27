@@ -20,7 +20,6 @@ function ConversationList({
     getConversationsByUser(connectedUser._id).then((data) =>
       setConversations(
         data.map((c) => {
-          console.log(c);
           const isArtisan = connectedUser?.userFunction === "artisan";
           const isUser = connectedUser?.userFunction === "user";
           let data = {
@@ -54,16 +53,28 @@ function ConversationList({
   return (
     <div className="max-w-[300px] w-full h-full flex flex-col bg-white rounded shadow-xl">
       <div className="flex flex-col">
-        {conversations.map((c) => (
-          <ConversationItem
-            key={c._id}
-            conversation={c}
-            onClick={() => onSelectConversation(c)}
-            isSelected={
-              selectedConversation?._id.toLowerCase() === c._id.toLowerCase()
-            }
-          />
-        ))}
+        {conversations
+          .sort((a, b) => {
+            //@ts-ignore
+            const aDate = a.updatedAt ?? a.last_update;
+            //@ts-ignore
+            const bDate = b.updatedAt ?? b.last_update;
+
+            const aTime = new Date(aDate).getTime();
+            const bTime = new Date(bDate).getTime();
+
+            return bTime - aTime;
+          })
+          .map((c) => (
+            <ConversationItem
+              key={c._id}
+              conversation={c}
+              onClick={() => onSelectConversation(c)}
+              isSelected={
+                selectedConversation?._id.toLowerCase() === c._id.toLowerCase()
+              }
+            />
+          ))}
       </div>
     </div>
   );
@@ -79,6 +90,7 @@ function ConversationItem({
   isSelected,
   ...props
 }: ConversationItemProps) {
+  const { artisan, data, lastMessage } = conversation;
   return (
     <div
       {...props}
@@ -89,15 +101,12 @@ function ConversationItem({
       <div
         className="w-12 h-12 rounded-full bg-cover bg-no-repeat"
         style={{
-          backgroundImage: `url(${conversation.artisan.profile_picture})`,
+          backgroundImage: `url(${artisan.profile_picture})`,
         }}
       ></div>
       <div className="flex-1 flex flex-col">
-        <p>{conversation.data?.name}</p>
-        <p className="text-gray-400 line-clamp-1">
-          Le dernier message a avoir été envoyé va être coupé parce que trop
-          long
-        </p>
+        <p>{data?.name}</p>
+        <p className="text-gray-400 line-clamp-1">{lastMessage?.message}</p>
       </div>
     </div>
   );

@@ -1,0 +1,15 @@
+{
+  "waiting": "Please wait...",
+  "not-auth": "You're not logged in",
+  "phone": "Phone number",
+  "proposal" : "Product proposal",
+  "offer": {
+    "title": "Product offer",
+    "on": "Make an offer",
+    "off": "Cancel the offer",
+    "submit": "Submit the offer",
+    "name": "Product name",
+    "description": "Product description",
+    "price": "Product price (in €)"
+  }
+}

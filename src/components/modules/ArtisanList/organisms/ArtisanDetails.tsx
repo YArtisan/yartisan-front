@@ -18,12 +18,10 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 
 function ArtisanDetails({ artisan, className, ...props }: IProps) {
   const { connectedUser } = useAuthState();
-  const { t } = useTranslation("artisan-details");
+  const { t } = useTranslation("artisanDetails");
   const days = t("days:days", { returnObjects: true }) as string[];
   const [height, _setHeight] = useState(() => window.innerHeight - 100);
-  const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(
-    null
-  );
+  const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(null);
   const {
     company_name,
     ratings,
@@ -60,7 +58,7 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
       {isValidUrl(profile_picture) && (
         <img
           src={profile_picture}
-          alt={`Bannière de ${company_name}`}
+          alt={t("banner", { companyName: company_name })}
           className="h-[150px] object-cover rounded-md"
         />
       )}
@@ -71,10 +69,10 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
         </div>
         <div className="flex gap-2 flex-wrap mb-6 text-sm">
           <Button template="secondary" invertColors onClick={handleContact}>
-            Contacter
+            {t("contact")}
           </Button>
         </div>
-        <p className="text-lg font-bold">Horaires</p>
+        <p className="text-lg font-bold">{t("openingHours")}</p>
         <ul className="mb-6">
           {horaires.map(({ opening_time, closing_time, ...horaire }, i) => {
             let jours = "";
@@ -82,12 +80,12 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
 
             if (horaire.days.length > 1) {
               const lastDay = days[horaire.days[horaire.days.length - 1]];
-              jours = `Du ${firstDay} au ${lastDay}`;
+              jours = `${t("from")} ${firstDay} ${t("to")} ${lastDay}`;
             } else {
               jours = `${capitalize(firstDay)}`;
             }
 
-            const heures = `${opening_time} à ${closing_time}`;
+            const heures = `${opening_time} ${t("to")} ${closing_time}`;
 
             return (
               <li
@@ -100,11 +98,11 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
             );
           })}
         </ul>
-        <p className="text-lg font-bold">Informations</p>
+        <p className="text-lg font-bold">{t("information")}</p>
         <p className="mb-6">{job_description}</p>
-        <p className="text-lg font-bold">Tarif moyen</p>
+        <p className="text-lg font-bold">{t("averagePrice")}</p>
         <p className="mb-6">{average_price} €</p>
-        <p className="text-lg font-bold">Adresse</p>
+        <p className="text-lg font-bold">{t("address")}</p>
         <p className="mb-4">{address}</p>
         {coords && <Map className="mb-4" coords={coords} />}
         <Ratings ratings={ratings} />

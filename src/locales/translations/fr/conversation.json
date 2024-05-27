@@ -1,0 +1,14 @@
+{
+  "waiting": "Veuillez patienter...",
+  "not-auth": "Vous n'êtes pas connecté",
+  "phone": "Téléphone",
+  "offer": {
+    "title": "Proposition de produit",
+    "on": "Faire une proposition",
+    "off": "Annuler la proposition",
+    "submit": "Soumettre la proposition",
+    "name": "Nom du produit",
+    "description": "Description du produit",
+    "price": "Prix du produit (en €)"
+  }
+}
