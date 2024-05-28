@@ -12,7 +12,8 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 function ArtisanCard({ artisan, className, isSelected, ...props }: IProps) {
   const { company_name, address, ratings, average_price } = artisan;
   const avgRating = getAverageRating(ratings);
-  ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length;
+  console.log("avg", avgRating);
+  
 
   return (
     <div

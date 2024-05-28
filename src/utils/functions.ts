@@ -5,8 +5,11 @@ import {
   IRating,
 } from "@/types/interfaces";
 
-export const getAverageRating = (ratings: IRating[]) =>
-  ratings.reduce((prev, curr) => prev + curr.score, 0) / ratings.length || 0;
+export const getAverageRating = (ratings: IRating[]) => {
+  const total = ratings.reduce((prev, curr) => prev + parseInt(curr.score), 0);
+
+  return total / (ratings.length || 1);
+};
 
 export const getCompleteAddress = (address: Partial<IAddress>) => {
   const street = [address.address_number, address.street_name]
