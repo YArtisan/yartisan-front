@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { createConversation } from "@/fetch/conversationActions";
 import { useAuthState } from "@/user/components/UserProvider";
+import Horaires from "@molecules/Horaires";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   artisan: IArtisan;
@@ -19,9 +20,11 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 function ArtisanDetails({ artisan, className, ...props }: IProps) {
   const { connectedUser } = useAuthState();
   const { t } = useTranslation("artisanDetails");
-  const days = t("days:days", { returnObjects: true }) as string[];
+
   const [height, _setHeight] = useState(() => window.innerHeight - 100);
-  const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(null);
+  const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(
+    null
+  );
   const {
     company_name,
     ratings,
@@ -30,7 +33,6 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
     job_description,
   } = artisan;
   const address = getCompleteAddress(artisan.address);
-  const horaires = getHoraires(artisan.opening_hours);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -73,31 +75,7 @@ function ArtisanDetails({ artisan, className, ...props }: IProps) {
           </Button>
         </div>
         <p className="text-lg font-bold">{t("openingHours")}</p>
-        <ul className="mb-6">
-          {horaires.map(({ opening_time, closing_time, ...horaire }, i) => {
-            let jours = "";
-            const firstDay = days[horaire.days[0]];
-
-            if (horaire.days.length > 1) {
-              const lastDay = days[horaire.days[horaire.days.length - 1]];
-              jours = `${t("from")} ${firstDay} ${t("to")} ${lastDay}`;
-            } else {
-              jours = `${capitalize(firstDay)}`;
-            }
-
-            const heures = `${opening_time} ${t("to")} ${closing_time}`;
-
-            return (
-              <li
-                className="flex items-center justify-between"
-                key={`artisan-${company_name}-horaire-${i}`}
-              >
-                <span>{jours}</span>
-                <span>{heures}</span>
-              </li>
-            );
-          })}
-        </ul>
+        <Horaires artisan={artisan} />
         <p className="text-lg font-bold">{t("information")}</p>
         <p className="mb-6">{job_description}</p>
         <p className="text-lg font-bold">{t("averagePrice")}</p>

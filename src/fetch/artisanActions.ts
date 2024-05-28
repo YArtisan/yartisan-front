@@ -1,5 +1,4 @@
 import { IArtisan, IArtisanFormData } from "@/types/interfaces";
-import { ratings } from "./datas/ratingsData";
 
 export const getAllArtisans = () => {
   return new Promise<IArtisan[]>((resolve, reject) => {
@@ -27,9 +26,30 @@ export const getAllArtisans = () => {
   });
 };
 
+export const getArtisanByID = (id: string) => {
+  return new Promise<IArtisan>((resolve, reject) => {
+    try {
+      fetch(`${import.meta.env.VITE_YARTISAN_API_URL}/artisant/` + id)
+        .then((res) => res.json())
+        .then(({ data }) => {
+          const { artisantData, opening_time, address, ratings } = data;
+
+          const send = {
+            ...artisantData,
+            ratings,
+            address: address[0],
+            opening_hours: opening_time,
+          };
+
+          resolve(send);
+        });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 export const postArtisan = (artisan: IArtisanFormData) => {
-  console.log("register artisant", artisan);
-  
   return new Promise<void>((resolve, reject) => {
     try {
       fetch(`${import.meta.env.VITE_YARTISAN_API_URL}/artisant/signup`, {
